@@ -1,7 +1,7 @@
 import pandas as pd
 from sqlalchemy import create_engine
 
-amazon_csv_path = "final_project_database/Amazon.csv"
+amazon_csv_path = "Amazon.csv"
 
 engine = create_engine("mysql+pymysql://root:mysqlpass@localhost:33306/cs4370_final_amazon")
 
