@@ -1,15 +1,11 @@
 package uga.menik.csx370.controllers;
 
-import java.sql.SQLException;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import uga.menik.csx370.models.Post;
 import uga.menik.csx370.services.TrendingService;
 
 
@@ -41,7 +37,7 @@ public class TrendingController {
     public ModelAndView showTrendingPage() {
         System.out.println("User is attempting to view the trending page");
         ModelAndView mv = new ModelAndView("posts_page");
-
+/*
         try {
             
             List<Post> trendingPosts = trendingService.getTrendingPosts();
@@ -56,7 +52,7 @@ public class TrendingController {
             String errorMessage = "Some error occured!";
             mv.addObject("errorMessage", errorMessage);
         }
-
+*/
         return mv;
     }
 }
