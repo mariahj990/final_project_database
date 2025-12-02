@@ -160,7 +160,7 @@ public class PostController {
 
         boolean actionCompleted = false;
         // add or remove bookmark depending on boolean. do we need to inject a bookmark svc?
-        try{
+/*        try{
             User currentUser = userService.getLoggedInUser();
             if (isAdd) {
             actionCompleted = bookmarkService.addBookmark(currentUser, postId);
@@ -173,6 +173,7 @@ public class PostController {
         } catch (SQLException e){
             e.printStackTrace();
         } //try-catch
+*/
         // Redirect the user with an error message if there was an error.
         String message = URLEncoder.encode("Failed to (un)bookmark the post. Please try again.",
                 StandardCharsets.UTF_8);
