@@ -5,9 +5,6 @@ This is a project developed by Dr. Menik to give the students an opportunity to 
 */
 package uga.menik.csx370.controllers;
 
-import java.sql.SQLException;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +12,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import uga.menik.csx370.models.Post;
 import uga.menik.csx370.services.PostService;
 import uga.menik.csx370.services.UserService;
 
@@ -62,7 +58,7 @@ public class ProfileController {
         
         // See notes on ModelAndView in BookmarksController.java.
         ModelAndView mv = new ModelAndView("posts_page");
-
+/*
         try {
             List<Post> posts = postService.getUserPosts(userId);
             mv.addObject("posts",posts);
@@ -75,6 +71,7 @@ public class ProfileController {
             String errorMessage = "Some error occured!";
             mv.addObject("errorMessage", errorMessage);
         } //try-catcj
+*/
         return mv;
     } //profileOfSpecificUser
     

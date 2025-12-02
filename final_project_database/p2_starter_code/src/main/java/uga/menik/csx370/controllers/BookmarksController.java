@@ -5,9 +5,6 @@ This is a project developed by Dr. Menik to give the students an opportunity to 
 */
 package uga.menik.csx370.controllers;
 
-import java.sql.SQLException;
-import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +13,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import uga.menik.csx370.models.Post;
 import uga.menik.csx370.models.User;
 import uga.menik.csx370.services.BookmarksService;
 import uga.menik.csx370.services.PeopleService;
@@ -61,7 +57,7 @@ public class BookmarksController {
         User loggedInUser = userService.getLoggedInUser();
 
         // Adding the bookmarked Posts to the page 
-        try {
+/*        try {
             List<Post> posts = bookmarksService.getBookMarked(loggedInUser);
             if (posts.isEmpty()) { //show no content message
                 mv.addObject("isNoContent", true);
@@ -74,6 +70,7 @@ public class BookmarksController {
 	        logger.error("Database error occurred", e);
 	        mv.addObject("errorMessage", "A database error occurred. Please try again later.");
         } //try-catch
+*/
         return mv;
     }
     
