@@ -5,15 +5,21 @@ This is a project developed by Dr. Menik to give the students an opportunity to 
 */
 
 :root{
-    --normal-text-color: #14171a;
-    --frame-color: #98b1c6;
-    --box-color: #fff;
-    --action-item-color: #657786;
-    --highlight-color: #1da1f2;
+    --primary-green: #9AA499;
+    --accent-green: #91C7B1;
+    --light-bg: #F1F7ED;
+    --dark-text: #54494B;
+    
+    --normal-text-color: #54494B;
+    --frame-color: #91C7B1;
+    --box-color: #F1F7ED;
+    --action-item-color: #9AA499;
+    --highlight-color: #91C7B1;
 }
 body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     color: var(--normal-text-color);
+    background-color: #fff;
     margin: 0;
     padding: 0;
     min-height: 100vh;
@@ -26,7 +32,7 @@ nav {
 nav a {
     text-decoration: none;
     margin-right: 16pt;
-    color: var(--normal-text-color);;
+    color: var(--normal-text-color);
     font-weight: bold;
     display: inline-block;
 }
@@ -42,17 +48,18 @@ nav a:hover {
 }
 .title-bar {
     font-size: 12pt;
-    color: var(--action-item-color);
+    color: var(--dark-text);
+    font-weight: bold;
     padding: 8pt 0;
     text-align: left;
+    background-color: var(--accent-green);
 }
 .title-bar form {
     display: inline-block;
     margin-left: 8pt;
 }
 .action-button {
-    /* background-color: #657786; */
-    background-color: var(--box-color);;
+    background-color: var(--box-color);
     color: var(--action-item-color);
     border: 1.2pt solid var(--action-item-color);
     border-radius: 16pt;
@@ -66,11 +73,16 @@ nav a:hover {
 .short-input {
     padding: 8pt 16pt;
     margin: 8pt;
-    border: 0.8pt solid var(--action-item-color);
+    border: 0.8pt solid var(--dark-text);
     border-radius: 16pt;
+    background-color: #fff;
 }
 .short-input:hover {
-    border: 1.2pt solid var(--highlight-color);
+    border: 1.2pt solid var(--dark-text);
+}
+.short-input:focus {
+    outline: none;
+    border: 1.2pt solid var(--dark-text);
 }
 .short-input.full {
     width: calc(100% - 32pt);
@@ -100,6 +112,7 @@ nav a:hover {
     margin: 8pt;
     resize: vertical;
     box-sizing: border-box;
+    background-color: #fff;
 }
 .post-form textarea:hover {
     border: 1.2pt solid var(--highlight-color);
@@ -125,7 +138,6 @@ nav a:hover {
 }
 .post a {
     color: var(--normal-text-color);
-    /* text-decoration: none; */
 }
 .post-body {
     margin-left: 50pt;
