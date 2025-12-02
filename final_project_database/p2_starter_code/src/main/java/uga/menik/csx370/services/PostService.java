@@ -2,23 +2,12 @@ package uga.menik.csx370.services;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.sql.DataSource;
 
 import org.springframework.stereotype.Service;
 
-import uga.menik.csx370.models.Comment;
-import uga.menik.csx370.models.ExpandedPost;
-import uga.menik.csx370.models.Post;
 import uga.menik.csx370.models.User;
 
 
@@ -60,7 +49,7 @@ public class PostService {
      * @return posts 
      * @throws SQLException
      */
-    public List<Post> getPosts() throws SQLException {
+/*    public List<Post> getPosts() throws SQLException {
         List<Post> posts = new ArrayList<>();
 
         User this_user = userService.getLoggedInUser();
@@ -126,8 +115,8 @@ public class PostService {
         } //try
         return posts;
     } //getPosts
-
-    public List<Post> getPostById(String postId) throws SQLException {
+*/
+/*    public List<Post> getPostById(String postId) throws SQLException {
         List<Post> posts = new ArrayList<>();
         User this_user = userService.getLoggedInUser();
         String logged_in_userId = this_user.getUserId();
@@ -209,14 +198,14 @@ public class PostService {
 	    } //try
         return posts;
     } //getPostById
-
+*/
 
      /**
      * This function should query and return all from the specified userposts.
      * @return the posts
      * @throws SQLException
      */
-    public List<Post> getUserPosts(String userId) throws SQLException {
+/*    public List<Post> getUserPosts(String userId) throws SQLException {
 
         List<Post> posts = new ArrayList<>();
 
@@ -284,7 +273,7 @@ public class PostService {
         } //try
         return posts;
     } //getUserPosts
-
+*/
 
     /**
      * This adds a like to a post. 
@@ -330,7 +319,7 @@ public class PostService {
 
     //Example use:
     //    posts.set(helpPost(rs, 0, 0, false, false));
-    public Post helpPost(ResultSet rs, int heartsCount, int commentsCount, boolean isHearted, boolean isBookmarked) throws SQLException {
+/*    public Post helpPost(ResultSet rs, int heartsCount, int commentsCount, boolean isHearted, boolean isBookmarked) throws SQLException {
         User user = new User(
             rs.getString("userId"),
             rs.getString("firstName"),
@@ -352,7 +341,9 @@ public class PostService {
                 isBookmarked
             );
         return post;
+
     } //helpPost
+*/
 
     /**
      * This creates a comment.
@@ -380,7 +371,7 @@ public class PostService {
      * This gets the comments from a specific post.
      * The postid is passed.
      */
-    public List<Comment> getCommentsByPostId(String postId) throws SQLException {
+/*    public List<Comment> getCommentsByPostId(String postId) throws SQLException {
         List<Comment> comments = new ArrayList<>();
         final String commentSql = "Select c.commentId, c.content, c.commentDate, u.userId, u.firstName, u.lastName " +
             "From comment c Join user u ON c.commenterId = u.userId Where c.postId = ? order by c.commentDate desc";
@@ -417,6 +408,7 @@ public class PostService {
         }
         return comments;
     } // getCommentsByPostId: Mariah's method
+*/
 }
 
 
