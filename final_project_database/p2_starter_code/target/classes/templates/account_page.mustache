@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+{{> fragments/html_header}}
+
+<body>
+
+    {{> fragments/top_bar}}
+
+    <div class="container center-align narrow"">
+
+        <div style="max-width: 400px; margin-left: auto; margin-right: auto; 
+                    border: 3px solid #ffc0cb; border-radius: 10px; 
+                    background-color: #fff7f7;">
+
+            <div style="text-align: center; margin-top: 2em;">
+                <img src="{{user.profileImagePath}}" 
+                     alt="Profile Pic" 
+                     style="width: 120px; height: 120px; border-radius: 50%; 
+                            object-fit: cover; border: 3px solid #ffc0cb;">
+            </div>
+
+            <h3 style="text-align: center;">
+                Welcome, {{name}}.
+            </h3>
+
+            <h4>Account Information:</h4>
+            <ul style="text-align: left;">
+                <li><strong>First Name:</strong> {{user.firstName}}</li>
+                <li><strong>Last Name:</strong> {{user.lastName}}</li>
+                <li><strong>User ID:</strong> {{user.userId}}</li>
+            </ul>
+
+        </div>
+
+    </div>
+
+    {{> fragments/footer}}
+
+</body>
+</html>
