@@ -1,8 +1,8 @@
 -- Create the database.
-create database if not exists cs4370_final_libary;
+create database if not exists cs4370_final_library;
 
 -- Use the created database.
-use cs4370_final_libary;
+use cs4370_final_library;
 
 --user table
 create table if not exists user (
