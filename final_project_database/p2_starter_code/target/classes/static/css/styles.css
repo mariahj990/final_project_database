@@ -5,16 +5,16 @@ This is a project developed by Dr. Menik to give the students an opportunity to 
 */
 
 :root{
-    --primary-green: #ffffff;
-    --accent-green: #ffffff; /*91C7B1*/
+    --primary-green: #9AA499;
+    --accent-green: #91C7B1; /*91C7B1*/
     --light-bg: #ffffff;
     --dark-text: #54494B;
     
     --normal-text-color: #54494B;
-    --frame-color: #ffffff; /*Changed*/
+    --frame-color: #4d5a44; /*Changed*/
     --box-color: #ffffff;
-    --action-item-color: #ffffff;
-    --highlight-color: #ffffff; /*91C7B1*/
+    --action-item-color: #9AA499;
+    --highlight-color: #91C7B1; /*91C7B1*/
 }
 body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
