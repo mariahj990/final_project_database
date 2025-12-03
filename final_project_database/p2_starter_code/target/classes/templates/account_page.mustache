@@ -6,11 +6,12 @@
 
     {{> fragments/top_bar}}
 
-    <div class="container center-align narrow"">
+    <div class="container center">
 
         <div style="max-width: 400px; margin-left: auto; margin-right: auto; 
                     border: 3px solid #ffc0cb; border-radius: 10px; 
-                    background-color: #fff7f7;">
+                    background-color: #fff7f7;
+                    margin-top: 5em;">
 
             <div style="text-align: center; margin-top: 2em;">
                 <img src="{{user.profileImagePath}}" 
@@ -31,7 +32,13 @@
             </ul>
 
         </div>
+        <div style="max-width: 1000px; margin-left: auto; margin-right: auto; 
+            border: 3px solid #ffc0cb; border-radius: 10px; 
+            background-color: #fff7f7;
+            margin-top: 5em;">
 
+            <h4>Wishlist: {{numWishlist}} Books</h4>
+        </div>
     </div>
 
     {{> fragments/footer}}

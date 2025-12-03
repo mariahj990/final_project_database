@@ -1,11 +1,14 @@
 package uga.menik.csx370.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import uga.menik.csx370.models.Book;
 import uga.menik.csx370.models.User;
 import uga.menik.csx370.services.AccountService;
 
@@ -33,9 +36,15 @@ public class AccountController {
         String name = user.getFirstName() +  " " + user.getLastName();
         System.out.println("name: " + name);
 
+        int numWishlist = accountService.getCurrentUserNumWishlist();
+        System.out.println("numWishlist: " + numWishlist);
+
+        List<Book> currentUserWishlist = accountService.getCurrentUserWishlist();
+
         // Add users to the model
         mv.addObject("name", name);
         mv.addObject("user", user);
+        mv.addObject("numWishlist", numWishlist);
         return mv;
     }
 }

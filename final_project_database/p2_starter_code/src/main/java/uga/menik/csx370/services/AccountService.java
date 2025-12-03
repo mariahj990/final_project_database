@@ -4,12 +4,15 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import uga.menik.csx370.models.Book;
 import uga.menik.csx370.models.User;
 
 /*
@@ -53,6 +56,59 @@ public class AccountService {
         return null;
 
     }
+
+        public int getCurrentUserNumWishlist() {
+            int numWishlist = 0;
+            String userId = userService.getLoggedInUser().getUserId();
+            System.out.println("getCurrentUser: " + userId);
+    
+            // SQL query to get all users
+            final String getNumWishlist = "SELECT COUNT(*) AS NumWish FROM to_read GROUP BY user_id HAVING user_id = ?";
+            
+            try (Connection conn = dataSource.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(getNumWishlist)) {
+                stmt.setString(1, userId);
+
+                try (ResultSet rs = stmt.executeQuery()) {
+                    while (rs.next()) {
+                        numWishlist = rs.getInt(1);
+                        return numWishlist;
+                    }
+                }
+            } catch (SQLException e) {
+                System.out.println(e);
+            }
+            return numWishlist; 
+        }
+
+        public List<Book> getCurrentUserWishlist() {
+            //get the book id's on the current user's wish list
+            List<Integer> wishlistBookIds = new ArrayList<>();
+            String userId = userService.getLoggedInUser().getUserId();
+    
+            // SQL query to get all users
+            final String getWishlistBookIds = "SELECT book_id FROM to_read WHERE user_id = ?";
+            
+            try (Connection conn = dataSource.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(getWishlistBookIds)) {
+                stmt.setString(1, userId);
+
+                try (ResultSet rs = stmt.executeQuery()) {
+                    while (rs.next()) {
+                        int bookId = rs.getInt(1);
+                        wishlistBookIds.add(bookId);
+                    }
+                }
+            } catch (SQLException e) {
+                System.out.println(e);
+            }
+            System.out.println("wishlistBookIds: " + wishlistBookIds);
+
+            //Get the actual list of books
+            List<Book> wishlist = new ArrayList<>();
+            return wishlist;
+        }
+
 
 
 }

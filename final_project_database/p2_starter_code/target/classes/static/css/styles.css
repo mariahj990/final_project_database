@@ -5,21 +5,21 @@ This is a project developed by Dr. Menik to give the students an opportunity to 
 */
 
 :root{
-    --primary-green: #9AA499;
-    --accent-green: #91C7B1;
-    --light-bg: #F1F7ED;
+    --primary-green: #ffffff;
+    --accent-green: #ffffff; /*91C7B1*/
+    --light-bg: #ffffff;
     --dark-text: #54494B;
     
     --normal-text-color: #54494B;
-    --frame-color: #91C7B1;
-    --box-color: #F1F7ED;
-    --action-item-color: #9AA499;
-    --highlight-color: #91C7B1;
+    --frame-color: #ffffff; /*Changed*/
+    --box-color: #ffffff;
+    --action-item-color: #ffffff;
+    --highlight-color: #ffffff; /*91C7B1*/
 }
 body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     color: var(--normal-text-color);
-    background-color: #fff;
+    background-color: #ffffff;
     margin: 0;
     padding: 0;
     min-height: 100vh;
