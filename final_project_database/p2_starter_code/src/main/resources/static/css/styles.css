@@ -53,6 +53,7 @@ nav a:hover {
     padding: 8pt 0;
     text-align: left;
     background-color: var(--accent-green);
+    width: 100%; /* change */
 }
 .title-bar form {
     display: inline-block;
