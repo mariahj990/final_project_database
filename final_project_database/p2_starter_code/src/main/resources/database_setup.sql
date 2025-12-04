@@ -10,9 +10,9 @@ create table if not exists user (
     username varchar(255) not null unique,
     password varchar(255) not null,
     firstName varchar(255) not null,
-    lastName varchar(255) not null
+    lastName varchar(255) not null,
     num_pages_read int default 0,
-    num_books_read int default 0,
+    num_books_read int default 0
     -- primary key (userId),
     -- unique (username),
     -- constraint userName_min_length check (char_length(trim(username)) >= 2),
