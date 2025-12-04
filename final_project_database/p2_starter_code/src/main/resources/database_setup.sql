@@ -43,14 +43,14 @@ create table if not exists ratings (
     primary key (rating_id),
     unique (bookId, userId),
     foreign key (bookId) references book(bookId),
-    foreign key (userId) references user(userId),
+    foreign key (userId) references user(userId)
 );
 
 create table if not exists curr_checkout (
     user_id int, 
     book_id int, 
     checkout_date date not null,
-    primary key (user_id, book_id) 
+    primary key (user_id, book_id), 
     foreign key (user_id) references user(userId),
     foreign key (book_id) references book(bookId)
 );
