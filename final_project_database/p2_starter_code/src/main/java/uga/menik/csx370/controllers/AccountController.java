@@ -45,6 +45,7 @@ public class AccountController {
         mv.addObject("name", name);
         mv.addObject("user", user);
         mv.addObject("numWishlist", numWishlist);
+        mv.addObject("currentUserWishlist", currentUserWishlist);
         return mv;
     }
 }

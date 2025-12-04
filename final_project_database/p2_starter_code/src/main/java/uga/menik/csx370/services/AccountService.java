@@ -82,31 +82,35 @@ public class AccountService {
         }
 
         public List<Book> getCurrentUserWishlist() {
-            //get the book id's on the current user's wish list
-            List<Integer> wishlistBookIds = new ArrayList<>();
+            List<Book> wishlistBooks = new ArrayList<>();
             String userId = userService.getLoggedInUser().getUserId();
     
-            // SQL query to get all users
-            final String getWishlistBookIds = "SELECT book_id FROM to_read WHERE user_id = ?";
-            
+            final String getWishlistBooks = "SELECT b.bookId, b.title, b.authors, b.isbn13 " +
+                                                    "b.description, b.genres, b.average_rating, " +
+                                                    "b.original_publication_year, b.ratings_count" +
+                                                    "b.image_url, b.total_copies " +
+                                                "FROM to_read AS tr " +
+                                                "JOIN book AS b ON b.book_id = tr.book_id " +
+                                                "WHERE user_id = ?";
             try (Connection conn = dataSource.getConnection();
-                PreparedStatement stmt = conn.prepareStatement(getWishlistBookIds)) {
+                PreparedStatement stmt = conn.prepareStatement(getWishlistBooks)) {
                 stmt.setString(1, userId);
 
                 try (ResultSet rs = stmt.executeQuery()) {
                     while (rs.next()) {
-                        int bookId = rs.getInt(1);
-                        wishlistBookIds.add(bookId);
+                        Book book = new Book(rs.getInt("b.bookId"), rs.getString("b.title"),
+                                            rs.getString("b.authors"), rs.getString("b.isbn13"),
+                                            rs.getString("b.description"), rs.getString("b.genres"),
+                                            rs.getDouble("b.average_rating"), rs.getInt("b.original_publication_year"),
+                                            rs.getInt("b.ratings_count"), rs.getString("b.image_url"), 
+                                            rs.getInt("b.total_copies"));
+                        wishlistBooks.add(book);
                     }
                 }
             } catch (SQLException e) {
                 System.out.println(e);
             }
-            System.out.println("wishlistBookIds: " + wishlistBookIds);
-
-            //Get the actual list of books
-            List<Book> wishlist = new ArrayList<>();
-            return wishlist;
+            return wishlistBooks;
         }
 
 

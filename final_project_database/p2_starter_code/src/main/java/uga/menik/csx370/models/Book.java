@@ -4,20 +4,35 @@ package uga.menik.csx370.models;
  * Represents a book in the library system.
  */
 public class Book {
-
-    private final String bookId;
+    private final int bookId;
     private final String title;
-    private final String author;
-    private final String genre;
+    private final String authors;
+    private final String genres;
+    private final String isbn13;
+    private final String description;
+    private final double average_rating;
+    private final int original_publication_year;
+    private final int ratings_count;
+    private final String image_url;
+    private final int total_copies;
 
-    public Book(String bookId, String title, String author, String genre) {
+    public Book(int bookId, String title, String authors, String isbn13, String description, 
+                String genres, double average_rating, int original_publication_year,
+                int ratings_count, String image_url, int total_copies) {
         this.bookId = bookId;
         this.title = title;
-        this.author = author;
-        this.genre = genre;
+        this.authors = authors;
+        this.isbn13 = isbn13;
+        this.description = description;
+        this.genres = genres;
+        this.average_rating = average_rating;
+        this.original_publication_year = original_publication_year;
+        this.ratings_count = ratings_count;
+        this.image_url = image_url;
+        this.total_copies = total_copies;
     }
 
-    public String getBookId() {
+    public int getBookId() {
         return bookId;
     }
 
@@ -25,11 +40,39 @@ public class Book {
         return title;
     }
 
-    public String getAuthor() {
-        return author;
+    public String getAuthors() {
+        return authors;
     }
 
-    public String getGenre() {
-        return genre;
+    public String getisbn13() {
+        return isbn13;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getGenres() {
+        return genres;
+    }
+
+    public double getAverage_rating() {
+        return average_rating;
+    }
+
+    public int getOriginal_publication_year() {
+        return original_publication_year;
+    }
+
+    public int getRatings_count() {
+        return ratings_count;
+    }
+
+    public String getImage_url() {
+        return image_url;
+    }
+
+    public int getTotal_copies() {
+        return total_copies;
     }
 }

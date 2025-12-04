@@ -24,7 +24,7 @@
                 Welcome, {{name}}.
             </h3>
 
-            <h4>Account Information:</h4>
+            <h4> Account Information:</h4>
             <ul style="text-align: left;">
                 <li><strong>First Name:</strong> {{user.firstName}}</li>
                 <li><strong>Last Name:</strong> {{user.lastName}}</li>
@@ -37,7 +37,11 @@
             background-color: #fff7f7;
             margin-top: 5em;">
 
-            <h4>Wishlist: {{numWishlist}} Books</h4>
+            <h4> Wishlist: {{numWishlist}} Books</h4>
+
+            {{#currentUserWishlist}}
+                {{ > book}}
+            {{/currentUserWishlist}}
         </div>
     </div>
 

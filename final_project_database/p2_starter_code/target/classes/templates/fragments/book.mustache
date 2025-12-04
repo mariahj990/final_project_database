@@ -1,0 +1,21 @@
+<div class="book framed">
+    <img src="{{image_url}}" alt="Book cover">
+    <div class="book-info">
+        <div class="title">
+            <a href="/books/{{bookId}}">{{title}}</a>
+        </div>
+        <div class="book-authors">{{authors}}</div>
+        <div class="book-genres">{{genres}}</div>
+	<div class="additional-info">
+            <ul style="text-align: left;">
+                <li><strong>isbn13:</strong> {{isbn13}}</li>
+                <li><strong>Original Publication Year:</strong> {{original_publication_year}}</li>
+                <li><strong>Average Rating:</strong> {{average_rating}}</li>
+                <li><strong>Number of Ratings:</strong> {{ratings_count}}</li>
+                <li><strong>Number of Copies:</strong> {{total_copies}}</li>
+            </ul>
+	    <h3>Description:</h3>
+	    <h4>{{description}}</h4>
+	</div>
+    </div>
+</div>
