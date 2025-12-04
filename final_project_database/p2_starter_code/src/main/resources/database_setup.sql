@@ -32,7 +32,8 @@ create table if not exists book (
     original_publication_year int,
     ratings_count int,
     image_url varchar(255),
-    total_copies int not null
+    total_copies int not null,
+    page_count int
 );
 
 create table if not exists ratings (
