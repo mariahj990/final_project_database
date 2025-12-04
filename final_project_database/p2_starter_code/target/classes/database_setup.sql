@@ -11,6 +11,8 @@ create table if not exists user (
     password varchar(255) not null,
     firstName varchar(255) not null,
     lastName varchar(255) not null
+    num_pages_read int default 0,
+    num_books_read int default 0,
     -- primary key (userId),
     -- unique (username),
     -- constraint userName_min_length check (char_length(trim(username)) >= 2),
@@ -56,11 +58,12 @@ create table if not exists curr_checkout (
     foreign key (book_id) references book(bookId)
 );
 
-create table if not exists to_read (
+create table if not exists history (
     wishlist_id int auto_increment,
     bookId int, 
     userId int, 
-    has_read boolean not null default False, -- not sure if we want this here or not
+    has_wishlisted boolean not null default False,
+    has_read boolean not null default False, 
     unique (bookId, userId),
     primary key (wishlist_id), 
     foreign key (bookId) references book(bookId),

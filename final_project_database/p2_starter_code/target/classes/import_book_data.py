@@ -3,7 +3,7 @@ from sqlalchemy import create_engine
 
 # Run from inside final_project_database/final_project_database 
 
-to_read_csv_path = "datasource_csvs/to_read.csv" # python p2_starter_code\src\main\resources\import_book_data.py
+history_csv_path = "datasource_csvs/to_read.csv" # python p2_starter_code\src\main\resources\import_book_data.py
 
 engine = create_engine("mysql+pymysql://root:mysqlpass@localhost:33306/cs4370_final_library")
 
@@ -25,8 +25,8 @@ print(ratings.head())
 ratings.to_sql("ratings", engine, if_exists='append', index=False)
 
 # CSV coming from external table: to_read 
-to_read = pd.read_csv(to_read_csv_path)
+history = pd.read_csv(history_csv_path)
 # Print the first 5 rows of the DataFrame
-print(to_read.head())
-to_read.to_sql("to_read", engine, if_exists='append', index=False)
+print(history_csv_path.head())
+history_csv_path.to_sql("history", engine, if_exists='append', index=False)
 
