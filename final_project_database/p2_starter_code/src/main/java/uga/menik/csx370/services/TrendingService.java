@@ -22,7 +22,7 @@ public class TrendingService {
     @Autowired
     public TrendingService(DataSource datasource) {
         this.dataSource = datasource;
-    } //BookmarksService
+    } //TrendingService
 
     public List<Simple_Book> getAllBooks() {
         List<Simple_Book> allBooks = new ArrayList<>();

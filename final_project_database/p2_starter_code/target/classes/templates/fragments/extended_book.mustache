@@ -1,21 +1,26 @@
+<style>
+	.book {padding: 20px; text-align: center;}
+	.book img {display: block; margin: 0 auto 10px; max-width: 200px;}
+</style>
+
 <div class="book framed">
     <img src="{{image_url}}" alt="Book cover">
     <div class="book-info">
         <div class="title">
-            <a href="/books/{{bookId}}">{{title}}</a>
+            <h2><strong>{{title}}</strong><h2>
         </div>
-        <div class="book-authors">{{authors}}</div>
-        <div class="book-genres">{{genres}}</div>
-	<div class="additional-info">
+        <div class="book-authors"><h3><strong> Author(s): </strong>{{authors}}</h3></div>
+        <div class="book-genres"><h3><strong> Genre(s): </strong>{{genres}}</h3></div>
+	    <div class="additional-info">
+        	<h3><strong> Information:</strong></h3>
             <ul style="text-align: left;">
-                <li><strong>isbn13:</strong> {{isbn13}}</li>
-                <li><strong>Original Publication Year:</strong> {{original_publication_year}}</li>
-                <li><strong>Average Rating:</strong> {{average_rating}}</li>
-                <li><strong>Number of Ratings:</strong> {{ratings_count}}</li>
-                <li><strong>Number of Copies:</strong> {{total_copies}}</li>
-            </ul>
-	    <h3>Description:</h3>
-	    <h4>{{description}}</h4>
-	</div>
+                <li><strong> isbn13:</strong> {{isbn13}}</li>
+                <li><strong> Original Publication Year:</strong> {{original_publication_year}}</li>
+                <li><strong> Average Rating:</strong> {{average_rating}}</li>
+                <li><strong> Number of Ratings:</strong> {{ratings_count}}</li>
+                <li><strong> Number of Copies:</strong> {{total_copies}}</li>
+                <li><strong> Description:</strong> {{description}}</li>
+            </ul>      
+	    </div>
     </div>
 </div>
