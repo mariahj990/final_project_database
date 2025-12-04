@@ -6,12 +6,20 @@
 
     {{> fragments/top_bar}}
 
-    {{> fragments/no_content_message}}
+    <div style="max-width: 400px; margin-left: auto; margin-right: auto; 
+                border: 3px solid #ffc0cb; border-radius: 10px; 
+                background-color: #fff7f7;
+                margin-top: 5em;">
 
-    {{> fragments/posts_container}}
+        {{#isNoContent}}
+            {{> fragments/no_content_message}}
+        {{/isNoContent}}
 
+        <h2 style="text-align: center;">Books</h2>
+    </div>
+    {{#books}}
+        {{> fragments/simple_book}}
+    {{/books}}
     {{> fragments/footer}}
-
 </body>
-
 </html>
