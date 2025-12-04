@@ -3,7 +3,7 @@ from sqlalchemy import create_engine
 
 to_read_csv_path = "datasource_csvs/to_read.csv" # python p2_starter_code\src\main\resources\import_book_data.py
 
-engine = create_engine("mysql+pymysql://root:mysqlpass@localhost:33306/cs4370_final_libary")
+engine = create_engine("mysql+pymysql://root:mysqlpass@localhost:33306/cs4370_final_library")
 
 df = pd.read_csv(to_read_csv_path)
 
