@@ -47,7 +47,7 @@ public class CheckoutController {
         System.out.println("User is attempting to view the checkouts page for user w/ id: " + userId);
         
         // get list of all users checked out books
-        List<CheckedOutBook> books = checkoutService.getUsersCheckedOutBooks(user);
+        List<CheckedOutBook> checkedOutBooks = checkoutService.getUsersCheckedOutBooks(user);
         mv.addObject("checkouts", checkedOutBooks);
         return mv;
     }

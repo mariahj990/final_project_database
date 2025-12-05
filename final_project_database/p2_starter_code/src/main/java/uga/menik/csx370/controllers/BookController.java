@@ -37,6 +37,7 @@ public class BookController {
     @PostMapping("/{bookId}/checkout")
     public String checkoutBook(@PathVariable("bookId") int bookId) {
         User user = userService.getLoggedInUser();
+        System.out.println("Checking out bookId: " + bookId + " for user: " + user.getUserId());
         checkoutService.checkoutBook(user, bookId); // performs the actual checkout
         return "redirect:/checkout/my";           
     }
