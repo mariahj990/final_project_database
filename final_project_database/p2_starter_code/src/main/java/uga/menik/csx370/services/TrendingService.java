@@ -51,7 +51,7 @@ public class TrendingService {
     public List<User> getTop10Users() {
         List<User> users = new ArrayList<>();
         // SQL query to get all users
-        final String getAllUsersSql = "SELECT u.userId, u.firstName, u.lastName FROM user u LIMIT 10";
+        final String getAllUsersSql = "SELECT userId, firstName, lastName FROM user u LIMIT 10";
         try (Connection conn = dataSource.getConnection();
             PreparedStatement stmt = conn.prepareStatement(getAllUsersSql)) {
             try (ResultSet rs = stmt.executeQuery()) {
@@ -68,5 +68,27 @@ public class TrendingService {
         }
         return users;
     }
+
+    public User getUserById(int userId) {
+                final String getUserSql = "SELECT userId, firstName, lastName FROM user where userId = ?";
+        try (Connection conn = dataSource.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(getUserSql)) {
+            stmt.setInt(1, userId);
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    User user = new User(
+                        rs.getString("userId"),
+                        rs.getString("firstName"),
+                        rs.getString("lastName")
+                    );
+                    return user;
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return null;
+    }
+
 
 }

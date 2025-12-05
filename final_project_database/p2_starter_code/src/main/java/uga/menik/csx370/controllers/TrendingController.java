@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -14,7 +15,7 @@ import uga.menik.csx370.services.TrendingService;
 import uga.menik.csx370.services.UserService;
 
 /**
- * Handles /trending URL.
+ * Handles /trending URL and it's sub URLs.
  */
 @Controller
 @RequestMapping("/trending")
@@ -30,6 +31,7 @@ public class TrendingController {
     @Autowired
     public TrendingController(TrendingService trendingService, UserService userService) {
         this.trendingService = trendingService;
+
     }
 
     /**
@@ -55,4 +57,18 @@ public class TrendingController {
         }
         return mv;
     }
+
+    @GetMapping("/trendingUser/{userId}")
+    public ModelAndView profileOfSpecificTopUser(@PathVariable("userId") int userId) {
+        System.out.println("User is attempting to view profile: " + userId);
+        User user = trendingService.getUserById(userId);
+        ModelAndView mv = new ModelAndView("user_profile_page");
+        mv.addObject("firstName", user.getFirstName());
+        mv.addObject("lastName", user.getLastName());
+        mv.addObject("userId", user.getUserId());
+        mv.addObject("profileImagePath", user.getProfileImagePath());
+
+        return mv;
+    } //profileOfSpecificTopUser
+
 }

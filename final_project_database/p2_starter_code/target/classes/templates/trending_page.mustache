@@ -8,8 +8,7 @@
 
     <div style="max-width: 400px; margin-left: auto; margin-right: auto; 
                 border: 3px solid #fb7c91ff; border-radius: 10px; 
-                background-color: #ffc0cb;
-                margin-top: 2em;">
+                background-color: #ffc0cb;">
 
         {{#isNoContent}}
             {{> fragments/no_content_message}}
@@ -26,9 +25,12 @@
                 margin-top: 2em;">
         <h1 style="text-align: center;"><strong>Top 10 Readers</strong></h1>
     </div>
-    {{#users}}
-        {{> fragments/simple_user}}
-    {{/users}}    
-    {{> fragments/footer}}
+    <div style="width: 1200px; margin: auto; display: flex; flex-wrap: wrap; justify-content: center; gap: 2px">
+        {{#users}}
+            {{> fragments/simple_user}}
+        {{/users}}    
+        {{> fragments/footer}}
+    </div>
+
 </body>
 </html>

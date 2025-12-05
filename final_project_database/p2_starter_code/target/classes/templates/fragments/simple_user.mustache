@@ -1,8 +1,9 @@
-<div class="simple-user framed" style ="max-width: 300px; margin: auto; 
+<div class="simple-user framed" style ="width: 200px; margin: auto; 
                     border: 3px solid #ffc0cb; border-radius: 10px; 
                     background-color: #fff7f7;
                     margin-top: 2em;
-                    text-align: center">
+                    text-align: center
+                    padding: 2em">
     <div style="text-align: center; margin-top: 2em;">
         <img src="{{profileImagePath}}" 
                 alt="Profile Pic" 
@@ -10,7 +11,7 @@
                     object-fit: cover; border: 3px solid #fb7c91ff;">
     </div>
     <div class="post-body; text-align: center">
-        <h2 style="text-align: center;"><strong><a href="/user/{{userId}}" class="username">{{firstName}} {{lastName}}</a></strong></h2>
+        <h2 style="text-align: center;"><strong><a href="/trending/trendingUser/{{userId}}" class="username">{{firstName}} {{lastName}}</a></strong></h2>
         <h3 style="text-align: center;"><strong>User ID: </strong>{{userId}}</h3>
     </div>
 </div>
