@@ -44,7 +44,7 @@ public class BookController {
 	} catch(SQLException e){
 	    e.printStackTrace();
 	}
-        return "redirect:/checkout/my";           
+        return "redirect:/checkout";           
     }
 
     /**

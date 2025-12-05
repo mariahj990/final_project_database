@@ -40,7 +40,7 @@ public class CheckoutController {
     }
 
     // Show all checkouts for the logged-in user
-    @GetMapping("/my")
+    @GetMapping
     public ModelAndView myCheckouts() {
         ModelAndView mv = new ModelAndView("checkout_page");
         User user = userService.getLoggedInUser();
