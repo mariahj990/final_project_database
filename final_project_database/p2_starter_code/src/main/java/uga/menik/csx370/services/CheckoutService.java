@@ -71,12 +71,12 @@ public class CheckoutService {
         } // else continue. 
 
         // add row to curr_checkout table. We don't consider the book "read" yet until it's returned.
-        final String postSql = "insert into curr_checkout (userId, bookId, checkout_date) values (?, ?, CURDATE())";
+        final String checkout = "insert into curr_checkout (userId, bookId, checkout_date) values (?, ?, CURDATE())";
         try (Connection conn = dataSource.getConnection(); //establish connection with database
-            PreparedStatement postStmt = conn.prepareStatement(postSql)) { //passes sql queary
-            postStmt.setString(1, user.getUserId());
-            postStmt.setInt(2, bookId);
-            int rowsAffected = postStmt.executeUpdate();
+            PreparedStatement checkoutStmt = conn.prepareStatement(checkout)) { //passes sql queary
+            checkoutStmt.setString(1, user.getUserId());
+            checkoutStmt.setInt(2, bookId);
+            int rowsAffected = checkoutStmt.executeUpdate();
             return rowsAffected > 0;
         } //try
 
