@@ -27,6 +27,6 @@ ratings.to_sql("ratings", engine, if_exists='append', index=False)
 # CSV coming from external table: to_read 
 history = pd.read_csv(history_csv_path)
 # Print the first 5 rows of the DataFrame
-print(history_csv_path.head())
-history_csv_path.to_sql("history", engine, if_exists='append', index=False)
+print(history.head())
+history.to_sql("history", engine, if_exists='append', index=False)
 
