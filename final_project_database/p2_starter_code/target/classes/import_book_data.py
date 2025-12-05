@@ -4,6 +4,7 @@ from sqlalchemy import create_engine
 # Run from inside final_project_database/final_project_database 
 
 history_csv_path = "datasource_csvs/to_read.csv" # python p2_starter_code\src\main\resources\import_book_data.py
+#python3 p2_starter_code/src/main/resources/import_book_data.py for mac
 
 engine = create_engine("mysql+pymysql://root:mysqlpass@localhost:33306/cs4370_final_library")
 
