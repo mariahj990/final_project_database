@@ -30,8 +30,15 @@ public class BookController {
     @Autowired
     public BookController(BookService bookService, CheckoutService checkoutService, UserService userService) {
         this.bookService = bookService;
-	this.checkoutService = checkoutService;
-	this.userService = userService;
+	    this.checkoutService = checkoutService;
+	    this.userService = userService;
+    }
+
+    @PostMapping("/{bookId}/checkout")
+    public String checkoutBook(@PathVariable("bookId") int bookId) {
+        User user = userService.getLoggedInUser();
+        checkoutService.checkoutBook(user, bookId); // performs the actual checkout
+        return "redirect:/checkout/my";           
     }
 
     /**
