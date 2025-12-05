@@ -53,6 +53,9 @@ public class BookController {
         mv.addObject("ratings_count", book.getRatings_count());
         mv.addObject("image_url", book.getImage_url());
         mv.addObject("total_copies", book.getTotal_copies());
+
+	mv.addObject("checkOutBook","Check Out");
+	mv.addObject("isDisabled", false);
         return mv;
     }
 

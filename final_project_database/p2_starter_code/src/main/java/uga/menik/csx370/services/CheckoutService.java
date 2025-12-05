@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import uga.menik.csx370.services.UserService;
 import uga.menik.csx370.services.BookService;
 import uga.menik.csx370.models.Book;
+import uga.menik.csx370.models.User;
 
 @Service
 public class CheckoutService {
@@ -32,7 +33,7 @@ public class CheckoutService {
         final String querySql = "select count(*) as count_thisBookandUser from curr_checkout where userId = ? and bookId = ?";
         try (Connection conn = dataSource.getConnection();
             PreparedStatement queryStmt = conn.prepareStatement(querySql)) {
-            queryStmt.setInt(1, user.getUserId());
+            queryStmt.setString(1, user.getUserId());
             queryStmt.setInt(2, bookId);
             try (ResultSet rs = queryStmt.executeQuery()) {
                 if (rs.next()) {
@@ -64,7 +65,7 @@ public class CheckoutService {
         // check if user already has book checked out right now
         boolean alreadyHaveBook = isCheckedOutbyUserNow(user, bookId);
 
-        if (!isAvailable or alreadyHaveBook) {
+        if (!isAvailable || alreadyHaveBook) {
             return false; // book is not available for checkout, or user already has it checked out.
             // constraint: user can't check out book more than once at a time.
         } // else continue. 
@@ -73,8 +74,8 @@ public class CheckoutService {
         final String postSql = "insert into curr_checkout (userId, bookId, checkout_date) values (?, ?, CURDATE())";
         try (Connection conn = dataSource.getConnection(); //establish connection with database
             PreparedStatement postStmt = conn.prepareStatement(postSql)) { //passes sql queary
-            postStmt.setInt(1, user.getUserId());
-            postStmt.setString(2, bookId);
+            postStmt.setString(1, user.getUserId());
+            postStmt.setInt(2, bookId);
             int rowsAffected = postStmt.executeUpdate();
             return rowsAffected > 0;
         } //try
