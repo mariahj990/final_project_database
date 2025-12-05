@@ -25,9 +25,6 @@ public class AccountController {
 
     @GetMapping
     public ModelAndView webpage() {
-        // posts_page is a mustache template from src/main/resources/templates.
-        // ModelAndView class enables initializing one and populating placeholders
-        // in the template using Java objects assigned to named properties.
         ModelAndView mv = new ModelAndView("account_page");
         System.out.println("Trying to view account page");
         // Get user
@@ -41,7 +38,6 @@ public class AccountController {
 
         List<Book> currentUserWishlist = accountService.getCurrentUserWishlist();
 
-        // Add users to the model
         mv.addObject("name", name);
         mv.addObject("user", user);
         mv.addObject("numWishlist", numWishlist);

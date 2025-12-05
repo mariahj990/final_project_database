@@ -1,13 +1,14 @@
 package uga.menik.csx370.controllers;
 
-import org.springframework.web.bind.annotation.PostMapping;
+import java.sql.SQLException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-import java.sql.SQLException;
 
 import uga.menik.csx370.models.Book;
 import uga.menik.csx370.models.User;
@@ -15,7 +16,7 @@ import uga.menik.csx370.services.BookService;
 import uga.menik.csx370.services.CheckoutService;
 import uga.menik.csx370.services.UserService;
 /**
- * Handles /books URL.
+ * Handles /books URL and suburl's
  */
 @Controller
 @RequestMapping("/books")
@@ -24,10 +25,6 @@ public class BookController {
     private final CheckoutService checkoutService;
     private final UserService userService;
 
-    /**
-     * See notes in AuthInterceptor.java regarding how this works 
-     * through dependency injection and inversion of control.
-     */
     @Autowired
     public BookController(BookService bookService, CheckoutService checkoutService, UserService userService) {
         this.bookService = bookService;
@@ -97,7 +94,5 @@ public class BookController {
 	mv.addObject("checkOutBook",buttonText);
         mv.addObject("isDisabled", isDisabled);
 	return mv;
-    }
-
-    
+    }    
 }

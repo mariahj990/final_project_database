@@ -5,20 +5,13 @@ This is a project developed by Dr. Menik to give the students an opportunity to 
 */
 package uga.menik.csx370.controllers;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.sql.SQLException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import uga.menik.csx370.models.User;
-import uga.menik.csx370.services.PostService;
 import uga.menik.csx370.services.UserService;
 
 
@@ -30,12 +23,12 @@ import uga.menik.csx370.services.UserService;
 public class HomeController {
 
     @Autowired
-    private PostService postService;
     private final UserService userService;
 
     public HomeController(UserService userService) {
         this.userService = userService;
     }
+
     /**
      * This is the specific function that handles the root URL itself.
      * 
@@ -45,59 +38,7 @@ public class HomeController {
      */
     @GetMapping
     public ModelAndView webpage(@RequestParam(name = "error", required = false) String error) {
-        // See notes on ModelAndView in BookmarksController.java.
         ModelAndView mv = new ModelAndView("home_page");
-/*
-        try {
-            List<Post> posts = postService.getPosts();
-            mv.addObject("posts",posts);
-
-            if (posts.isEmpty()) {
-            // Enable the following line if you want to show no content message.
-            // Do that if your content list is empty.
-            // mv.addObject("isNoContent", true);
-                mv.addObject("isNoContent",true);
-
-            }
-        } catch (SQLException e) {
-
-
-            String message = "Failed to load posts.";
-            mv.addObject("errorMessage",message);
-        }
-        // If an error occured, you can set the following property with the
-        // error message to show the error message to the user.
-        // An error message can be optionally specified with a url query parameter too.
-        mv.addObject("errorMessage", error);
-*/
         return mv;
     }
-
-    /**
-     * This function handles the /createpost URL.
-     * This handles a post request that is going to be a form submission.
-     * The form for this can be found in the home page. The form has a
-     * input field with name = posttext. Note that the @RequestParam
-     * annotation has the same name. This makes it possible to access the value
-     * from the input from the form after it is submitted.
-     */
-    @PostMapping("/createpost")
-    public String createPost(@RequestParam(name = "posttext") String postText) {
-        User user = userService.getLoggedInUser();
-
-        System.out.println(user.getUserId() + " is creating post: " + postText);
-
-        // Redirect the user if the post creation is a success.
-        // return "redirect:/";
-        try {
-            postService.createPost(user, postText);
-            return "redirect:/";
-        } catch (SQLException e) {
-            // Redirect the user with an error message if there was an error.
-            String message = URLEncoder.encode("Failed to create the post. Please try again.",
-                StandardCharsets.UTF_8);
-            return "redirect:/?error=" + message;
-        } //try-catch        
-    }
-
 }
