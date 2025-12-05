@@ -60,7 +60,7 @@ public class CheckoutService {
         // User this_user = userService.getLoggedInUser();
 
         // check if book is available (in bookService) 
-        boolean isAvailable = bookService.isBookAvailable(bookId);
+        boolean isAvailable = bookService.getIfBookAvailable(bookId);
 
         // check if user already has book checked out right now
         boolean alreadyHaveBook = isCheckedOutbyUserNow(user, bookId);
