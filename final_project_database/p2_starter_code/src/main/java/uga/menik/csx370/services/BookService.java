@@ -51,5 +51,37 @@ public class BookService {
             return null;
     } //getBook
 
+    public boolean getIfBookAvailable(int bookId) {
+        final String checkAvailability = "SELECT total_copies from book where bookId = ?";
+        int totalCopies = 0;
+        try (Connection conn = dataSource.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(checkAvailability)) {
+            stmt.setInt(1, bookID);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                        totalCopies = rs.getInt("total_copies"); // read and store the value
+                    }
+                }
+            } catch (SQLException e) {
+                System.out.println(e);
+            }
+        final String getNumCheckedOut = "SELECT COUNT(distinct userId) as numCheckedOut from curr_checkout where bookId = ?";
+        int numCheckedOut = 0;
+        try (Connection conn = dataSource.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(checkAvailability)) {
+            stmt.setInt(1, bookID);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                        numCheckedOut = rs.getInt("numCheckedOut"); // read and store the value
+                    }
+                }
+            } catch (SQLException e) {
+                System.out.println(e);
+            }       
+        return totalCopies > numCheckedOut; // returns true if there are more copies than checked out.
+}
+
+
+
     
 }
