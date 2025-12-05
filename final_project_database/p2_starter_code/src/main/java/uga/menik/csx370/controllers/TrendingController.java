@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import uga.menik.csx370.models.Simple_Book;
+import uga.menik.csx370.models.User;
 import uga.menik.csx370.services.TrendingService;
+import uga.menik.csx370.services.UserService;
 
 /**
  * Handles /trending URL.
@@ -20,14 +22,13 @@ public class TrendingController {
 
     // UserService has user login and registration related functions.
     private final TrendingService trendingService;
-    //private final UserService userService;
 
     /**
      * See notes in AuthInterceptor.java regarding how this works 
      * through dependency injection and inversion of control.
      */
     @Autowired
-    public TrendingController(TrendingService trendingService) {
+    public TrendingController(TrendingService trendingService, UserService userService) {
         this.trendingService = trendingService;
     }
 
@@ -40,7 +41,11 @@ public class TrendingController {
         System.out.println("User is attempting to view the trending page");
         ModelAndView mv = new ModelAndView("trending_page");
  
-        List<Simple_Book> books = trendingService.getAllBooks();
+        List<User> users = trendingService.getTop10Users();
+        mv.addObject("users", users);
+        System.out.println(users);
+
+        List<Simple_Book> books = trendingService.getTop10Books();
         mv.addObject("books", books);
         if(books.isEmpty()) {
             System.out.println("Books is empty");

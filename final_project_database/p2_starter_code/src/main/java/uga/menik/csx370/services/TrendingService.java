@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import uga.menik.csx370.models.Simple_Book;
+import uga.menik.csx370.models.User;
 
 @Service
 public class TrendingService {
@@ -24,10 +25,10 @@ public class TrendingService {
         this.dataSource = datasource;
     } //TrendingService
 
-    public List<Simple_Book> getAllBooks() {
-        List<Simple_Book> allBooks = new ArrayList<>();
-    
-        final String getAllBooks = "SELECT * FROM book LIMIT 10;";
+    public List<Simple_Book> getTop10Books() {
+        List<Simple_Book> top10books = new ArrayList<>();
+
+        final String getAllBooks = "SELECT * FROM book ORDER BY average_rating LIMIT 10;";
         try (Connection conn = dataSource.getConnection();
             PreparedStatement stmt = conn.prepareStatement(getAllBooks)) {
             try (ResultSet rs = stmt.executeQuery()) {
@@ -35,12 +36,37 @@ public class TrendingService {
                         Simple_Book book = new Simple_Book(rs.getInt("bookId"), rs.getString("title"),
                                             rs.getString("authors"), rs.getDouble("average_rating"));
                         System.out.println("Added " + rs.getString("title"));
-                        allBooks.add(book);
+                        top10books.add(book);
                     }
                 }
             } catch (SQLException e) {
                 System.out.println(e);
             }
-            return allBooks;
+            return top10books;
     }
+
+        /**
+     * This function queries and returns all users.
+     */
+    public List<User> getTop10Users() {
+        List<User> users = new ArrayList<>();
+        // SQL query to get all users
+        final String getAllUsersSql = "SELECT u.userId, u.firstName, u.lastName FROM user u LIMIT 10";
+        try (Connection conn = dataSource.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(getAllUsersSql)) {
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    users.add(new User(
+                        rs.getString("userId"),
+                        rs.getString("firstName"),
+                        rs.getString("lastName")
+                    ));
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return users;
+    }
+
 }
