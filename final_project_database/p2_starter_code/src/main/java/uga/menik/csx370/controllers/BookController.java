@@ -1,5 +1,6 @@
 package uga.menik.csx370.controllers;
 
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,9 +37,13 @@ public class BookController {
 
     @PostMapping("/{bookId}/checkout")
     public String checkoutBook(@PathVariable("bookId") int bookId) {
-        User user = userService.getLoggedInUser();
-        System.out.println("Checking out bookId: " + bookId + " for user: " + user.getUserId());
-        checkoutService.checkoutBook(user, bookId); // performs the actual checkout
+	try{
+	    User user = userService.getLoggedInUser();
+	    System.out.println("Checking out bookId: " + bookId + " for user: " + user.getUserId());
+	    checkoutService.checkOutBook(user, bookId); // performs the actual checkout
+	} catch(SQLException e){
+	    e.printStackTrace();
+	}
         return "redirect:/checkout/my";           
     }
 

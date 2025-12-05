@@ -9,7 +9,8 @@ import java.sql.SQLException;
 import javax.sql.DataSource;
 import java.time.LocalDate;
 import java.sql.Date;
-
+import java.util.List;
+import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uga.menik.csx370.services.UserService;
@@ -101,11 +102,11 @@ public class CheckoutService {
         boolean alreadyHaveBook = isCheckedOutbyUserNow(user, bookId);
 
         if (!isAvailable || alreadyHaveBook) {
-            System.out.println("Book is not available or user has already checked it out.")
+            System.out.println("Book is not available or user has already checked it out.");
             return false; // book is not available for checkout, or user already has it checked out.
             // constraint: user can't check out book more than once at a time.
         } // else continue. 
-        System.out.println("Book is available for checkout. Checking out now...")
+        System.out.println("Book is available for checkout. Checking out now...");
 
         // add row to curr_checkout table. We don't consider the book "read" yet until it's returned.
         final String checkout = "insert into curr_checkout (userId, bookId, checkout_date) values (?, ?, CURDATE())";

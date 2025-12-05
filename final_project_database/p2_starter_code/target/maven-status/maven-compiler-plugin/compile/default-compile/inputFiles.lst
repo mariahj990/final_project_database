@@ -9,6 +9,7 @@
 /Users/ellawileman/Documents/fall2025/db_management/final_project_database/final_project_database/p2_starter_code/src/main/java/uga/menik/csx370/services/BookService.java
 /Users/ellawileman/Documents/fall2025/db_management/final_project_database/final_project_database/p2_starter_code/src/main/java/uga/menik/csx370/controllers/RegistrationController.java
 /Users/ellawileman/Documents/fall2025/db_management/final_project_database/final_project_database/p2_starter_code/src/main/java/uga/menik/csx370/services/PeopleService.java
+/Users/ellawileman/Documents/fall2025/db_management/final_project_database/final_project_database/p2_starter_code/src/main/java/uga/menik/csx370/controllers/CheckoutController.java
 /Users/ellawileman/Documents/fall2025/db_management/final_project_database/final_project_database/p2_starter_code/src/main/java/uga/menik/csx370/components/AuthInterceptor.java
 /Users/ellawileman/Documents/fall2025/db_management/final_project_database/final_project_database/p2_starter_code/src/main/java/uga/menik/csx370/models/FollowableUser.java
 /Users/ellawileman/Documents/fall2025/db_management/final_project_database/final_project_database/p2_starter_code/src/main/java/uga/menik/csx370/controllers/TrendingController.java
@@ -27,6 +28,7 @@
 /Users/ellawileman/Documents/fall2025/db_management/final_project_database/final_project_database/p2_starter_code/src/main/java/uga/menik/csx370/models/BasicRating.java
 /Users/ellawileman/Documents/fall2025/db_management/final_project_database/final_project_database/p2_starter_code/src/main/java/uga/menik/csx370/models/Simple_Book.java
 /Users/ellawileman/Documents/fall2025/db_management/final_project_database/final_project_database/p2_starter_code/src/main/java/uga/menik/csx370/controllers/HomeController.java
+/Users/ellawileman/Documents/fall2025/db_management/final_project_database/final_project_database/p2_starter_code/src/main/java/uga/menik/csx370/models/CheckedOutBook.java
 /Users/ellawileman/Documents/fall2025/db_management/final_project_database/final_project_database/p2_starter_code/src/main/java/uga/menik/csx370/services/CheckoutService.java
 /Users/ellawileman/Documents/fall2025/db_management/final_project_database/final_project_database/p2_starter_code/src/main/java/uga/menik/csx370/models/Book.java
 /Users/ellawileman/Documents/fall2025/db_management/final_project_database/final_project_database/p2_starter_code/src/main/java/uga/menik/csx370/controllers/ProfileController.java

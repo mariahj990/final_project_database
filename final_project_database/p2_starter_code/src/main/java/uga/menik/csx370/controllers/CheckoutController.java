@@ -8,7 +8,8 @@ package uga.menik.csx370.controllers;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.sql.SQLException;
-
+import java.util.List;
+import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,9 +20,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import uga.menik.csx370.models.User;
+import uga.menik.csx370.models.CheckedOutBook;
 import uga.menik.csx370.services.BookmarksService;
 import uga.menik.csx370.services.PostService;
 import uga.menik.csx370.services.UserService;
+import uga.menik.csx370.services.CheckoutService;
 
 @Controller
 @RequestMapping("/checkout")
@@ -47,8 +50,13 @@ public class CheckoutController {
         System.out.println("User is attempting to view the checkouts page for user w/ id: " + userId);
         
         // get list of all users checked out books
-        List<CheckedOutBook> checkedOutBooks = checkoutService.getUsersCheckedOutBooks(user);
-        mv.addObject("checkouts", checkedOutBooks);
+	try{
+	    List<CheckedOutBook> checkedOutBooks = checkoutService.getUsersCheckedOutBooks(user);
+	    mv.addObject("checkouts", checkedOutBooks);
+	} catch(SQLException e){
+	    e.printStackTrace();
+	    mv.addObject("checkouts", new ArrayList<>()); // add empty list
+	}
         return mv;
     }
 
