@@ -6,10 +6,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import java.sql.SQLException;
 
 import uga.menik.csx370.models.Book;
+import uga.menik.csx370.models.User;
 import uga.menik.csx370.services.BookService;
-
+import uga.menik.csx370.services.CheckoutService;
+import uga.menik.csx370.services.UserService;
 /**
  * Handles /books URL.
  */
@@ -17,14 +20,18 @@ import uga.menik.csx370.services.BookService;
 @RequestMapping("/books")
 public class BookController {
     private final BookService bookService;
+    private final CheckoutService checkoutService;
+    private final UserService userService;
 
     /**
      * See notes in AuthInterceptor.java regarding how this works 
      * through dependency injection and inversion of control.
      */
     @Autowired
-    public BookController(BookService bookService) {
+    public BookController(BookService bookService, CheckoutService checkoutService, UserService userService) {
         this.bookService = bookService;
+	this.checkoutService = checkoutService;
+	this.userService = userService;
     }
 
     /**
@@ -54,9 +61,29 @@ public class BookController {
         mv.addObject("image_url", book.getImage_url());
         mv.addObject("total_copies", book.getTotal_copies());
 
-	mv.addObject("checkOutBook","Check Out");
-	mv.addObject("isDisabled", false);
-        return mv;
+	String buttonText;
+	boolean isDisabled;
+	try{
+	    
+	    User user = userService.getLoggedInUser();
+	    if(checkoutService.isCheckedOutbyUserNow(user, book.getBookId())){
+		buttonText = "Already Have Book";
+		isDisabled = true;
+	    } else if(bookService.getIfBookAvailable(book.getBookId()) == false){
+		buttonText = "Book Unavailable";
+		isDisabled = true;
+	    } else{
+		buttonText = "Check Out Book";
+		isDisabled = false;
+	    }
+	} catch(SQLException e){
+	    e.printStackTrace();
+	    buttonText = "Error";
+	    isDisabled = true;
+	}
+	mv.addObject("checkOutBook",buttonText);
+        mv.addObject("isDisabled", isDisabled);
+	return mv;
     }
 
     

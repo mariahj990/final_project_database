@@ -56,7 +56,7 @@ public class BookService {
         int totalCopies = 0;
         try (Connection conn = dataSource.getConnection();
             PreparedStatement stmt = conn.prepareStatement(checkAvailability)) {
-            stmt.setInt(1, bookID);
+            stmt.setInt(1, bookId);
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
                         totalCopies = rs.getInt("total_copies"); // read and store the value
@@ -65,11 +65,11 @@ public class BookService {
             } catch (SQLException e) {
                 System.out.println(e);
             }
-        final String getNumCheckedOut = "SELECT COUNT(distinct userId) as numCheckedOut from curr_checkout where bookId = ?";
+        final String getNumCheckedOut = "SELECT COUNT(distinct userId) as \"numCheckedOut\" from curr_checkout where bookId = ?";
         int numCheckedOut = 0;
         try (Connection conn = dataSource.getConnection();
             PreparedStatement stmt = conn.prepareStatement(checkAvailability)) {
-            stmt.setInt(1, bookID);
+            stmt.setInt(1, bookId);
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
                         numCheckedOut = rs.getInt("numCheckedOut"); // read and store the value
@@ -77,7 +77,12 @@ public class BookService {
                 }
             } catch (SQLException e) {
                 System.out.println(e);
-            }       
+            }
+	System.out.println("Number of copies of book in library: " + totalCopies);
+	System.out.println("Number of copies checked out currently: " + numCheckedOut);
+	int numAvailable = totalCopies - numCheckedOut;
+	System.out.println("Number of copies available at library: " + numAvailable);
+	
         return totalCopies > numCheckedOut; // returns true if there are more copies than checked out.
 }
 

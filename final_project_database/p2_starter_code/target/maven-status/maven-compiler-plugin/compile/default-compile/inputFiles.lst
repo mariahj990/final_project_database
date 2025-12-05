@@ -1,30 +1,32 @@
-C:\Users\arene\OneDrive - University of Georgia\Desktop\proj\pomodoro\final_project_database\final_project_database\p2_starter_code\src\main\java\uga\menik\csx370\services\UserService.java
-C:\Users\arene\OneDrive - University of Georgia\Desktop\proj\pomodoro\final_project_database\final_project_database\p2_starter_code\src\main\java\uga\menik\csx370\components\AuthInterceptor.java
-C:\Users\arene\OneDrive - University of Georgia\Desktop\proj\pomodoro\final_project_database\final_project_database\p2_starter_code\src\main\java\uga\menik\csx370\controllers\RegistrationController.java
-C:\Users\arene\OneDrive - University of Georgia\Desktop\proj\pomodoro\final_project_database\final_project_database\p2_starter_code\src\main\java\uga\menik\csx370\models\Rating.java
-C:\Users\arene\OneDrive - University of Georgia\Desktop\proj\pomodoro\final_project_database\final_project_database\p2_starter_code\src\main\java\uga\menik\csx370\services\TopReadersService.java
-C:\Users\arene\OneDrive - University of Georgia\Desktop\proj\pomodoro\final_project_database\final_project_database\p2_starter_code\src\main\java\uga\menik\csx370\services\PeopleService.java
-C:\Users\arene\OneDrive - University of Georgia\Desktop\proj\pomodoro\final_project_database\final_project_database\p2_starter_code\src\main\java\uga\menik\csx370\services\BookService.java
-C:\Users\arene\OneDrive - University of Georgia\Desktop\proj\pomodoro\final_project_database\final_project_database\p2_starter_code\src\main\java\uga\menik\csx370\controllers\BookmarksController.java
-C:\Users\arene\OneDrive - University of Georgia\Desktop\proj\pomodoro\final_project_database\final_project_database\p2_starter_code\src\main\java\uga\menik\csx370\services\TrendingService.java
-C:\Users\arene\OneDrive - University of Georgia\Desktop\proj\pomodoro\final_project_database\final_project_database\p2_starter_code\src\main\java\uga\menik\csx370\services\PostService.java
-C:\Users\arene\OneDrive - University of Georgia\Desktop\proj\pomodoro\final_project_database\final_project_database\p2_starter_code\src\main\java\uga\menik\csx370\models\BasicRating.java
-C:\Users\arene\OneDrive - University of Georgia\Desktop\proj\pomodoro\final_project_database\final_project_database\p2_starter_code\src\main\java\uga\menik\csx370\controllers\HomeController.java
-C:\Users\arene\OneDrive - University of Georgia\Desktop\proj\pomodoro\final_project_database\final_project_database\p2_starter_code\src\main\java\uga\menik\csx370\controllers\LoginController.java
-C:\Users\arene\OneDrive - University of Georgia\Desktop\proj\pomodoro\final_project_database\final_project_database\p2_starter_code\src\main\java\uga\menik\csx370\controllers\TrendingController.java
-C:\Users\arene\OneDrive - University of Georgia\Desktop\proj\pomodoro\final_project_database\final_project_database\p2_starter_code\src\main\java\uga\menik\csx370\models\Book.java
-C:\Users\arene\OneDrive - University of Georgia\Desktop\proj\pomodoro\final_project_database\final_project_database\p2_starter_code\src\main\java\uga\menik\csx370\controllers\PostController.java
-C:\Users\arene\OneDrive - University of Georgia\Desktop\proj\pomodoro\final_project_database\final_project_database\p2_starter_code\src\main\java\uga\menik\csx370\controllers\HashtagSearchController.java
-C:\Users\arene\OneDrive - University of Georgia\Desktop\proj\pomodoro\final_project_database\final_project_database\p2_starter_code\src\main\java\uga\menik\csx370\services\BookmarksService.java
-C:\Users\arene\OneDrive - University of Georgia\Desktop\proj\pomodoro\final_project_database\final_project_database\p2_starter_code\src\main\java\uga\menik\csx370\controllers\AccountController.java
-C:\Users\arene\OneDrive - University of Georgia\Desktop\proj\pomodoro\final_project_database\final_project_database\p2_starter_code\src\main\java\uga\menik\csx370\config\WebConfig.java
-C:\Users\arene\OneDrive - University of Georgia\Desktop\proj\pomodoro\final_project_database\final_project_database\p2_starter_code\src\main\java\uga\menik\csx370\controllers\TopReadersController.java
-C:\Users\arene\OneDrive - University of Georgia\Desktop\proj\pomodoro\final_project_database\final_project_database\p2_starter_code\src\main\java\uga\menik\csx370\controllers\BookController.java
-C:\Users\arene\OneDrive - University of Georgia\Desktop\proj\pomodoro\final_project_database\final_project_database\p2_starter_code\src\main\java\uga\menik\csx370\services\AccountService.java
-C:\Users\arene\OneDrive - University of Georgia\Desktop\proj\pomodoro\final_project_database\final_project_database\p2_starter_code\src\main\java\uga\menik\csx370\services\HashtagService.java
-C:\Users\arene\OneDrive - University of Georgia\Desktop\proj\pomodoro\final_project_database\final_project_database\p2_starter_code\src\main\java\uga\menik\csx370\controllers\ProfileController.java
-C:\Users\arene\OneDrive - University of Georgia\Desktop\proj\pomodoro\final_project_database\final_project_database\p2_starter_code\src\main\java\uga\menik\csx370\models\User.java
-C:\Users\arene\OneDrive - University of Georgia\Desktop\proj\pomodoro\final_project_database\final_project_database\p2_starter_code\src\main\java\uga\menik\csx370\utility\Utility.java
-C:\Users\arene\OneDrive - University of Georgia\Desktop\proj\pomodoro\final_project_database\final_project_database\p2_starter_code\src\main\java\uga\menik\csx370\controllers\PeopleController.java
-C:\Users\arene\OneDrive - University of Georgia\Desktop\proj\pomodoro\final_project_database\final_project_database\p2_starter_code\src\main\java\uga\menik\csx370\App.java
-C:\Users\arene\OneDrive - University of Georgia\Desktop\proj\pomodoro\final_project_database\final_project_database\p2_starter_code\src\main\java\uga\menik\csx370\models\FollowableUser.java
+/Users/ellawileman/Documents/fall2025/db_management/final_project_database/final_project_database/p2_starter_code/src/main/java/uga/menik/csx370/services/UserService.java
+/Users/ellawileman/Documents/fall2025/db_management/final_project_database/final_project_database/p2_starter_code/src/main/java/uga/menik/csx370/App.java
+/Users/ellawileman/Documents/fall2025/db_management/final_project_database/final_project_database/p2_starter_code/src/main/java/uga/menik/csx370/controllers/PeopleController.java
+/Users/ellawileman/Documents/fall2025/db_management/final_project_database/final_project_database/p2_starter_code/src/main/java/uga/menik/csx370/config/WebConfig.java
+/Users/ellawileman/Documents/fall2025/db_management/final_project_database/final_project_database/p2_starter_code/src/main/java/uga/menik/csx370/services/PostService.java
+/Users/ellawileman/Documents/fall2025/db_management/final_project_database/final_project_database/p2_starter_code/src/main/java/uga/menik/csx370/controllers/AccountController.java
+/Users/ellawileman/Documents/fall2025/db_management/final_project_database/final_project_database/p2_starter_code/src/main/java/uga/menik/csx370/services/HashtagService.java
+/Users/ellawileman/Documents/fall2025/db_management/final_project_database/final_project_database/p2_starter_code/src/main/java/uga/menik/csx370/services/AccountService.java
+/Users/ellawileman/Documents/fall2025/db_management/final_project_database/final_project_database/p2_starter_code/src/main/java/uga/menik/csx370/services/BookService.java
+/Users/ellawileman/Documents/fall2025/db_management/final_project_database/final_project_database/p2_starter_code/src/main/java/uga/menik/csx370/controllers/RegistrationController.java
+/Users/ellawileman/Documents/fall2025/db_management/final_project_database/final_project_database/p2_starter_code/src/main/java/uga/menik/csx370/services/PeopleService.java
+/Users/ellawileman/Documents/fall2025/db_management/final_project_database/final_project_database/p2_starter_code/src/main/java/uga/menik/csx370/components/AuthInterceptor.java
+/Users/ellawileman/Documents/fall2025/db_management/final_project_database/final_project_database/p2_starter_code/src/main/java/uga/menik/csx370/models/FollowableUser.java
+/Users/ellawileman/Documents/fall2025/db_management/final_project_database/final_project_database/p2_starter_code/src/main/java/uga/menik/csx370/controllers/TrendingController.java
+/Users/ellawileman/Documents/fall2025/db_management/final_project_database/final_project_database/p2_starter_code/src/main/java/uga/menik/csx370/services/TopReadersService.java
+/Users/ellawileman/Documents/fall2025/db_management/final_project_database/final_project_database/p2_starter_code/src/main/java/uga/menik/csx370/services/TrendingService.java
+/Users/ellawileman/Documents/fall2025/db_management/final_project_database/final_project_database/p2_starter_code/src/main/java/uga/menik/csx370/controllers/BookController.java
+/Users/ellawileman/Documents/fall2025/db_management/final_project_database/final_project_database/p2_starter_code/src/main/java/uga/menik/csx370/controllers/BookmarksController.java
+/Users/ellawileman/Documents/fall2025/db_management/final_project_database/final_project_database/p2_starter_code/src/main/java/uga/menik/csx370/services/BookmarksService.java
+/Users/ellawileman/Documents/fall2025/db_management/final_project_database/final_project_database/p2_starter_code/src/main/java/uga/menik/csx370/models/User.java
+/Users/ellawileman/Documents/fall2025/db_management/final_project_database/final_project_database/p2_starter_code/src/main/java/uga/menik/csx370/controllers/TopReadersController.java
+/Users/ellawileman/Documents/fall2025/db_management/final_project_database/final_project_database/p2_starter_code/src/main/java/uga/menik/csx370/controllers/PostController.java
+/Users/ellawileman/Documents/fall2025/db_management/final_project_database/final_project_database/p2_starter_code/src/main/java/uga/menik/csx370/controllers/HashtagSearchController.java
+/Users/ellawileman/Documents/fall2025/db_management/final_project_database/final_project_database/p2_starter_code/src/main/java/uga/menik/csx370/utility/Utility.java
+/Users/ellawileman/Documents/fall2025/db_management/final_project_database/final_project_database/p2_starter_code/src/main/java/uga/menik/csx370/controllers/LoginController.java
+/Users/ellawileman/Documents/fall2025/db_management/final_project_database/final_project_database/p2_starter_code/src/main/java/uga/menik/csx370/models/Rating.java
+/Users/ellawileman/Documents/fall2025/db_management/final_project_database/final_project_database/p2_starter_code/src/main/java/uga/menik/csx370/models/BasicRating.java
+/Users/ellawileman/Documents/fall2025/db_management/final_project_database/final_project_database/p2_starter_code/src/main/java/uga/menik/csx370/models/Simple_Book.java
+/Users/ellawileman/Documents/fall2025/db_management/final_project_database/final_project_database/p2_starter_code/src/main/java/uga/menik/csx370/controllers/HomeController.java
+/Users/ellawileman/Documents/fall2025/db_management/final_project_database/final_project_database/p2_starter_code/src/main/java/uga/menik/csx370/services/CheckoutService.java
+/Users/ellawileman/Documents/fall2025/db_management/final_project_database/final_project_database/p2_starter_code/src/main/java/uga/menik/csx370/models/Book.java
+/Users/ellawileman/Documents/fall2025/db_management/final_project_database/final_project_database/p2_starter_code/src/main/java/uga/menik/csx370/controllers/ProfileController.java
