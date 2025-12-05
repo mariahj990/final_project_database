@@ -50,12 +50,12 @@ create table if not exists ratings (
 );
 
 create table if not exists curr_checkout (
-    user_id int, 
-    book_id int, 
+    userId int, 
+    bookId int, 
     checkout_date date not null,
-    primary key (user_id, book_id), 
-    foreign key (user_id) references user(userId),
-    foreign key (book_id) references book(bookId)
+    primary key (userId, bookId), 
+    foreign key (userId) references user(userId),
+    foreign key (bookId) references book(bookId)
 );
 
 create table if not exists history (

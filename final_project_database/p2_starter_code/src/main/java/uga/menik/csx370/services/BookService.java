@@ -22,6 +22,25 @@ public class BookService {
         this.dataSource = datasource;
     } //BookService
 
+    public getIfBookAvailable(int bookId) {
+        final String checkAvailability = "SELECT total_copies from book where bookId = ?";
+        int totalCopies = 0;
+        try (Connection conn = dataSource.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(checkAvailability)) {
+            stmt.setInt(1, bookID);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                        totalCopies = rs.getInt("total_copies"); // read and store the value
+                    }
+                }
+            } catch (SQLException e) {
+                System.out.println(e);
+            }
+        
+
+
+    }
+
     public Book getBook(int bookID) {
         final String getAllBooks = "SELECT * FROM book where bookId = ?";
         try (Connection conn = dataSource.getConnection();
