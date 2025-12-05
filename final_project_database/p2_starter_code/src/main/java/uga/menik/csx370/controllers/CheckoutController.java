@@ -1,0 +1,66 @@
+/**
+Copyright (c) 2024 Sami Menik, PhD. All rights reserved.
+
+This is a project developed by Dr. Menik to give the students an opportunity to apply database concepts learned in the class in a real world project. Permission is granted to host a running version of this software and to use images or videos of this work solely for the purpose of demonstrating the work to potential employers. Any form of reproduction, distribution, or transmission of the software's source code, in part or whole, without the prior written consent of the copyright owner, is strictly prohibited.
+*/
+package uga.menik.csx370.controllers;
+
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.ArrayList;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
+
+import uga.menik.csx370.models.User;
+import uga.menik.csx370.models.CheckedOutBook;
+import uga.menik.csx370.services.BookmarksService;
+import uga.menik.csx370.services.PostService;
+import uga.menik.csx370.services.UserService;
+import uga.menik.csx370.services.CheckoutService;
+
+@Controller
+@RequestMapping("/checkout")
+public class CheckoutController {
+
+    private final CheckoutService checkoutService;
+    private final UserService userService;
+
+    @Autowired
+    public CheckoutController(CheckoutService checkoutService, UserService userService) {
+        this.checkoutService = checkoutService;
+        this.userService = userService;
+    }
+
+    // Show all checkouts for the logged-in user
+    @GetMapping
+    public ModelAndView myCheckouts() {
+        ModelAndView mv = new ModelAndView("checkout_page");
+        User user = userService.getLoggedInUser();
+
+        // For debugging purposes 
+        String userId = user.getUserId();
+        System.out.println("User is attempting to view the checkouts page for user w/ id: " + userId);
+        
+        // get list of all users checked out books
+	try{
+	    List<CheckedOutBook> checkedOutBooks = checkoutService.getUsersCheckedOutBooks(user);
+	    mv.addObject("checkouts", checkedOutBooks);
+	} catch(SQLException e){
+	    e.printStackTrace();
+	    mv.addObject("checkouts", new ArrayList<>()); // add empty list
+	}
+        return mv;
+    }
+
+    
+}
+
+
