@@ -1,8 +1,3 @@
-<!--
-Copyright (c) 2024 Sami Menik, PhD. All rights reserved.
-
-This is a project developed by Dr. Menik to give the students an opportunity to apply database concepts learned in the class in a real world project. Permission is granted to host a running version of this software and to use images or videos of this work solely for the purpose of demonstrating the work to potential employers. Any form of reproduction, distribution, or transmission of the software's source code, in part or whole, without the prior written consent of the copyright owner, is strictly prohibited.
--->
 <!DOCTYPE html>
 <html lang="en">
 {{> fragments/html_header}}
@@ -11,7 +6,12 @@ This is a project developed by Dr. Menik to give the students an opportunity to 
 
     {{> fragments/top_bar}}
 
-    <h1 style="text-align:center; margin-top: 1em;">My Checked-Out Books</h1>
+    <div style="max-width: 500px; margin-left: auto; margin-right: auto; 
+                border: 3px solid #fb7c91ff; border-radius: 10px; 
+                background-color: #ffc0cb;
+                margin-top: 2em;">
+        <h1 style="text-align:center; margin-top: 1em;"><strong>My Checked-Out Books</strong></h1>
+    </div>
 
     {{> fragments/checkouts_container}}
 
