@@ -69,3 +69,38 @@ create table if not exists history (
     foreign key (bookId) references book(bookId),
     foreign key (userId) references user(userId)
 );
+
+create table if not exists genre (
+    genre_id int auto_increment primary key,
+    genre_name varchar(100) not null unique
+);
+
+insert into genre (genre_name) values
+    ('Adult Fiction'),
+    ('Classics & Literature'),
+    ('Young Adult (YA)'),
+    ('Children / Middle Grade'),
+    ('Fantasy & Sci-Fi'),
+    ('Mystery / Thriller / Crime'),
+    ('Romance & Humor'),
+    ('Nonfiction / Biography / History'),
+    ('Education / School'),
+    ('Religion / Spirituality'),
+    ('Food & Cooking'),
+    ('Health / Medicine'),
+    ('Travel / Geography / Nature'),
+    ('Business / Finance'),
+    ('Self Help / Personal Development'),
+    ('Arts / Music / Theatre'),
+    ('International / Regional Literature'),
+    ('Other / Rare')
+on duplicate key update genre_name = genre_name;
+
+create table if not exists user_genre_count (
+    user_id int not null,
+    genre_id int not null,
+    count int default 0,
+    primary key (user_id, genre_id),
+    foreign key (user_id) references user(userId),
+    foreign key (genre_id) references genre(genre_id)
+);

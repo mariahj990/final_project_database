@@ -23,11 +23,13 @@ import uga.menik.csx370.models.User;
 public class CheckoutService {
     private final DataSource dataSource;
     private final BookService bookService;
+    private final GenreService genreService;
     
     @Autowired
-    public CheckoutService(DataSource datasource, BookService bookService) {
+    public CheckoutService(DataSource datasource, BookService bookService, GenreService genreService) {
         this.dataSource = datasource;
         this.bookService = bookService;
+        this.genreService = genreService;
     } //CheckoutService
 
     // do we need an injected UserService here? to get current user.
@@ -160,6 +162,7 @@ public class CheckoutService {
         // Update user's reading stats: increment books read and pages read
         Book book = bookService.getBook(bookId);
         int pageCount = book.getPage_count();
+        String genresString = book.getGenres();
 
         final String updateUser = "update user set num_books_read = num_books_read + 1, num_pages_read = num_pages_read + ? where userId = ?";
         try (Connection conn = dataSource.getConnection();
@@ -167,6 +170,17 @@ public class CheckoutService {
             userStmt.setInt(1, pageCount);
             userStmt.setString(2, user.getUserId());
             userStmt.executeUpdate();
+        }
+
+        // Update genre counts
+        List<String> genreBuckets = genreService.parseAndMapGenres(genresString);
+        for (String bucketName : genreBuckets) {
+            try {
+                int genreId = genreService.getGenre(bucketName);
+                genreService.incrementUserGenreCount(user.getUserId(), genreId);
+            } catch (SQLException e) {
+                System.out.println("Error updating genre count");
+            }
         }
         System.out.println("Successfully returned book.");
         return true;
