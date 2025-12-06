@@ -7,11 +7,17 @@
     {{> fragments/top_bar}}
 
     <div class="container center">
+        <div style="max-width: 500px; margin-left: auto; margin-right: auto; 
+                border: 3px solid #fb7c91ff; border-radius: 10px; 
+                background-color: #ffc0cb;
+                margin-top: 2em;">
+            <h1 style="text-align:center; margin-top: 1em;"><strong>Account</strong></h1>
+        </div>
 
         <div style="max-width: 400px; margin-left: auto; margin-right: auto; 
-                    border: 3px solid #fb7c91ff; border-radius: 10px; 
-                    background-color: #ffc0cb;
-                    margin-top: 5em;
+                    border: 3px solid #ffc0cb; border-radius: 10px; 
+                    background-color: #fff7f7;
+                    margin-top: 2em;
                     padding: 12px;">
 
             <div style="text-align: center; margin-top: 2em;">
@@ -21,9 +27,9 @@
                             object-fit: cover; border: 3px solid #fb7c91ff;">
             </div>
 
-            <h3 style="text-align: center;"> Welcome, {{name}}. </h3>
+            <h2 style="text-align: center;"> Welcome, {{name}}. </h2>
 
-            <h4>Account Information:</h4>
+            <h3> Account Information:</h3>
             <ul style="text-align: left;">
                 <li><strong>First Name:</strong> {{user.firstName}}</li>
                 <li><strong>Last Name:</strong> {{user.lastName}}</li>
@@ -34,10 +40,11 @@
         <div style="max-width: 1000px; margin-left: auto; margin-right: auto; 
             border: 3px solid #ffc0cb; border-radius: 10px; 
             background-color: #fff7f7;
-            margin-top: 5em;
+            margin-top: 2em;
             padding: 12px;">
 
-            <h4>Wishlist: {{numWishlist}} Books</h4>
+            <h2>Wishlist: {{numWishlist}} Books</h2>
+            <h2>Books Checked Out: {{numWishlist}} Books</h2>
         </div>
     </div>
 
