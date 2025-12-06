@@ -5,8 +5,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.sql.DataSource;
 
@@ -87,49 +85,6 @@ public class BookService {
 	
         return totalCopies > numCheckedOut; // returns true if there are more copies than checked out.
 }
-
-    public List<Book> searchBooks(String keyword) {
-        List<Book> books = new ArrayList<>();
-        // Return early if keyword is null or blank
-        if (keyword == null || keyword.trim().isEmpty()) {
-            return books;
-        }
-        String sql = """
-            SELECT * FROM book 
-            WHERE LOWER(title) LIKE ? 
-            OR LOWER(authors) LIKE ? 
-            OR LOWER(genres) LIKE ?
-            """;
-        try (Connection conn = dataSource.getConnection();
-            PreparedStatement stmt = conn.prepareStatement(sql)) {
-            String searchTerm = "%" + keyword.trim().toLowerCase() + "%";
-            // Bind the same wildcard term for title, authors, and genres
-            for (int i = 1; i <= 3; i++) {
-                stmt.setString(i, searchTerm);
-            }
-            try (ResultSet rs = stmt.executeQuery()) {
-                while (rs.next()) {
-                    Book book = new Book(
-                        rs.getInt("bookId"),
-                        rs.getString("title"),
-                        rs.getString("authors"),
-                        rs.getString("isbn13"),
-                        rs.getString("description"),
-                        rs.getString("genres"),
-                        rs.getDouble("average_rating"),
-                        rs.getInt("original_publication_year"),
-                        rs.getInt("ratings_count"),
-                        rs.getString("image_url"),
-                        rs.getInt("total_copies")
-                    );
-                    books.add(book);
-                }
-            }
-        } catch (SQLException e) {
-            System.err.println("❌ Error searching books: " + e.getMessage());
-        }
-        return books;
-    }//searchBooks
 
 
 

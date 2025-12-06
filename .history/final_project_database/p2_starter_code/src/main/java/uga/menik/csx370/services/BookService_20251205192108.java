@@ -100,13 +100,17 @@ public class BookService {
             OR LOWER(authors) LIKE ? 
             OR LOWER(genres) LIKE ?
             """;
+
         try (Connection conn = dataSource.getConnection();
             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
             String searchTerm = "%" + keyword.trim().toLowerCase() + "%";
+
             // Bind the same wildcard term for title, authors, and genres
             for (int i = 1; i <= 3; i++) {
                 stmt.setString(i, searchTerm);
             }
+
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
                     Book book = new Book(
@@ -128,8 +132,9 @@ public class BookService {
         } catch (SQLException e) {
             System.err.println("❌ Error searching books: " + e.getMessage());
         }
+
         return books;
-    }//searchBooks
+    }
 
 
 

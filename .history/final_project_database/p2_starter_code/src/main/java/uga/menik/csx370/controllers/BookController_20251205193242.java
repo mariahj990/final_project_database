@@ -98,20 +98,20 @@ public class BookController {
     }    
 
     @GetMapping("/search")
-    public ModelAndView searchBooks(@RequestParam("q") String query) {
-        System.out.println("Searching for books with keyword: " + query);
+public ModelAndView searchBooks(@RequestParam("q") String query) {
+    System.out.println("Searching for books with keyword: " + query);
 
-        ModelAndView mv = new ModelAndView("books_search_page");
-        var books = bookService.searchBooks(query);
+    ModelAndView mv = new ModelAndView("books_search_page");
+    var books = bookService.searchBooks(query);
 
-        if (books.isEmpty()) {
-            mv.addObject("isNoContent", true);
-        } else {
-            mv.addObject("books", books);
-        }
+    if (books.isEmpty()) {
+        mv.addObject("isNoContent", true);
+    } else {
+        mv.addObject("books", books);
+    }
 
-        return mv;
-    }//search books
+    return mv;
+}
 
     
 

@@ -128,8 +128,9 @@ public class BookService {
         } catch (SQLException e) {
             System.err.println("❌ Error searching books: " + e.getMessage());
         }
+
         return books;
-    }//searchBooks
+    }
 
 
 

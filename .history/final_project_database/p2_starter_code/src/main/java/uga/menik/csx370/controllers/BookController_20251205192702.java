@@ -97,22 +97,24 @@ public class BookController {
 	return mv;
     }    
 
-    @GetMapping("/search")
-    public ModelAndView searchBooks(@RequestParam("q") String query) {
-        System.out.println("Searching for books with keyword: " + query);
+@GetMapping("/search")
+public ModelAndView searchBooks(@RequestParam("q") String query) {
+    System.out.println("Searching for books with keyword: " + query);
+    ModelAndView mv = new ModelAndView("books_search_page"); // this is the template it’ll show
 
-        ModelAndView mv = new ModelAndView("books_search_page");
+    try {
         var books = bookService.searchBooks(query);
-
         if (books.isEmpty()) {
             mv.addObject("isNoContent", true);
         } else {
             mv.addObject("books", books);
         }
+    } catch (SQLException e) {
+        e.printStackTrace();
+        mv.addObject("errorMessage", "Something went wrong while searching.");
+    }
 
-        return mv;
-    }//search books
-
-    
+    return mv;
+}
 
 }

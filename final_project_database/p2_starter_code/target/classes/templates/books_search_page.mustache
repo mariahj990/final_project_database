@@ -1,0 +1,20 @@
+{{> fragments/html_header}}
+{{> fragments/top_bar}}
+
+<h2>Search Results</h2>
+
+{{#isNoContent}}
+  <p>No books found.</p>
+{{/isNoContent}}
+
+{{#books}}
+  <div class="book-item">
+    <img src="{{image_url}}" alt="Book cover" width="80" height="120">
+    <h3>{{title}}</h3>
+    <p><strong>Author:</strong> {{authors}}</p>
+    <p><em>{{genres}}</em></p>
+    <hr>
+  </div>
+{{/books}}
+
+{{> fragments/footer}}
