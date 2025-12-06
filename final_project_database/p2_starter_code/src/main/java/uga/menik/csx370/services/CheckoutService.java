@@ -2,22 +2,22 @@ package uga.menik.csx370.services;
 
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.sql.DataSource;
-import java.time.LocalDate;
-import java.sql.Date;
-import java.util.List;
-import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import uga.menik.csx370.services.UserService;
-import uga.menik.csx370.services.BookService;
+
 import uga.menik.csx370.models.Book;
-import uga.menik.csx370.models.User;
 import uga.menik.csx370.models.CheckedOutBook;
+import uga.menik.csx370.models.User;
 
 @Service
 public class CheckoutService {
@@ -121,10 +121,45 @@ public class CheckoutService {
     } //checkOutBook
 
     // return book function
-    // needs to: increment user's pages read, books read, update history table's has_read to T 
+    // needs to: increment user's pages read????, books read, update history table's has_read to T 
     // remove row from curr_checkout table
-    // would update user-level genre stats counts table as well once added.
-
+    // would update user-level genre stats counts table as well once added??
+    public boolean returnBook(User user, int bookId) throws SQLException {
+        System.out.println("In returnBook function.");
+        
+        // Check if user actually has this book checked out
+        if (!isCheckedOutbyUserNow(user, bookId)) {
+            System.out.println("User does not have this book checked out.");
+            return false;
+        }
+        
+        System.out.println("Book is checked out. Returning now...");
+        
+        // Delete from curr_checkout table
+        final String deleteCheckout = "delete from curr_checkout where userId = ? and bookId = ?";
+        try (Connection conn = dataSource.getConnection();
+            PreparedStatement deleteStmt = conn.prepareStatement(deleteCheckout)) {
+            deleteStmt.setString(1, user.getUserId());
+            deleteStmt.setInt(2, bookId);
+            int rowsDeleted = deleteStmt.executeUpdate();
+            
+            if (rowsDeleted == 0) {
+                return false;
+            }
+        }
+        
+        // Update history table: mark book as read
+        final String updateHistory = "insert into history (userId, bookId, has_read) values (?, ?, true) on duplicate key update has_read = true";
+        try (Connection conn = dataSource.getConnection();
+            PreparedStatement historyStmt = conn.prepareStatement(updateHistory)) {
+            historyStmt.setString(1, user.getUserId());
+            historyStmt.setInt(2, bookId);
+            historyStmt.executeUpdate();
+        }
+        
+        System.out.println("Successfully returned book.");
+        return true;
+    }
 
     
 }

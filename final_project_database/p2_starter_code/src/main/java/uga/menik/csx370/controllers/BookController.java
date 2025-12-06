@@ -93,6 +93,7 @@ public class BookController {
 	}
 	mv.addObject("checkOutBook",buttonText);
         mv.addObject("isDisabled", isDisabled);
+        
 	return mv;
     }    
 }

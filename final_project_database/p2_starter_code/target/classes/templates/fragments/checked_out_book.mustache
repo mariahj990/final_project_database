@@ -19,6 +19,26 @@
         <h3><strong>Author(s): </strong>{{authors}}</h3> 
         <h3><strong>Average Rating: </strong>{{average_rating}}</h3> 
         <h3><strong>Checkout Date: </strong>{{checked_out_date}}</h3> 
-        <h3><strong>Due Date: </strong>{{due_date}}</h3>           
+        <h3><strong>Due Date: </strong>{{due_date}}</h3>
     </div> 
+
+    <!-- Return Book Button -->
+    <div style="display: flex; justify-content: center; margin-top: 1em; margin-bottom: 1em;">
+        <form method="post" action="/return" style="text-align: center;">
+            <input type="hidden" name="bookId" value="{{bookId}}">
+            <button type="submit"
+                style="
+                    padding: 15px 40px;
+                    font-size: 1.3rem;
+                    border-radius: 12px;
+                    border: 3px solid #fb7c91ff;
+                    background-color: #ffc0cb;
+                    cursor: pointer;
+                "
+                onmouseover="this.style.backgroundColor='#ffb3c1';"
+                onmouseout="this.style.backgroundColor='#ffc0cb';">
+                Return Book
+            </button>
+        </form>
+    </div>
 </div>
