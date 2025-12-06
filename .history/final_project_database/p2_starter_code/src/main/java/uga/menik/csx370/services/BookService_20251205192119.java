@@ -107,6 +107,7 @@ public class BookService {
             for (int i = 1; i <= 3; i++) {
                 stmt.setString(i, searchTerm);
             }
+
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
                     Book book = new Book(
@@ -128,8 +129,9 @@ public class BookService {
         } catch (SQLException e) {
             System.err.println("❌ Error searching books: " + e.getMessage());
         }
+
         return books;
-    }//searchBooks
+    }
 
 
 
