@@ -103,7 +103,7 @@ public class AccountService {
                                         rs.getString("b.description"), rs.getString("b.genres"),
                                         rs.getDouble("b.average_rating"), rs.getInt("b.original_publication_year"),
                                         rs.getInt("b.ratings_count"), rs.getString("b.image_url"), 
-                                        rs.getInt("b.total_copies"));
+                                        rs.getInt("b.total_copies"), rs.getInt("b.page_count"));
                     wishlistBooks.add(book);
                 }
             }

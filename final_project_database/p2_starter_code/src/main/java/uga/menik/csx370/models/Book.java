@@ -15,10 +15,11 @@ public class Book {
     private final int ratings_count;
     private final String image_url;
     private final int total_copies;
+    private final int page_count;
 
     public Book(int bookId, String title, String authors, String isbn13, String description, 
                 String genres, double average_rating, int original_publication_year,
-                int ratings_count, String image_url, int total_copies) {
+                int ratings_count, String image_url, int total_copies, int page_count) {
         this.bookId = bookId;
         this.title = title;
         this.authors = authors;
@@ -30,6 +31,7 @@ public class Book {
         this.ratings_count = ratings_count;
         this.image_url = image_url;
         this.total_copies = total_copies;
+        this.page_count = page_count;
     }
 
     public int getBookId() {
@@ -74,5 +76,9 @@ public class Book {
 
     public int getTotal_copies() {
         return total_copies;
+    }
+
+    public int getPage_count() {
+        return page_count;
     }
 }

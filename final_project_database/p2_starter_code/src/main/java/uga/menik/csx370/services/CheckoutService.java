@@ -157,6 +157,17 @@ public class CheckoutService {
             historyStmt.executeUpdate();
         }
         
+        // Update user's reading stats: increment books read and pages read
+        Book book = bookService.getBook(bookId);
+        int pageCount = book.getPage_count();
+
+        final String updateUser = "update user set num_books_read = num_books_read + 1, num_pages_read = num_pages_read + ? where userId = ?";
+        try (Connection conn = dataSource.getConnection();
+            PreparedStatement userStmt = conn.prepareStatement(updateUser)) {
+            userStmt.setInt(1, pageCount);
+            userStmt.setString(2, user.getUserId());
+            userStmt.executeUpdate();
+        }
         System.out.println("Successfully returned book.");
         return true;
     }

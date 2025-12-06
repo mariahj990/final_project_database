@@ -41,7 +41,8 @@ public class BookService {
                                         rs.getInt("original_publication_year"), 
                                         rs.getInt("ratings_count"),
                                         rs.getString("image_url"), 
-                                        rs.getInt("total_copies"));
+                                        rs.getInt("total_copies"),
+                                        rs.getInt("page_count"));
                                             
                         System.out.println("Opening book: " + rs.getString("title"));
                         return book;
@@ -120,13 +121,14 @@ public class BookService {
                         rs.getInt("original_publication_year"),
                         rs.getInt("ratings_count"),
                         rs.getString("image_url"),
-                        rs.getInt("total_copies")
+                        rs.getInt("total_copies"),
+                        rs.getInt("page_count")
                     );
                     books.add(book);
                 }
             }
         } catch (SQLException e) {
-            System.err.println("❌ Error searching books: " + e.getMessage());
+            System.err.println("Error searching books: " + e.getMessage());
         }
         return books;
     }//searchBooks
