@@ -15,14 +15,17 @@ import org.springframework.stereotype.Service;
 import uga.menik.csx370.models.Simple_Book;
 import uga.menik.csx370.models.User;
 
+
 @Service
 public class TrendingService {
 
     private final DataSource dataSource;
+    private final UserService userService;
     
     @Autowired
-    public TrendingService(DataSource datasource) {
+    public TrendingService(DataSource datasource, UserService userService) {
         this.dataSource = datasource;
+        this.userService = userService;
     } //TrendingService
 
     public List<Simple_Book> getTop10Books() {
@@ -51,9 +54,14 @@ public class TrendingService {
     public List<User> getTop10Users() {
         List<User> users = new ArrayList<>();
         // SQL query to get all users
-        final String getAllUsersSql = "SELECT userId, firstName, lastName FROM user u LIMIT 10";
+        final String getTopUsersSql = "SELECT u.userId, u.firstName, u.lastName, COUNT(*) AS numRead " + 
+                                        "FROM user AS u " + 
+                                        "JOIN history AS h ON u.userId = h.userId " + 
+                                        "WHERE h.has_read = 1 " + 
+                                        "GROUP BY u.userId, u.firstName, u.lastName " + 
+                                        "ORDER BY numRead DESC LIMIT 10;";
         try (Connection conn = dataSource.getConnection();
-            PreparedStatement stmt = conn.prepareStatement(getAllUsersSql)) {
+            PreparedStatement stmt = conn.prepareStatement(getTopUsersSql)) {
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
                     users.add(new User(
@@ -88,6 +96,30 @@ public class TrendingService {
             System.out.println(e);
         }
         return null;
+    }
+
+    public int getNumTop10Users() {
+        int numTop10Users = 0;
+        // SQL query to get all users
+        final String getNumReadTot = "SELECT COUNT(DISTINCT u.userId) AS numReadTot "
+                                        + "FROM user AS u "
+                                        + "JOIN history AS h ON u.userId = h.userId "
+                                        + "WHERE h.has_read = 1;";
+        try (Connection conn = dataSource.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(getNumReadTot)) {
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    numTop10Users = rs.getInt("numReadTot");
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        if(numTop10Users < 10) {
+            return numTop10Users;
+        } else {
+            return 10;
+        }
     }
 
 

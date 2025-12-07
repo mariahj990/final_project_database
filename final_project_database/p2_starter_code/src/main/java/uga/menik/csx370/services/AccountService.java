@@ -63,7 +63,7 @@ public class AccountService {
         System.out.println("getCurrentUser: " + userId);
 
         // SQL query to get all users
-        final String getNumWishlist = "SELECT COUNT(*) FROM history GROUP BY userId HAVING userId = ? AND has_wishlisted = 1;";
+        final String getNumWishlist = "SELECT COUNT(*) FROM history WHERE userId = ? AND has_wishlisted = 1;";
         
         try (Connection conn = dataSource.getConnection();
             PreparedStatement stmt = conn.prepareStatement(getNumWishlist)) {
@@ -88,9 +88,9 @@ public class AccountService {
         final String getWishlistBooks = "SELECT b.bookId, b.title, b.authors, b.isbn13, " +
                                                 "b.description, b.genres, b.average_rating, " +
                                                 "b.original_publication_year, b.ratings_count," +
-                                                "b.image_url, b.total_copies " +
+                                                "b.image_url, b.total_copies, b.page_count " +
                                             "FROM history AS his " +
-                                            "JOIN book AS b ON b.book_Id = his.bookId " +
+                                            "JOIN book AS b ON b.bookId = his.bookId " +
                                             "WHERE his.userId = ?;";
         try (Connection conn = dataSource.getConnection();
             PreparedStatement stmt = conn.prepareStatement(getWishlistBooks)) {
@@ -136,7 +136,25 @@ public class AccountService {
         }
         return numCheckOut; 
     }
-
-
-
+    public int getCurrentUserNumBooksRead() {
+        int numBooksRead = 0;
+        String userId = userService.getLoggedInUser().getUserId();
+        // SQL query to get all users
+        final String getNumBooksRead = "SELECT COUNT(*) FROM history WHERE userId = ? AND has_read = 1;";
+        
+        try (Connection conn = dataSource.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(getNumBooksRead)) {
+            stmt.setString(1, userId);
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    numBooksRead = rs.getInt(1);
+                    return numBooksRead;
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return numBooksRead; 
+    }
+    
 }

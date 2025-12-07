@@ -37,6 +37,7 @@ public class AccountController {
         System.out.println("numWishlist: " + numWishlist);
 
         int numCheckout = accountService.getCurrentUserNumCheckout();
+        int numBooksRead = accountService.getCurrentUserNumBooksRead();
 
         List<Book> currentUserWishlist = accountService.getCurrentUserWishlist();
 
@@ -45,6 +46,7 @@ public class AccountController {
         mv.addObject("numWishlist", numWishlist);
         mv.addObject("currentUserWishlist", currentUserWishlist);
         mv.addObject("numCheckout", numCheckout);
+        mv.addObject("numBooksRead", numBooksRead);
         return mv;
     }
 }

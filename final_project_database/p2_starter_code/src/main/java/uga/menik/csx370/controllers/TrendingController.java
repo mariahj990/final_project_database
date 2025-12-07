@@ -47,6 +47,9 @@ public class TrendingController {
         mv.addObject("users", users);
         System.out.println(users);
 
+        int numTop10Users = trendingService.getNumTop10Users();
+        mv.addObject("numTop10Users", numTop10Users);
+
         List<Simple_Book> books = trendingService.getTop10Books();
         mv.addObject("books", books);
         if(books.isEmpty()) {
