@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import uga.menik.csx370.models.Book;
@@ -97,6 +98,21 @@ public class BookController {
 	return mv;
     }    
 
+    @GetMapping("/search")
+    public ModelAndView searchBooks(@RequestParam("q") String query) {
+        System.out.println("Searching for books with keyword: " + query);
+
+        ModelAndView mv = new ModelAndView("books_search_page");
+        var books = bookService.searchBooks(query);
+
+        if (books.isEmpty()) {
+            mv.addObject("isNoContent", true);
+        } else {
+            mv.addObject("books", books);
+        }
+
+        return mv;
+    }//search books
 
     
 

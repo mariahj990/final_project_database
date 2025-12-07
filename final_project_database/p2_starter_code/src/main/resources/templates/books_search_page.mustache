@@ -1,20 +1,54 @@
 {{> fragments/html_header}}
 {{> fragments/top_bar}}
 
-<h2>Search Results</h2>
+<h2 style="margin-top: 20px; text-align: center;">Search Results</h2>
 
 {{#isNoContent}}
-  <p>No books found.</p>
+  <p style="text-align: center;">No books found.</p>
 {{/isNoContent}}
 
 {{#books}}
-  <div class="book-item">
-    <img src="{{image_url}}" alt="Book cover" width="80" height="120">
-    <h3>{{title}}</h3>
-    <p><strong>Author:</strong> {{authors}}</p>
-    <p><em>{{genres}}</em></p>
-    <hr>
-  </div>
+  <a href="/books/{{bookId}}" class="book-link">
+    <div class="book-item">
+      <img src="{{image_url}}" alt="Book cover" width="80" height="120">
+      <div class="book-info">
+        <h3>{{title}}</h3>
+        <p><strong>Author:</strong> {{authors}}</p>
+        <p><em>{{genres}}</em></p>
+      </div>
+    </div>
+  </a>
 {{/books}}
 
 {{> fragments/footer}}
+
+<style>
+.book-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.book-item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 12px 20px;
+  background-color: #fdf3ff; /* soft lavender to match pink theme */
+  border-bottom: 1px solid #e3c7f6;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.book-item:hover {
+  background-color: #f2d7ff;
+  transform: translateY(-2px);
+}
+
+.book-info h3 {
+  margin: 0;
+}
+
+.book-info p {
+  margin: 2px 0;
+  color: #444;
+}
+</style>
