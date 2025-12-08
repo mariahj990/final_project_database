@@ -19,11 +19,13 @@ import uga.menik.csx370.models.Simple_Book;
 public class WishlistService {
     private final DataSource dataSource;
     private final UserService userService;
+    private final ForYouPageService forYouPageService;
 
     @Autowired
-    public WishlistService(DataSource dataSource, UserService userService) {
+    public WishlistService(DataSource dataSource, UserService userService, ForYouPageService forYouPageService) {
         this.dataSource = dataSource;
         this.userService = userService;
+        this.forYouPageService = forYouPageService;
     }
 
     /**
@@ -58,6 +60,8 @@ public class WishlistService {
     } // getAllWhishlist
 
     public boolean addWishlist(String loggedInUserId, int bookId) {
+        User user = userService.getUserById(loggedInUserId);
+        forYouPageService.updateRecs(user, bookId); // updates the user-specific genre history.
 
         // sql statement that adds the book_id to the history table if not already in the table and sets has_wishlisted to true,  
 
