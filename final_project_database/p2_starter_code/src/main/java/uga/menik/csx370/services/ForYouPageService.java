@@ -62,7 +62,10 @@ public class ForYouPageService {
         } catch (SQLException e) {
                 System.out.println(e);
             }
-        return !(found_in_history || found_in_current_checkout);
+        boolean inHistoryBool = found_in_history > 0;
+        boolean inCCheckoutBool = found_in_current_checkout > 0;
+
+        return !(inHistoryBool || inCCheckoutBool);
 
     }
 
