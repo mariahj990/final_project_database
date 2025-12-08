@@ -19,7 +19,7 @@ public class PopulateDatabase implements CommandLineRunner {
         System.out.println("Running csv loader script...");
 
         // call python script to load csvs
-        ProcessBuilder pb = new ProcessBuilder("python", "p2_starter_code/src/main/resources/import_book_data.py");
+        ProcessBuilder pb = new ProcessBuilder("python", "src/main/resources/import_book_data.py");
         pb.inheritIO(); // prints output to console
         Process process = pb.start();
         int exitCode = process.waitFor();
