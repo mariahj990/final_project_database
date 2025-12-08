@@ -31,15 +31,17 @@ history = pd.read_csv(history_csv_path)
 print(history.head())
 history.to_sql("history", engine, if_exists='append', index=False)
 
+# CSV coming from external table: genre -> genre category (manual clustering)
+genre_category = pd.read_csv("datasource_csvs/genre_category.csv")
+print(genre_category)
+genre_category.to_sql("genre_category", engine, if_exists='append', index=False)
+
+
 # CSV coming from external table: bookId -> genre 
 book_genres = pd.read_csv("datasource_csvs/book_to_genre.csv")
 print(book_genres.head())
 book_genres.to_sql("book_to_genre", engine, if_exists='append', index=False)
 
-# CSV coming from external table: genre -> genre category (manual clustering)
-genre_category = pd.read_csv("datasource_csvs/genre_category.csv")
-print(genre_category)
-genre_category.to_sql("genre_category", engine, if_exists='append', index=False)
 
 # populating the count of genre preferences from historical user data. 
 with engine.begin() as conn:
