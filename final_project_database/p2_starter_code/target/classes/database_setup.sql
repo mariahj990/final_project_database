@@ -1,4 +1,5 @@
 -- Create the database.
+drop database if exists cs4370_final_library;
 create database if not exists cs4370_final_library;
 
 -- Use the created database.
