@@ -11,7 +11,6 @@ import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import uga.menik.csx370.models.SimpleBook;
 
 
 import uga.menik.csx370.models.Simple_Book;
@@ -31,7 +30,7 @@ public class ForYouPageService {
     } //TrendingService
 
     public boolean isNewBook(int bookId) throws SQLException {  
-        User user = userService.getCurrentUser();
+        User user = userService.getLoggedInUser();
         // call this method after book is checked out or added to wishlist
         // determines if user_genre_count needs to be updated
 
@@ -67,11 +66,11 @@ public class ForYouPageService {
 
     }
 
-    public List<SimpleBook> getCandidateBooks(){
-        User user = userService.getCurrentUser();
+    public List<Simple_Book> getCandidateBooks(){
+        User user = userService.getLoggedInUser();
         String userId = user.getUserId();
 
-        List<SimpleBook> books = new ArrayList<>();
+        List<Simple_Book> books = new ArrayList<>();
 
         String findCandidates = """
         SELECT b.bookId, b.title, b.authors, b.average_rating, SUM(ugc.numBooks) AS score
@@ -96,7 +95,7 @@ public class ForYouPageService {
             stmt.setString(1, userId);
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
-                    SimpleBook book = new SimpleBook(
+                    Simple_Book book = new Simple_Book(
                         rs.getInt("bookId"),
                         rs.getString("title"),
                         rs.getString("authors"),

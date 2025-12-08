@@ -11,9 +11,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-
+import uga.menik.csx370.models.Simple_Book;
 import uga.menik.csx370.services.UserService;
 
+import uga.menik.csx370.services.ForYouPageService;
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.SQLException;
@@ -45,7 +46,7 @@ public class HomeController {
     public ModelAndView webpage(@RequestParam(name = "error", required = false) String error) {
         ModelAndView mv = new ModelAndView("home_page");
         try{
-            List<SimpleBook> books = forYouPageService.getCandidateBooks();
+            List<Simple_Book> books = forYouPageService.getCandidateBooks();
             mv.addObject("books", books);
         } catch(SQLException e){
             e.printStackTrace();
