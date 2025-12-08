@@ -75,6 +75,10 @@ public class ForYouPageService {
 
         List<Simple_Book> books = new ArrayList<>();
 
+        // Filter out books that they have checked out or in wishlist already
+        // Select books that match their preferred genres from user_genre_count
+        // Books with more genres in common with user's preferred genres should rank higher
+        // intersection between genres is important
         String findCandidates = """
         SELECT b.bookId, b.title, b.authors, b.average_rating, SUM(ugc.numBooks) AS score
         FROM book b
@@ -114,6 +118,40 @@ public class ForYouPageService {
         }
         return books;
     }//searchBooks
+
+    public String getTopMatchingGenreForBook(int bookId) {
+        User user = userService.getLoggedInUser();
+        String userId = user.getUserId();
+        // Extract the most important genre category (to the user) from the book 
+        // help explain the scoring algorithm
+        // using the user_genre_count table max genre for that user
+        String userId = user.getUserId();
+        String topGenre = null;
+
+        final String findTopGenre = "SELECT gc.genreCategoryName " +
+        "FROM book_to_genre btg " +
+        "JOIN genre_category gc ON btg.genreName = gc.genreName " +
+        "LEFT JOIN user_genre_count ugc " +
+                "ON ugc.genreCategoryName = gc.genreCategoryName " +
+                  "AND ugc.userId = ? " +
+        "WHERE btg.bookId = ? " +
+        "ORDER BY ugc.numBooks DESC " +
+        "LIMIT 1;";
+        try (Connection conn = dataSource.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(findTopGenre)) {
+            stmt.setString(1, userId);
+            stmt.setInt(2, bookId); // need bookId to find top genre for that book
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    topGenre = rs.getString("genreCategoryName");
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Error finding most important genre: " + e.getMessage());
+        }
+        return topGenre;
+
+    }
 
     public List<String> findGenres(int bookId) {
         List<String> genres = new ArrayList<>();

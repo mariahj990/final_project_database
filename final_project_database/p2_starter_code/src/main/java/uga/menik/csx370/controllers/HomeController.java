@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import uga.menik.csx370.models.Simple_Book;
+import uga.menik.csx370.models.RecommendedBook;
 import uga.menik.csx370.services.UserService;
 
 import uga.menik.csx370.services.ForYouPageService;
@@ -46,10 +47,22 @@ public class HomeController {
     public ModelAndView webpage(@RequestParam(name = "error", required = false) String error) {
         ModelAndView mv = new ModelAndView("home_page");
 
-        List<Simple_Book> books = forYouPageService.getCandidateBooks();
+        List<Simple_Book> simple_books = forYouPageService.getCandidateBooks();
+        for (Simple_Book book : simplebooks) {
+            // want to add another attribute to each book: what the top genre for the match was
+            try {
+                String topGenre = forYouPageService.getTopMatchingGenreForBook(book.getBookId());
+                RecommendedBook recBook = new RecommendedBook(book.getBookId(), book.getTitle(), book.getAuthors(), book.getAverage_rating(), topGenre);
+                books.add(recBook);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
         mv.addObject("books", books);
 
         return mv;
     }
+
+ 
 
 }
