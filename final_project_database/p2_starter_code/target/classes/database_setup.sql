@@ -4,7 +4,6 @@ create database if not exists cs4370_final_library;
 -- Use the created database.
 use cs4370_final_library;
 
---user table
 create table if not exists user (
     userId int auto_increment primary key,
     username varchar(255) not null unique,
@@ -20,7 +19,6 @@ create table if not exists user (
     -- constraint lastName_min_length check (char_length(trim(lastName)) >= 2)
 );
 
---book table
 -- R2 = R[["book_id", "isbn13", "description", "genres", "title", "authors", "average_rating", "original_publication_year", "ratings_count", "image_url", "total_copies"]].drop_duplicates().reset_index(drop=True)
 
 create table if not exists book (
