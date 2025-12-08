@@ -136,6 +136,7 @@ public class AccountService {
         }
         return numCheckOut; 
     }
+
     public int getCurrentUserNumBooksRead() {
         int numBooksRead = 0;
         String userId = userService.getLoggedInUser().getUserId();
@@ -156,5 +157,25 @@ public class AccountService {
         }
         return numBooksRead; 
     }
-    
+
+        public int getCurrentUserNumPagesRead() {
+            int numPagesRead = 0;
+            String userId = userService.getLoggedInUser().getUserId();
+            // SQL query to get all users
+            final String getNumPagesRead = "SELECT page_count FROM history JOIN book ON history.bookId = book.bookId WHERE userId = ? AND has_read = 1;";
+            
+            try (Connection conn = dataSource.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(getNumPagesRead)) {
+                stmt.setString(1, userId);
+                try (ResultSet rs = stmt.executeQuery()) {
+                    while (rs.next()) {
+                        numPagesRead = numPagesRead + rs.getInt("page_count");
+                    }
+                }
+            } catch (SQLException e) {
+                System.out.println(e);
+            }
+            return numPagesRead; 
+        }
+
 }

@@ -34,18 +34,25 @@
                 <li><strong>First Name:</strong> {{user.firstName}}</li>
                 <li><strong>Last Name:</strong> {{user.lastName}}</li>
                 <li><strong>User ID:</strong> {{user.userId}}</li>
-                <li><strong>Number of Book(s) Read:</strong> {{numBooksRead}}</li>
             </ul>
-
         </div>
+        
+        <div style="max-width: 500px; margin-left: auto; margin-right: auto; 
+                border: 3px solid #fb7c91ff; border-radius: 10px; 
+                background-color: #ffc0cb;
+                margin-top: 2em;">
+            <h1 style="text-align:center; margin-top: 1em;"><strong>Stats</strong></h1>
+        </div>
+
         <div style="max-width: 1000px; margin-left: auto; margin-right: auto; 
             border: 3px solid #ffc0cb; border-radius: 10px; 
             background-color: #fff7f7;
             margin-top: 2em;
             padding: 12px;">
-
-            <h2>Wishlist: {{numWishlist}} Book(s)</h2>
-            <h2>Book(s) Checked Out: {{numCheckout}} Book(s)</h2>
+            <h2><strong>Wishlist: </strong> <a href="/wishlist">{{numWishlist}} Book(s)</a> </h2>
+            <h2><strong>Book(s) Checked Out: </strong> <a href="/checkout">{{numCheckout}} Book(s)</a> </h2>
+            <h2><strong>Number of Book(s) Read:</strong> {{numBooksRead}}</h2>
+            <h2><strong>Number of Page(s) Read:</strong> {{numPagesRead}}</h2>
         </div>
     </div>
 
