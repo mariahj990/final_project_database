@@ -24,12 +24,14 @@ public class CheckoutService {
     private final DataSource dataSource;
     private final BookService bookService;
     private final GenreService genreService;
+    private final ForYouPageService forYouPageService;
     
     @Autowired
-    public CheckoutService(DataSource datasource, BookService bookService, GenreService genreService) {
+    public CheckoutService(DataSource datasource, BookService bookService, GenreService genreService, ForYouPageService forYouPageService) {
         this.dataSource = datasource;
         this.bookService = bookService;
         this.genreService = genreService;
+        this.forYouPageService = forYouPageService;
     } //CheckoutService
 
     // do we need an injected UserService here? to get current user.
@@ -110,6 +112,9 @@ public class CheckoutService {
         } // else continue. 
         System.out.println("Book is available for checkout. Checking out now...");
 
+        // need to update recommendations in for you page. 
+        forYouPageService.updateRecs(user, bookId);
+
         // add row to curr_checkout table. We don't consider the book "read" yet until it's returned.
         final String checkout = "insert into curr_checkout (userId, bookId, checkout_date) values (?, ?, CURDATE())";
         try (Connection conn = dataSource.getConnection(); //establish connection with database
@@ -171,7 +176,7 @@ public class CheckoutService {
             userStmt.setString(2, user.getUserId());
             userStmt.executeUpdate();
         }
-
+        """
         // Update genre counts
         List<String> genreBuckets = genreService.parseAndMapGenres(genresString);
         for (String bucketName : genreBuckets) {
@@ -182,6 +187,7 @@ public class CheckoutService {
                 System.out.println("Error updating genre count");
             }
         }
+        """
         System.out.println("Successfully returned book.");
         return true;
     }

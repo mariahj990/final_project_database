@@ -24,9 +24,11 @@ public class HomeController {
 
     @Autowired
     private final UserService userService;
+    private final ForYouPageService forYouPageService;
 
-    public HomeController(UserService userService) {
+    public HomeController(UserService userService, ForYouPageService forYouPageService) {
         this.userService = userService;
+        this.forYouPageService = forYouPageService;
     }
 
     /**
@@ -39,6 +41,16 @@ public class HomeController {
     @GetMapping
     public ModelAndView webpage(@RequestParam(name = "error", required = false) String error) {
         ModelAndView mv = new ModelAndView("home_page");
+        try{
+            List<Book> books = forYouPage.getCandidateBooks();
+            mv.addObject("books", books);
+        } catch(SQLException e){
+            e.printStackTrace();
+            mv.addObject("books", new ArrayList<>()); // add empty list
+
+        }
+
         return mv;
     }
+
 }
