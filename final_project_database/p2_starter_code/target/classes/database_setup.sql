@@ -69,38 +69,55 @@ create table if not exists history (
     foreign key (bookId) references book(bookId),
     foreign key (userId) references user(userId)
 );
-
+"""
 create table if not exists genre (
     genre_id int auto_increment primary key,
     genre_name varchar(100) not null unique
 );
-
+""" 
+"""
 insert into genre (genre_name) values
-    ('Adult Fiction'),
-    ('Classics & Literature'),
-    ('Young Adult (YA)'),
+    ('Contemporary Fiction'),
+    ('Literary Fiction'),
+    ('Classics'),
+    ('Nonfiction / History'),
+    ('Historical Fiction'),
+    ('Romance / Chick Lit'),
+    ('Fantasy / Sci-Fi'), 
+    ('Young Adult'),
+    ('Humor / Satire'),
     ('Children / Middle Grade'),
-    ('Fantasy & Sci-Fi'),
-    ('Mystery / Thriller / Crime'),
-    ('Romance & Humor'),
-    ('Nonfiction / Biography / History'),
+    ('Amerian Literature'),
+    ('Essays / Philosophy'),
+    ('Mystery / Thriller'),
+    ('Miscellaneous / Lifestyle'), 
     ('Education / School'),
-    ('Religion / Spirituality'),
-    ('Food & Cooking'),
-    ('Health / Medicine'),
+    ('Biography / Memoir'),
+    ('European / International Literature'),
     ('Travel / Geography / Nature'),
-    ('Business / Finance'),
-    ('Self Help / Personal Development'),
-    ('Arts / Music / Theatre'),
-    ('International / Regional Literature'),
-    ('Other / Rare')
+    ('Science / Popular Science'),
+    ('Religion / Spirituality')
 on duplicate key update genre_name = genre_name;
+""" 
+create table if not exists book_to_genre (
+    bookId int,
+    genreName varchar(100),
+    primary key (bookId, genreName),
+    foreign key(bookId) references book(bookId),
+    foreign key(genreName) references genre_category(genreName)
+)
+
+create table if not exists genre_category (
+    genreName varchar(100),
+    genreCategoryName varchar(100) not null,
+    primary key (genreName)
+)
 
 create table if not exists user_genre_count (
-    user_id int not null,
-    genre_id int not null,
-    count int default 0,
-    primary key (user_id, genre_id),
-    foreign key (user_id) references user(userId),
-    foreign key (genre_id) references genre(genre_id)
+    userId int,
+    genreCategoryName varchar(100),
+    numBooks int default 0,
+    primary key (userId, genreCategoryName),
+    foreign key (userId) references user(userId),
+    -- foreign key (genreBucketId) references genre(genre_id)
 );
