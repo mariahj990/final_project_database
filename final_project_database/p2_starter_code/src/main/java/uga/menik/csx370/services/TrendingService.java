@@ -37,7 +37,7 @@ public class TrendingService {
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
                         Simple_Book book = new Simple_Book(rs.getInt("bookId"), rs.getString("title"),
-                                            rs.getString("authors"), rs.getDouble("average_rating"));
+                                            rs.getString("authors"), rs.getDouble("average_rating"), rs.getString("image_url"));
                         System.out.println("Added " + rs.getString("title"));
                         top10books.add(book);
                     }
