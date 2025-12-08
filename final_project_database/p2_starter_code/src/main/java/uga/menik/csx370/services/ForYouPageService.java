@@ -134,11 +134,11 @@ public class ForYouPageService {
                     genres.add(genreCategory);
                 }
             }
-            return genres;
 
         } catch (SQLException e) {
             System.err.println("Error searching for genre categories to recommend: " + e.getMessage());
         }
+        return genres;
         
     }
 
@@ -146,24 +146,31 @@ public class ForYouPageService {
     public void updateRecs(User user, int bookId) { // call after checkout or wishlist add.
         // TODO: need to call after wishlist add !! 
         // decides if the book is new for the user (check)
+        try{
+            boolean needsUpdate = isNewBook(bookId);
+            if (!needsUpdate) {
+                return; // no update needed
+            }
 
-        boolean needsUpdate = isNewBook(bookId);
-        if (!needsUpdate) {
-            return; // no update needed
+            // if new, adds the book's genres to user_genre_count
+
+            // get genres for the book - most books have multiple
+            List<String> genres = findGenres(bookId);
+
+            // for each genre, add to user_genre_count
+            for (String genre : genres){ 
+                System.out.println("Adding genre " + genre + " to recommendations for user " + user.getUserId());
+                addBookGenretoRecs(user, bookId, genre);
+            }
+                
+            System.out.println("Recommendations successfully updated for user.");
+
+        } catch (SQLException e){
+            System.out.println("SQL Error checking if book is new for user: " + e.getMessage());
+            return;
         }
 
-        // if new, adds the book's genres to user_genre_count
 
-        // get genres for the book - most books have multiple
-        List<String> genres = findGenres(bookId);
-
-        // for each genre, add to user_genre_count
-        for (String genre : genres){ 
-            System.out.println("Adding genre " + genre + " to recommendations for user " + user.getUserId());
-            addBookGenretoRecs(user, bookId, genre);
-        }
-            
-        System.out.println("Recommendations successfully updated for user.");
     }
 
     public void addBookGenretoRecs(User user, int bookId, String genreCategory) {
