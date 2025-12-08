@@ -9,11 +9,15 @@
                 border: 3px solid #fb7c91ff; border-radius: 10px; 
                 background-color: #ffc0cb;
                 margin-top: 2em;">
-            <h1 style="text-align:center; margin-top: 1em;"><strong>Home</strong></h1>
+            <h1 style="text-align:center; margin-top: 1em;"><strong>Based on Your Activity</strong></h1>
         </div>
-
-    {{> fragments/no_content_message}}
-
+    {{^books}}
+        {{> fragments/no_content_message}}
+    {{/books}}
+    
+    {{#books}}
+        {{> fragments/simple_book}}
+    {{/books}}
     {{> fragments/footer}}
 
 </body>
