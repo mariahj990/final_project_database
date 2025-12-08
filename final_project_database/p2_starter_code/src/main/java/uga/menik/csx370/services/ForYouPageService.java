@@ -181,8 +181,7 @@ public class ForYouPageService {
         final String updateSql = """
             INSERT INTO user_genre_count (userId, genreCategoryName, numBooks)
             VALUES (?, ?, 1)
-            ON CONFLICT (userId, genreCategoryName)
-            DO UPDATE SET numBooks = user_genre_count.numBooks + 1;
+            ON DUPLICATE KEY UPDATE numBooks = numBooks + 1;
             """;
         
         try (Connection conn = dataSource.getConnection();
