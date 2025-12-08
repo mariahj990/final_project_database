@@ -206,7 +206,6 @@ bookId,genreName
 7437,American
 7437,Contemporary
 7437,Thriller
-7437,Banned Books
 7437,20th Century
 7437,Science Fiction
 3466,Romance
@@ -528,7 +527,6 @@ bookId,genreName
 6748,Literature
 6748,Philosophy
 6748,Travel
-6748,Unfinished
 6423,Mystery
 6423,Fiction
 6423,Humor
@@ -562,9 +560,7 @@ bookId,genreName
 4339,Nonfiction
 4339,History
 4339,War
-4339,Journalism
 4339,Memoir
-4339,Military Fiction
 4339,Military History
 4339,Biography
 4339,American History
@@ -657,8 +653,6 @@ bookId,genreName
 6751,Literature
 6751,American
 6751,Contemporary
-6751,Journalism
-6751,Unfinished
 4633,Fiction
 4633,Classics
 4633,Literature
@@ -780,7 +774,6 @@ bookId,genreName
 3686,Womens
 3686,Adult
 698,Fiction
-698,Adoption
 698,Contemporary
 698,Adult Fiction
 698,Novels
@@ -806,7 +799,6 @@ bookId,genreName
 7455,New York
 7455,Adult
 7455,Humor
-7455,Sexuality
 7455,Adult Fiction
 7455,American
 4477,Nonfiction
