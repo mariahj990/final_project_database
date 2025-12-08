@@ -45,14 +45,9 @@ public class HomeController {
     @GetMapping
     public ModelAndView webpage(@RequestParam(name = "error", required = false) String error) {
         ModelAndView mv = new ModelAndView("home_page");
-        try{
-            List<Simple_Book> books = forYouPageService.getCandidateBooks();
-            mv.addObject("books", books);
-        } catch(SQLException e){
-            e.printStackTrace();
-            mv.addObject("books", new ArrayList<>()); // add empty list
 
-        }
+        List<Simple_Book> books = forYouPageService.getCandidateBooks();
+        mv.addObject("books", books);
 
         return mv;
     }
