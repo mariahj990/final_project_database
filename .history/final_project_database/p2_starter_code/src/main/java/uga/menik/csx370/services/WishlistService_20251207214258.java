@@ -36,7 +36,7 @@ public class WishlistService {
         // SQL query to the books on the wishlist of the logged in user from history table
        // final String getAllUsersSql = "SELECT u.userId, u.firstName, u.lastName FROM user u";
 
-        final String getAllWishlistBooks = "SELECT b.bookId, b.title, b.authors, b.average_rating, b.image_url FROM book b "
+        final String getAllWishlistBooks = "SELECT b.bookId, b.title, b.authors, b.average_rating,b.image_url FROM book b "
                 + "JOIN history h ON b.bookId = h.bookId "
                 + "WHERE h.userId = ? and h.has_wishlisted = true";
 
@@ -47,7 +47,7 @@ public class WishlistService {
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
                     Simple_Book book = new Simple_Book(rs.getInt("bookId"), rs.getString("title"),
-                    rs.getString("authors"), rs.getDouble("average_rating"), rs.getString("image_url"));
+                    rs.getString("authors"), rs.getDouble("average_rating"));
                     books.add(book);
                 } // while 
             } // try 
