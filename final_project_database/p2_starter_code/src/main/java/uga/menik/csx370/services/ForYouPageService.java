@@ -109,7 +109,7 @@ public class ForYouPageService {
         return books;
     }//searchBooks
 
-    public void findGenres(int bookId) {
+    public List<String> findGenres(int bookId) {
         List<String> genres = new ArrayList<>();
         // return list of genre categories for a given book
                // if they already had the genre in their history, increment numBooks by 1
@@ -122,7 +122,7 @@ public class ForYouPageService {
             WHERE bookId = ?;""";
         try (Connection conn = dataSource.getConnection();
             PreparedStatement stmt = conn.prepareStatement(findGenresForBook)) {
-            stmt.Int(1, bookId);
+            stmt.setInt(1, bookId);
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
                     String genreCategory = rs.getString("genreCategoryName");
@@ -154,7 +154,7 @@ public class ForYouPageService {
         List<String> genres = findGenres(bookId);
 
         // for each genre, add to user_genre_count
-        for (String genre in genres){ 
+        for (String genre : genres){ 
             System.out.println("Adding genre " + genre + " to recommendations for user " + user.getUserId());
             addBookGenretoRecs(user, bookId, genre);
         }
@@ -175,7 +175,7 @@ public class ForYouPageService {
             """;
         
         try (Connection conn = dataSource.getConnection();
-            PreparedStatement stmt = conn.prepareStatement(findGenresForBook)) {
+            PreparedStatement stmt = conn.prepareStatement(updateSql)) {
             stmt.setInt(1, bookId);
             stmt.setString(2, genreCategory);
             stmt.executeUpdate();
