@@ -9,7 +9,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 @Component
-public class PopulateDatabaseRunner implements CommandLineRunner {
+public class PopulateDatabase implements CommandLineRunner {
 
     // runs after Spring Boot starts
     // script to populate database 
