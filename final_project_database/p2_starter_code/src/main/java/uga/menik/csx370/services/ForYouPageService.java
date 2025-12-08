@@ -154,10 +154,10 @@ public class ForYouPageService {
         List<String> genres = findGenres(bookId);
 
         // for each genre, add to user_genre_count
-        for genre in genres: 
+        for (genre in genres): 
             addBookGenretoRecs(user, bookId, genre);
         
-        System.out.println("Recommendations successfully updated for user.")
+        System.out.println("Recommendations successfully updated for user.");
     }
 
     public void addBookGenretoRecs(User user, int bookId, String genreCategory) {

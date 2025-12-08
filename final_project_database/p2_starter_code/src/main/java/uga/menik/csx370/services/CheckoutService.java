@@ -176,7 +176,7 @@ public class CheckoutService {
             userStmt.setString(2, user.getUserId());
             userStmt.executeUpdate();
         }
-        """
+        /*
         // Update genre counts
         List<String> genreBuckets = genreService.parseAndMapGenres(genresString);
         for (String bucketName : genreBuckets) {
@@ -187,7 +187,7 @@ public class CheckoutService {
                 System.out.println("Error updating genre count");
             }
         }
-        """
+        */
         System.out.println("Successfully returned book.");
         return true;
     }
