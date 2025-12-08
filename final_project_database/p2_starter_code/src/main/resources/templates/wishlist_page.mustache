@@ -5,17 +5,42 @@
 <body>
 
     {{> fragments/top_bar}}
-    <div style="max-width: 500px; margin-left: auto; margin-right: auto; 
-                border: 3px solid #fb7c91ff; border-radius: 10px; 
-                background-color: #ffc0cb;
-                margin-top: 2em;">
-            <h1 style="text-align:center; margin-top: 1em;"><strong>Wishlist</strong></h1>
-        </div>
 
-    {{> fragments/no_content_message}}
+    <div style="max-width: 400px; margin-left: auto; margin-right: auto; 
+                border: 3px solid #ffc0cb; border-radius: 10px; 
+                background-color: #fff7f7;
+                margin-top: 5em;">
 
+        {{#isNoContent}}
+            {{> fragments/no_content_message}}
+        {{/isNoContent}}
+
+        <h2 style="text-align: center;">Books</h2>
+
+    </div>
+
+    {{#books}}
+    <div style="display: flex; justify-content: space-between; align-items: center; max-width: 800px; margin: 1em auto;">
+        {{> fragments/simple_book}}
+
+        <form method = "get" action = "/wishlist/{{bookId}}/wishlisted/false" style="margin-left: 20px;">
+            <button type="submit"
+                style="
+                    padding: 10px 25px;
+                    font-size: 1rem;
+                    border-radius: 8px;
+                    background-color: #f0ad4e;
+                    border: none;
+                    color: white;
+                    cursor: pointer;
+                ">
+                Remove from wishlist
+            </button>
+        </form>
+
+    </div>
+    {{/books}}
+        
     {{> fragments/footer}}
-
 </body>
-
 </html>

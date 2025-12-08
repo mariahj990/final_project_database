@@ -111,7 +111,7 @@ public class BookController {
         e.printStackTrace();
     } 
     mv.addObject("isWishlisted", isWishlisted);
-    mv.addObject("wishlistButtonText", wishlistButtonText);
+    mv.addObject("wishListButtonText", wishListButtonText);
         
 	return mv;
     }    
