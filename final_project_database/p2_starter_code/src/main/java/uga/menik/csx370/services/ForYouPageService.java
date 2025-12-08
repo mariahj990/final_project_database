@@ -94,7 +94,7 @@ public class ForYouPageService {
         )
         GROUP BY b.bookId, b.title, b.authors, b.average_rating
         ORDER BY score DESC
-        LIMIT 10
+        LIMIT 20
         """; 
         try (Connection conn = dataSource.getConnection();
             PreparedStatement stmt = conn.prepareStatement(findCandidates)) {
