@@ -42,11 +42,30 @@ public class PopulateDatabase implements CommandLineRunner {
                     }
                 }
             }
-        }
+
+	}
+
+	/*
+	boolean booksExist = false;
+
+	String bookCountAlready = "SELECT count(*) from book;";
+	try(Connection conn = dataSource.getConnection();
+	    PreparedStatement stmt = conn.prepareStatement(tablesPopulated)) {
+	    try(ResultSet = rs.stmt.executeQuery()) {
+		booksExist = rs.next() && rs.getInt("count") > 0;
+	    }
+	}
+	*/
+	    
+	  
+	    
+	    
+	    
+	    
         // call python script to load csvs
         //File correctdir = new File("final_project_database/p2_starter_code/src/main/resources");
         ProcessBuilder pb = new ProcessBuilder("python", "import_book_data.py");
-        pb.directory(new File("final_project_database/p2_starter_code/src/main/resources"));
+        pb.directory(new File("src/main/resources"));
         pb.inheritIO(); // prints output to console
         Process process = pb.start();
         int exitCode = process.waitFor();

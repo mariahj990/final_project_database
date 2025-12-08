@@ -7,12 +7,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+//import java.util.User;
 
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import uga.menik.csx370.models.User;
 import uga.menik.csx370.models.Simple_Book;
 
 @Service
@@ -60,7 +61,7 @@ public class WishlistService {
     } // getAllWhishlist
 
     public boolean addWishlist(String loggedInUserId, int bookId) {
-        User user = userService.getUserById(loggedInUserId);
+        User user = userService.getLoggedInUser();
         forYouPageService.updateRecs(user, bookId); // updates the user-specific genre history.
 
         // sql statement that adds the book_id to the history table if not already in the table and sets has_wishlisted to true,  
