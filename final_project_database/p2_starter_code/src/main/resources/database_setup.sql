@@ -69,3 +69,9 @@ create table if not exists history (
     foreign key (bookId) references book(bookId),
     foreign key (userId) references user(userId)
 );
+
+create table if not exists csv_data_loading_status (
+    insertedId int,
+    ran boolean not null default 0,
+    primary key (insertedId)
+);

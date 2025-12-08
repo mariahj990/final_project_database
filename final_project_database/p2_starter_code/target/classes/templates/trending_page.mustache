@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+{{> fragments/html_header}}
+
+<body>
+
+    {{> fragments/top_bar}}
+
+    <div style="max-width: 500px; margin-left: auto; margin-right: auto; 
+                border: 3px solid #fb7c91ff; border-radius: 10px; 
+                background-color: #ffc0cb;
+                margin-top: 2em;">
+
+        {{#isNoContent}}
+            {{> fragments/no_content_message}}
+        {{/isNoContent}}
+
+        <h1 style="text-align: center;"><strong>Top 10 Books</strong></h1>
+    </div>
+    {{#books}}
+        {{> fragments/simple_book}}
+    {{/books}}
+    <div style="max-width: 400px; margin-left: auto; margin-right: auto; 
+                border: 3px solid #fb7c91ff; border-radius: 10px; 
+                background-color: #ffc0cb;
+                margin-top: 2em;">
+        <h1 style="text-align: center;"><strong>Top {{numTop10Users}} Readers</strong></h1>
+    </div>
+    <div style="width: 1200px; margin: auto; display: flex; flex-wrap: wrap; justify-content: center; gap: 2px">
+        {{#users}}
+            {{> fragments/simple_user}}
+        {{/users}}    
+        {{> fragments/footer}}
+    </div>
+
+</body>
+</html>

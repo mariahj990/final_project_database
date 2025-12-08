@@ -1,0 +1,37 @@
+<!--
+Copyright (c) 2024 Sami Menik, PhD. All rights reserved.
+
+This is a project developed by Dr. Menik to give the students an opportunity to apply database concepts learned in the class in a real world project. Permission is granted to host a running version of this software and to use images or videos of this work solely for the purpose of demonstrating the work to potential employers. Any form of reproduction, distribution, or transmission of the software's source code, in part or whole, without the prior written consent of the copyright owner, is strictly prohibited.
+-->
+<!DOCTYPE html>
+<html lang="en">
+{{> fragments/html_header}}
+
+<body>
+
+    <div style="max-width: 400px; margin-left: auto; margin-right: auto; 
+                border: 3px solid #fb7c91ff; border-radius: 10px; 
+                background-color: #ffc0cb;
+                margin-top: 2em;">
+        <h1 style="text-align:center; margin-top: 1em;"><strong>Login</strong></h1>
+    </div>
+
+    <div class="container center-align narrow" style="max-width: 700px; margin-left: auto; margin-right: auto; 
+                border: 3px solid #ffc0cb; border-radius: 10px; 
+                background-color: #fff7f7;
+                margin-top: 2em;
+                padding: 10px;">
+        {{> fragments/error_message}}
+        <form method="post" action="/login">
+            <input name="username" class="short-input full" type="text" placeholder="Username">
+            <input name="password" class="short-input full" type="password" placeholder="Password">
+            <button type="submit" class="action-button">Login</button>
+            <a class="link" href="/register">Register</a>
+        </form>
+    </div>
+
+    {{> fragments/footer}}
+
+</body>
+
+</html>

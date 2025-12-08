@@ -12,7 +12,6 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
 import uga.menik.csx370.models.Simple_Book;
 import uga.menik.csx370.models.User;
 
@@ -80,7 +79,7 @@ public class ForYouPageService {
         // Books with more genres in common with user's preferred genres should rank higher
         // intersection between genres is important
         String findCandidates = """
-        SELECT b.bookId, b.title, b.authors, b.average_rating, SUM(ugc.numBooks) AS score
+        SELECT b.bookId, b.title, b.authors, b.average_rating, b.average_rating, b.page_count, SUM(ugc.numBooks) AS score
         FROM book b
         JOIN book_to_genre btg ON b.bookId = btg.bookId
         JOIN genre_category gc ON btg.genreName = gc.genreName
@@ -108,7 +107,8 @@ public class ForYouPageService {
                         rs.getInt("bookId"),
                         rs.getString("title"),
                         rs.getString("authors"),
-                        rs.getDouble("average_rating")
+                        rs.getInt("average_rating"),
+                        rs.getString("page_count")
                     );
                     books.add(book);
                 }
