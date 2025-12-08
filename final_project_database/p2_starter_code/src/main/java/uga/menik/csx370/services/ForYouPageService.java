@@ -125,7 +125,6 @@ public class ForYouPageService {
         // Extract the most important genre category (to the user) from the book 
         // help explain the scoring algorithm
         // using the user_genre_count table max genre for that user
-        String userId = user.getUserId();
         String topGenre = null;
 
         final String findTopGenre = "SELECT gc.genreCategoryName " +

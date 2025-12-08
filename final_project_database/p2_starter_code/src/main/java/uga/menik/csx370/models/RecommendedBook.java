@@ -3,7 +3,7 @@ package uga.menik.csx370.models;
 /**
  * Represents a book in the library system.
  */
-public class Simple_Book {
+public class RecommendedBook {
     private final int bookId;
     private final String title;
     private final String authors;

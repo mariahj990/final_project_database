@@ -48,7 +48,8 @@ public class HomeController {
         ModelAndView mv = new ModelAndView("home_page");
 
         List<Simple_Book> simple_books = forYouPageService.getCandidateBooks();
-        for (Simple_Book book : simplebooks) {
+	List<RecommendedBook> books = new ArrayList<>();
+        for (Simple_Book book : simple_books) {
             // want to add another attribute to each book: what the top genre for the match was
             try {
                 String topGenre = forYouPageService.getTopMatchingGenreForBook(book.getBookId());
