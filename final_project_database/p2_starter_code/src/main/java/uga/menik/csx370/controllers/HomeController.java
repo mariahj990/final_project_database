@@ -44,20 +44,16 @@ public class HomeController {
      * See notes in HashtagSearchController.java regarding URL parameters.
      */
     @GetMapping
-    public ModelAndView webpage(@RequestParam(name = "error", required = false) String error) {
+    public ModelAndView webpage(@RequestParam(name = "error", required = false) String error) throws SQLException{
         ModelAndView mv = new ModelAndView("home_page");
 
         List<Simple_Book> simple_books = forYouPageService.getCandidateBooks();
-	List<RecommendedBook> books = new ArrayList<>();
+	    List<RecommendedBook> books = new ArrayList<>();
         for (Simple_Book book : simple_books) {
             // want to add another attribute to each book: what the top genre for the match was
-            try {
-                String topGenre = forYouPageService.getTopMatchingGenreForBook(book.getBookId());
-                RecommendedBook recBook = new RecommendedBook(book.getBookId(), book.getTitle(), book.getAuthors(), book.getAverage_rating(), topGenre);
-                books.add(recBook);
-            } catch (SQLException e) {
-                System.err.println("Error fetching top genre for book " + book.getBookId() + ": " + e.getMessage());
-            }
+            String topGenre = forYouPageService.getTopMatchingGenreForBook(book.getBookId());
+            RecommendedBook recBook = new RecommendedBook(book.getBookId(), book.getTitle(), book.getAuthors(), book.getAverage_rating(), topGenre);
+            books.add(recBook);
         }
         mv.addObject("books", books);
 
