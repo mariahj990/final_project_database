@@ -47,7 +47,7 @@ public class WishlistService {
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
                     Simple_Book book = new Simple_Book(rs.getInt("bookId"), rs.getString("title"),
-                    rs.getString("authors"), rs.getDouble("average_rating"), rs.getString("image_url"));
+                    rs.getString("authors"), rs.getDouble("average_rating"), );
                     books.add(book);
                 } // while 
             } // try 
