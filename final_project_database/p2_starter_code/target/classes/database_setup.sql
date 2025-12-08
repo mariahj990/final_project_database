@@ -99,25 +99,25 @@ insert into genre (genre_name) values
     ('Religion / Spirituality')
 on duplicate key update genre_name = genre_name;
 """ 
+
+create table if not exists genre_category (
+    genreName varchar(100),
+    genreCategoryName varchar(100) not null,
+    primary key (genreName)
+);
+
 create table if not exists book_to_genre (
     bookId int,
     genreName varchar(100),
     primary key (bookId, genreName),
     foreign key(bookId) references book(bookId),
     foreign key(genreName) references genre_category(genreName)
-)
-
-create table if not exists genre_category (
-    genreName varchar(100),
-    genreCategoryName varchar(100) not null,
-    primary key (genreName)
-)
+);
 
 create table if not exists user_genre_count (
     userId int,
     genreCategoryName varchar(100),
     numBooks int default 0,
     primary key (userId, genreCategoryName),
-    foreign key (userId) references user(userId),
-    -- foreign key (genreBucketId) references genre(genre_id)
+    foreign key (userId) references user(userId)
 );
