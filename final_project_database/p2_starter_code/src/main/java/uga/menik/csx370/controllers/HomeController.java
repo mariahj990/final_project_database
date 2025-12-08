@@ -56,7 +56,7 @@ public class HomeController {
                 RecommendedBook recBook = new RecommendedBook(book.getBookId(), book.getTitle(), book.getAuthors(), book.getAverage_rating(), topGenre);
                 books.add(recBook);
             } catch (SQLException e) {
-                throw new RuntimeException(e);
+                System.err.println("Error fetching top genre for book " + book.getBookId() + ": " + e.getMessage());
             }
         }
         mv.addObject("books", books);
