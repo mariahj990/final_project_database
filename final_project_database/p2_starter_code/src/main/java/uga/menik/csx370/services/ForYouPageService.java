@@ -96,6 +96,8 @@ public class ForYouPageService {
             PreparedStatement stmt = conn.prepareStatement(findCandidates)) {
             // Bind the same wildcard term for title, authors, and genres
             stmt.setString(1, userId);
+            stmt.setString(2, userId);
+            stmt.setString(3, userId);
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
                     Simple_Book book = new Simple_Book(
