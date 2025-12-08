@@ -4,75 +4,87 @@
 
 <body>
     {{> fragments/top_bar}}
-    
-    <div style="max-width: 600px; margin: 3em auto; text-align: center; padding: 2em;">
-        <h1 style="margin-bottom: 1em;">Rate This Book</h1>
-        
-        <h2 style="margin-bottom: 0.5em;">{{title}}</h2>
-        <h3 style="color: #666; margin-bottom: 2em;">by {{authors}}</h3>
-        
-        <p style="font-size: 1.1rem; margin-bottom: 1.5em;">How would you rate this book?</p>
-        
-        <!-- Rating Form -->
-        <form method="post" action="/rating/submit" style="margin-bottom: 1em;">
-            <input type="hidden" name="bookId" value="{{bookId}}">
-            
-            <div style="display: flex; gap: 1em; justify-content: center; margin-bottom: 2em;">
-                <button type="submit" name="rating" value="1"
-                    style="padding: 20px 30px; font-size: 1.5rem; border-radius: 8px; 
-                           border: 2px solid #ffc0cb; background-color: white; cursor: pointer;
-                           transition: all 0.2s;"
-                    onmouseover="this.style.backgroundColor='#ffc0cb'; this.style.transform='scale(1.1)';"
-                    onmouseout="this.style.backgroundColor='white'; this.style.transform='scale(1)';">
-                    1
-                </button>
-                <button type="submit" name="rating" value="2"
-                    style="padding: 20px 30px; font-size: 1.5rem; border-radius: 8px; 
-                           border: 2px solid #ffc0cb; background-color: white; cursor: pointer;
-                           transition: all 0.2s;"
-                    onmouseover="this.style.backgroundColor='#ffc0cb'; this.style.transform='scale(1.1)';"
-                    onmouseout="this.style.backgroundColor='white'; this.style.transform='scale(1)';">
-                    2
-                </button>
-                <button type="submit" name="rating" value="3"
-                    style="padding: 20px 30px; font-size: 1.5rem; border-radius: 8px; 
-                           border: 2px solid #ffc0cb; background-color: white; cursor: pointer;
-                           transition: all 0.2s;"
-                    onmouseover="this.style.backgroundColor='#ffc0cb'; this.style.transform='scale(1.1)';"
-                    onmouseout="this.style.backgroundColor='white'; this.style.transform='scale(1)';">
-                    3
-                </button>
-                <button type="submit" name="rating" value="4"
-                    style="padding: 20px 30px; font-size: 1.5rem; border-radius: 8px; 
-                           border: 2px solid #ffc0cb; background-color: white; cursor: pointer;
-                           transition: all 0.2s;"
-                    onmouseover="this.style.backgroundColor='#ffc0cb'; this.style.transform='scale(1.1)';"
-                    onmouseout="this.style.backgroundColor='white'; this.style.transform='scale(1)';">
-                    4
-                </button>
-                <button type="submit" name="rating" value="5"
-                    style="padding: 20px 30px; font-size: 1.5rem; border-radius: 8px; 
-                           border: 2px solid #ffc0cb; background-color: white; cursor: pointer;
-                           transition: all 0.2s;"
-                    onmouseover="this.style.backgroundColor='#ffc0cb'; this.style.transform='scale(1.1)';"
-                    onmouseout="this.style.backgroundColor='white'; this.style.transform='scale(1)';">
-                    5
-                </button>
+    <div style="display: flex; flex-direction: column; align-items: center;">    
+        <div style="width: 800px; margin: 3em auto; text-align: center; padding: 2em;">
+            <div style="width: 800px;
+                    border: 3px solid #fb7c91ff; border-radius: 10px; 
+                    background-color: #ffc0cb;
+                    margin-top: 2em;">
+                <h1 style="text-align: center;"><strong>Rate This Book</strong></h1>
             </div>
-        </form>
-        
-        <form method="post" action="/rating/skip">
-            <button type="submit"
-                style="padding: 10px 30px; font-size: 1rem; border-radius: 8px; 
-                       border: 2px solid #ccc; background-color: #f5f5f5; 
-                       color: #666; cursor: pointer; transition: all 0.2s;"
-                onmouseover="this.style.backgroundColor='#e0e0e0';"
-                onmouseout="this.style.backgroundColor='#f5f5f5';">
-                Skip for Now
-            </button>
-        </form>
+
+            <div class="simple-book framed" style ="width: 800px; 
+                        border: 3px solid #ffc0cb; border-radius: 10px; 
+                        margin-top: 2em;">
+                <h2 style="margin-bottom: 0.5em; text-align: center;">{{title}}</h2>
+                <h2 style="color: #666; margin-bottom: 2em; text-align: center;">by {{authors}}</h3>
+            </div>
+            
+            <div class="simple-book framed" style ="max-width: 800px;
+                        border: 3px solid #ffc0cb; border-radius: 10px; 
+                        margin-top: 2em; padding: 20px;">
+                <h3>How would you rate this book?</h3>
+                <!-- Rating Form -->
+                <form method="post" action="/rating/submit" style="margin-bottom: 1em;">
+                    <input type="hidden" name="bookId" value="{{bookId}}">
+                    
+                    <div style="display: flex; gap: 1em; justify-content: center; margin-bottom: 2em;">
+                        <button type="submit" name="rating" value="1"
+                            style="padding: 20px 30px; font-size: 1.5rem; border-radius: 8px; 
+                                border: 2px solid #ffc0cb; background-color: white; cursor: pointer;
+                                transition: all 0.2s;"
+                            onmouseover="this.style.backgroundColor='#ffc0cb'; this.style.transform='scale(1.1)';"
+                            onmouseout="this.style.backgroundColor='white'; this.style.transform='scale(1)';">
+                            1
+                        </button>
+                        <button type="submit" name="rating" value="2"
+                            style="padding: 20px 30px; font-size: 1.5rem; border-radius: 8px; 
+                                border: 2px solid #ffc0cb; background-color: white; cursor: pointer;
+                                transition: all 0.2s;"
+                            onmouseover="this.style.backgroundColor='#ffc0cb'; this.style.transform='scale(1.1)';"
+                            onmouseout="this.style.backgroundColor='white'; this.style.transform='scale(1)';">
+                            2
+                        </button>
+                        <button type="submit" name="rating" value="3"
+                            style="padding: 20px 30px; font-size: 1.5rem; border-radius: 8px; 
+                                border: 2px solid #ffc0cb; background-color: white; cursor: pointer;
+                                transition: all 0.2s;"
+                            onmouseover="this.style.backgroundColor='#ffc0cb'; this.style.transform='scale(1.1)';"
+                            onmouseout="this.style.backgroundColor='white'; this.style.transform='scale(1)';">
+                            3
+                        </button>
+                        <button type="submit" name="rating" value="4"
+                            style="padding: 20px 30px; font-size: 1.5rem; border-radius: 8px; 
+                                border: 2px solid #ffc0cb; background-color: white; cursor: pointer;
+                                transition: all 0.2s;"
+                            onmouseover="this.style.backgroundColor='#ffc0cb'; this.style.transform='scale(1.1)';"
+                            onmouseout="this.style.backgroundColor='white'; this.style.transform='scale(1)';">
+                            4
+                        </button>
+                        <button type="submit" name="rating" value="5"
+                            style="padding: 20px 30px; font-size: 1.5rem; border-radius: 8px; 
+                                border: 2px solid #ffc0cb; background-color: white; cursor: pointer;
+                                transition: all 0.2s;"
+                            onmouseover="this.style.backgroundColor='#ffc0cb'; this.style.transform='scale(1.1)';"
+                            onmouseout="this.style.backgroundColor='white'; this.style.transform='scale(1)';">
+                            5
+                        </button>
+                    </div>
+                </form>
+                
+                <form method="post" action="/rating/skip">
+                    <button type="submit"
+                        style="padding: 10px 30px; font-size: 1rem; border-radius: 8px; 
+                            border: 2px solid #ccc; background-color: #f5f5f5; 
+                            color: #666; cursor: pointer; transition: all 0.2s;"
+                        onmouseover="this.style.backgroundColor='#e0e0e0';"
+                        onmouseout="this.style.backgroundColor='#f5f5f5';">
+                        Skip for Now
+                    </button>
+                </form>
+            </div>
+        </div>
     </div>
-    
     {{> fragments/footer}}
 </body>
 </html>
