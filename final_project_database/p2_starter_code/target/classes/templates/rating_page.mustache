@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+{{> fragments/html_header}}
+
+<body>
+    {{> fragments/top_bar}}
+    
+    <div style="max-width: 600px; margin: 3em auto; text-align: center; padding: 2em;">
+        <h1 style="margin-bottom: 1em;">Rate This Book</h1>
+        
+        <h2 style="margin-bottom: 0.5em;">{{title}}</h2>
+        <h3 style="color: #666; margin-bottom: 2em;">by {{authors}}</h3>
+        
+        <p style="font-size: 1.1rem; margin-bottom: 1.5em;">How would you rate this book?</p>
+        
+        <!-- Rating Form -->
+        <form method="post" action="/rating/submit" style="margin-bottom: 1em;">
+            <input type="hidden" name="bookId" value="{{bookId}}">
+            
+            <div style="display: flex; gap: 1em; justify-content: center; margin-bottom: 2em;">
+                <button type="submit" name="rating" value="1"
+                    style="padding: 20px 30px; font-size: 1.5rem; border-radius: 8px;
+                           border: 2px solid #ffc0cb; background-color: white; cursor: pointer;">
+                    1
+                </button>
+                <button type="submit" name="rating" value="2"
+                    style="padding: 20px 30px; font-size: 1.5rem; border-radius: 8px;
+                           border: 2px solid #ffc0cb; background-color: white; cursor: pointer;">
+                    2
+                </button>
+                <button type="submit" name="rating" value="3"
+                    style="padding: 20px 30px; font-size: 1.5rem; border-radius: 8px;
+                           border: 2px solid #ffc0cb; background-color: white; cursor: pointer;">
+                    3
+                </button>
+                <button type="submit" name="rating" value="4"
+                    style="padding: 20px 30px; font-size: 1.5rem; border-radius: 8px;
+                           border: 2px solid #ffc0cb; background-color: white; cursor: pointer;">
+                    4
+                </button>
+                <button type="submit" name="rating" value="5"
+                    style="padding: 20px 30px; font-size: 1.5rem; border-radius: 8px;
+                           border: 2px solid #ffc0cb; background-color: white; cursor: pointer;">
+                    5
+                </button>
+            </div>
+        </form>
+        
+        <form method="post" action="/rating/skip">
+            <button type="submit"
+                style="padding: 10px 30px; font-size: 1rem; border-radius: 8px;
+                       border: 2px solid #ccc; background-color: #f5f5f5;
+                       color: #666; cursor: pointer;">
+                Skip for Now
+            </button>
+        </form>
+    </div>
+    
+    {{> fragments/footer}}
+</body>
+</html>
