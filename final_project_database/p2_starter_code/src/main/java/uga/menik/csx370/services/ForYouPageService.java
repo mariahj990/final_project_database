@@ -79,7 +79,7 @@ public class ForYouPageService {
         // Books with more genres in common with user's preferred genres should rank higher
         // intersection between genres is important
         String findCandidates = """
-        SELECT b.bookId, b.title, b.authors, b.average_rating, b.average_rating, b.page_count, SUM(ugc.numBooks) AS score
+        SELECT b.bookId, b.title, b.authors, b.average_rating, b.image_url, SUM(ugc.numBooks) AS score
         FROM book b
         JOIN book_to_genre btg ON b.bookId = btg.bookId
         JOIN genre_category gc ON btg.genreName = gc.genreName
@@ -91,7 +91,7 @@ public class ForYouPageService {
             UNION
             SELECT bookId FROM curr_checkout WHERE userId = ?
         )
-        GROUP BY b.bookId, b.title, b.authors, b.average_rating
+        GROUP BY b.bookId, b.title, b.authors, b.average_rating, b.image_url
         ORDER BY score DESC
         LIMIT 20
         """; 
@@ -107,8 +107,8 @@ public class ForYouPageService {
                         rs.getInt("bookId"),
                         rs.getString("title"),
                         rs.getString("authors"),
-                        rs.getInt("average_rating"),
-                        rs.getString("page_count")
+                        rs.getDouble("average_rating"),
+                        rs.getString("image_url")
                     );
                     books.add(book);
                 }
@@ -225,7 +225,7 @@ public class ForYouPageService {
         
         try (Connection conn = dataSource.getConnection();
             PreparedStatement stmt = conn.prepareStatement(updateSql)) {
-            stmt.setInt(1, bookId);
+            stmt.setString(1, userId);
             stmt.setString(2, genreCategory);
             stmt.executeUpdate();
         } catch (SQLException e) {

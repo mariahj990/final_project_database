@@ -1,11 +1,11 @@
 <style>
-	.simple-book {padding: 12px; text-align: left; background-color: #fff7f7;}
-	.simple-book:hover {
+	.recommended-book {padding: 12px; text-align: left; background-color: #fff7f7;}
+	.recommended-book:hover {
 			background-color: #eeb3bdff;
 			transform: translateY(-2px);
 		}
 </style>
-<div class="simple-book framed" style ="max-width: 800px; margin-left: auto; margin-right: auto; 
+<div class="recommended-book framed" style ="max-width: 800px; margin-left: auto; margin-right: auto; 
                     border: 3px solid #ffc0cb; border-radius: 10px; 
                     margin-top: 2em;">
 
@@ -18,7 +18,9 @@
 				<h2><strong><a href="/books/{{bookId}}">{{title}}</a></strong></h2>
 				<h3><strong>Author(s): </strong>{{authors}}</h3> 
 				<h3><strong>Average Rating: </strong>{{average_rating}}</h3> 
+				<h3><strong>Recommended Genre: </strong>{{recommended_genre}}</h3> 
 			</div> 
 		</div>
 	</div> 
 </div>
+
