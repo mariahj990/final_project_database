@@ -14,6 +14,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import uga.menik.csx370.services.UserService;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.sql.SQLException;
 
 /**
  * This controller handles the home page and some of it's sub URLs.
@@ -42,7 +45,7 @@ public class HomeController {
     public ModelAndView webpage(@RequestParam(name = "error", required = false) String error) {
         ModelAndView mv = new ModelAndView("home_page");
         try{
-            List<Book> books = forYouPage.getCandidateBooks();
+            List<SimpleBook> books = forYouPageService.getCandidateBooks();
             mv.addObject("books", books);
         } catch(SQLException e){
             e.printStackTrace();

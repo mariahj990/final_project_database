@@ -11,6 +11,8 @@ import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import uga.menik.csx370.models.SimpleBook;
+
 
 import uga.menik.csx370.models.Simple_Book;
 import uga.menik.csx370.models.User;
@@ -69,7 +71,7 @@ public class ForYouPageService {
         User user = userService.getCurrentUser();
         String userId = user.getUserId();
 
-        List<Book> books = new ArrayList<>();
+        List<SimpleBook> books = new ArrayList<>();
 
         String findCandidates = """
         SELECT b.bookId, b.title, b.authors, b.average_rating, SUM(ugc.numBooks) AS score
