@@ -128,7 +128,6 @@ public class CheckoutService {
             int rowsAffected = checkoutStmt.executeUpdate();
             return rowsAffected > 0;
         } //try
-
     } //checkOutBook
 
     // return book function

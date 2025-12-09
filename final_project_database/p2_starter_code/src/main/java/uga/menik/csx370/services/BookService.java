@@ -73,7 +73,7 @@ public class BookService {
         final String getNumCheckedOut = "SELECT COUNT(distinct userId) as numCheckedOut from curr_checkout where bookId = ?";
         int numCheckedOut = 0;
         try (Connection conn = dataSource.getConnection();
-            PreparedStatement stmt = conn.prepareStatement(checkAvailability)) {
+            PreparedStatement stmt = conn.prepareStatement(getNumCheckedOut)) {
             stmt.setInt(1, bookId);
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
