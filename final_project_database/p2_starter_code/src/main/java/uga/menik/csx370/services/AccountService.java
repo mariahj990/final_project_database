@@ -192,8 +192,11 @@ public class AccountService {
 
                 try (ResultSet rs = stmt.executeQuery()) {
                     while (rs.next()) {
+                        double ratingFormatted = rs.getDouble("average_rating");
+                        ratingFormatted = Math.floor((ratingFormatted*1000))/1000;
+
                         Simple_Book book = new Simple_Book(rs.getInt("b.bookId"), rs.getString("b.title"),
-                                            rs.getString("b.authors"), rs.getDouble("b.average_rating"), 
+                                            rs.getString("b.authors"), ratingFormatted, 
                                             rs.getString("b.image_url"));
                         userHistory.add(book);
                     }

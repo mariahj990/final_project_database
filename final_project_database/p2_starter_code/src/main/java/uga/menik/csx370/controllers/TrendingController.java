@@ -55,8 +55,6 @@ public class TrendingController {
         if(books.isEmpty()) {
             System.out.println("Books is empty");
             mv.addObject("isNoContent", true);
-        } else {
-            System.out.println("showTrendingPage worked");
         }
         return mv;
     }

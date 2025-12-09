@@ -31,13 +31,15 @@ public class BookService {
             stmt.setInt(1, bookID);
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
+                        double ratingFormatted = rs.getDouble("average_rating");
+                        ratingFormatted = Math.floor((ratingFormatted*1000))/1000;
                         Book book = new Book(rs.getInt("bookId"), 
                                         rs.getString("title"), 
                                         rs.getString("authors"), 
                                         rs.getString("isbn13"), 
                                         rs.getString("description"), 
                                         rs.getString("genres"),
-                                        rs.getDouble("average_rating"), 
+                                        ratingFormatted, 
                                         rs.getInt("original_publication_year"), 
                                         rs.getInt("ratings_count"),
                                         rs.getString("image_url"), 
@@ -110,6 +112,9 @@ public class BookService {
             }
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
+                    double ratingFormatted = rs.getDouble("average_rating");
+                    ratingFormatted = Math.floor((ratingFormatted*1000))/1000;
+
                     Book book = new Book(
                         rs.getInt("bookId"),
                         rs.getString("title"),
@@ -117,7 +122,7 @@ public class BookService {
                         rs.getString("isbn13"),
                         rs.getString("description"),
                         rs.getString("genres"),
-                        rs.getDouble("average_rating"),
+                        ratingFormatted,
                         rs.getInt("original_publication_year"),
                         rs.getInt("ratings_count"),
                         rs.getString("image_url"),

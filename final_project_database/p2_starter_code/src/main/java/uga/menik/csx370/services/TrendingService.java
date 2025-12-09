@@ -36,16 +36,18 @@ public class TrendingService {
             PreparedStatement stmt = conn.prepareStatement(getAllBooks)) {
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
-                        Simple_Book book = new Simple_Book(rs.getInt("bookId"), rs.getString("title"),
-                                            rs.getString("authors"), rs.getDouble("average_rating"), rs.getString("image_url"));
-                        System.out.println("Added " + rs.getString("title"));
-                        top10books.add(book);
-                    }
+                    double ratingFormatted = rs.getDouble("average_rating");
+                    ratingFormatted = Math.floor((ratingFormatted*1000))/1000;
+
+                    Simple_Book book = new Simple_Book(rs.getInt("bookId"), rs.getString("title"),
+                                        rs.getString("authors"), ratingFormatted, rs.getString("image_url"));
+                    top10books.add(book);
                 }
-            } catch (SQLException e) {
-                System.out.println(e);
             }
-            return top10books;
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return top10books;
     }
 
         /**

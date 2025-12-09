@@ -26,7 +26,6 @@ public class AccountController {
     @GetMapping
     public ModelAndView webpage() {
         ModelAndView mv = new ModelAndView("account_page");
-        System.out.println("Trying to view account page");
         // Get user
 
         User user = accountService.getCurrentUser();

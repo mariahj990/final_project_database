@@ -41,7 +41,6 @@ public class WishlistController {
      */
     @GetMapping
     public ModelAndView showWishlistPage() {
-        System.out.println("User is attempting to view the wishlist page");
         ModelAndView mv = new ModelAndView("wishlist_page");
  
         List<Simple_Book> books = wishlistService.getAllWhishlist();
@@ -49,8 +48,6 @@ public class WishlistController {
         if(books.isEmpty()) {
             System.out.println("Books is empty");
             mv.addObject("isNoContent", true);
-        } else {
-            System.out.println("showWishlistPage worked");
         }
         return mv;
     } // showWishlistPage

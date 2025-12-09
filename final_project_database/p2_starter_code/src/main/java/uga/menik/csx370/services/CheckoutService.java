@@ -79,8 +79,12 @@ public class CheckoutService {
                     // make into a checked_out book object
                     Date checkout_date = rs.getDate("checkout_date");
                     LocalDate dueLocalDate = checkout_date.toLocalDate().plusWeeks(2); // add 2 weeks to checkout date
-                    Date due_date = Date.valueOf(dueLocalDate);  
-                    CheckedOutBook this_checkout = new CheckedOutBook(bookId,this_book.getTitle(), this_book.getAuthors(), this_book.getAverage_rating(), checkout_date, due_date);
+                    Date due_date = Date.valueOf(dueLocalDate);
+
+                    double ratingFormatted = this_book.getAverage_rating();
+                    ratingFormatted = Math.floor((ratingFormatted*1000))/1000;
+
+                    CheckedOutBook this_checkout = new CheckedOutBook(bookId,this_book.getTitle(), this_book.getAuthors(), ratingFormatted, checkout_date, due_date);
                     books.add(this_checkout); //call helper method
                 }
             } //try

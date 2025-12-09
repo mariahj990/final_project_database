@@ -103,11 +103,14 @@ public class ForYouPageService {
             stmt.setString(3, userId);
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
+                    double ratingFormatted = rs.getDouble("average_rating");
+                    ratingFormatted = Math.floor((ratingFormatted*1000))/1000;
+
                     Simple_Book book = new Simple_Book(
                         rs.getInt("bookId"),
                         rs.getString("title"),
                         rs.getString("authors"),
-                        rs.getDouble("average_rating"),
+                        ratingFormatted,
                         rs.getString("image_url")
                     );
                     books.add(book);

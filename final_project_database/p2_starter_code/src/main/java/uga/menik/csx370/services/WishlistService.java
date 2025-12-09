@@ -7,14 +7,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-//import java.util.User;
 
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import uga.menik.csx370.models.User;
+
 import uga.menik.csx370.models.Simple_Book;
+import uga.menik.csx370.models.User;
 
 @Service
 public class WishlistService {
@@ -49,8 +49,11 @@ public class WishlistService {
             
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
+                    double ratingFormatted = rs.getDouble("average_rating");
+                    ratingFormatted = Math.floor((ratingFormatted*1000))/1000;
+
                     Simple_Book book = new Simple_Book(rs.getInt("bookId"), rs.getString("title"),
-                    rs.getString("authors"), rs.getDouble("average_rating"), rs.getString("image_url"));
+                    rs.getString("authors"), ratingFormatted, rs.getString("image_url"));
                     books.add(book);
                 } // while 
             } // try 
