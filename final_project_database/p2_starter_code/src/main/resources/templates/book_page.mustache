@@ -17,18 +17,19 @@
             {{> fragments/wishlist_button}}
     </div>
 
-    <div style="max-width: 500px; margin-left: auto; margin-right: auto; 
-                border: 3px solid #fb7c91ff; border-radius: 10px; 
-                background-color: #ffc0cb;
-                margin-top: 2em;">
-        <h1 style="text-align: center;"><strong> You May Also Like... </strong></h1>
-    </div>
+
+    <h1 style="text-align: center; margin-top: 2em;">
+      <strong>You May Also Like...</strong>
+    </h1>
+
+    <h3 style="text-align: center; margin-top: 0.5em; color: #6a1b9a;">
+      <em>Based on Similar Readers' Activity</em>
+    </h3>
+
 
     {{#booksAlsoLiked}}
-        {{> fragments/recommended_book}}
+        {{> fragments/simple_book}}
     {{/booksAlsoLiked}}
-    </div>
-
     {{> fragments/footer}}
 </body>
 </html>

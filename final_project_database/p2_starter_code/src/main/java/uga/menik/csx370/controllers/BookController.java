@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
+import uga.menik.csx370.models.Simple_Book;
 import uga.menik.csx370.models.Book;
 import uga.menik.csx370.models.User;
 import uga.menik.csx370.services.BookService;

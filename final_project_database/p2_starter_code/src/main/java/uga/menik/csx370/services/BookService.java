@@ -160,8 +160,8 @@ public class BookService {
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
                     int recommendedBookId = rs.getInt("bookId");
-		    Book ext_book = bookService.getBook(recommendedBookId);
-                    Simple_Book book = new Simple_Book(recommendedBookId, ext_book.getTtle(), ext_book.getAuthors(), ext_boook.getAverage_rating(), ext_book.getImage_url());
+		    Book ext_book = getBook(recommendedBookId);
+                    Simple_Book book = new Simple_Book(recommendedBookId, ext_book.getTitle(), ext_book.getAuthors(), ext_book.getAverage_rating(), ext_book.getImage_url());
                     if (booksPeopleAlsoLiked.contains(book) == false) {
                         booksPeopleAlsoLiked.add(book); // add if not already in list
                     }
