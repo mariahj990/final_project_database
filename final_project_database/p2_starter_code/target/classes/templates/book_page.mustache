@@ -12,10 +12,24 @@
 
         {{> fragments/extended_book}}
     </div>
-    <div class = "button-container"; style="margin-top: 1em; display: flex; justify-content: center; gap: 20px;">
+    <div class = "button-container" style="margin-top: 1em; display: flex; justify-content: center; gap: 20px;">
             {{> fragments/checkout_button}}
             {{> fragments/wishlist_button}}
     </div>
+
+
+    <h1 style="text-align: center; margin-top: 2em;">
+      <strong>You May Also Like...</strong>
+    </h1>
+
+    <h3 style="text-align: center; margin-top: 0.5em; color: #6a1b9a;">
+      <em>Based on Similar Readers' Activity</em>
+    </h3>
+
+
+    {{#booksAlsoLiked}}
+        {{> fragments/simple_book}}
+    {{/booksAlsoLiked}}
     {{> fragments/footer}}
 </body>
 </html>
