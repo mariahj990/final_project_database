@@ -115,6 +115,11 @@ public class BookService {
                 while (rs.next()) {
                     double ratingFormatted = rs.getDouble("average_rating");
                     ratingFormatted = Math.floor((ratingFormatted*1000))/1000;
+                    
+                    String formattedGenres = rs.getString("genres");
+                    formattedGenres = formattedGenres.replace("[", "");
+                    formattedGenres = formattedGenres.replace("]", "");
+                    formattedGenres = formattedGenres.replace("'", "");
 
                     Book book = new Book(
                         rs.getInt("bookId"),
@@ -122,7 +127,7 @@ public class BookService {
                         rs.getString("authors"),
                         rs.getString("isbn13"),
                         rs.getString("description"),
-                        rs.getString("genres"),
+                        formattedGenres,
                         ratingFormatted,
                         rs.getInt("original_publication_year"),
                         rs.getInt("ratings_count"),
