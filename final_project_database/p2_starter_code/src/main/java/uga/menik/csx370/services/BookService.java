@@ -145,6 +145,7 @@ public class BookService {
     }//searchBooks
 
     public List<Simple_Book> youMayAlsoLike(int bookId){
+        System.out.println("You may also like");
         List<Simple_Book> booksPeopleAlsoLiked = new ArrayList<>();
         // Subquery: find users who have history with that given book
         // Outer query: find other books those same users have history with
@@ -165,10 +166,11 @@ public class BookService {
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
                     int recommendedBookId = rs.getInt("bookId");
-		    Book ext_book = getBook(recommendedBookId);
+		            Book ext_book = getBook(recommendedBookId);
                     Simple_Book book = new Simple_Book(recommendedBookId, ext_book.getTitle(), ext_book.getAuthors(), ext_book.getAverage_rating(), ext_book.getImage_url());
                     if (booksPeopleAlsoLiked.contains(book) == false) {
                         booksPeopleAlsoLiked.add(book); // add if not already in list
+                        System.out.println(book.getTitle() + "added");
                     }
                 }
             }
