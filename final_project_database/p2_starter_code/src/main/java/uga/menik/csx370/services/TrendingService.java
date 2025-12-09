@@ -100,6 +100,26 @@ public class TrendingService {
         return null;
     }
 
+    public int getUserNumBooksRead(int userId) {
+        int numBooksRead = 0;
+        // SQL query to get all users
+        final String getNumBooksRead = "SELECT COUNT(*) FROM history WHERE userId = ? AND has_read = 1;";
+        
+        try (Connection conn = dataSource.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(getNumBooksRead)) {
+            stmt.setInt(1, userId);
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    numBooksRead = rs.getInt(1);
+                    return numBooksRead;
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return numBooksRead; 
+    }
+
     public int getNumTop10Users() {
         int numTop10Users = 0;
         // SQL query to get all users

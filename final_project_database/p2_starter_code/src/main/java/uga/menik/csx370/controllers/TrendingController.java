@@ -68,7 +68,8 @@ public class TrendingController {
         mv.addObject("lastName", user.getLastName());
         mv.addObject("userId", user.getUserId());
         mv.addObject("profileImagePath", user.getProfileImagePath());
-
+        mv.addObject("userNumBooksRead", trendingService.getUserNumBooksRead(userId));
+        
         return mv;
     } //profileOfSpecificTopUser
 
