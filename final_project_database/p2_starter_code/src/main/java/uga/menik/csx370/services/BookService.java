@@ -138,6 +138,39 @@ public class BookService {
         return books;
     }//searchBooks
 
+    public List<Simple_Book> youMayAlsoLike(int bookId){
+        List<Simple_Book> booksPeopleAlsoLiked = new ArrayList<>();
+        // Subquery: find users who have history with that given book
+        // Outer query: find other books those same users have history with
+        String sql = """
+            SELECT distinct h.bookId 
+            from history h 
+            where h.userId in (
+                select distinct h2.userId 
+                from history h2 
+                where h2.bookId = ?
+            ) and h.bookId != ?
+            LIMIT 10
+            """; 
+        try (Connection conn = dataSource.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, bookId);
+            stmt.setInt(2, bookId);
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    int recommendedBookId = rs.getInt("bookId");
+                    Simple_Book book = new Simple_Book(recommendedBookId);
+                    if (booksPeopleAlsoLiked.contains(book) == false) {
+                        booksPeopleAlsoLiked.add(book); // add if not already in list
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Error fetching recommendations: " + e.getMessage());
+        }
+        return booksPeopleAlsoLiked;
+    }
+
 
 
     

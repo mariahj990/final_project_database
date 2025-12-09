@@ -112,6 +112,10 @@ public class BookController {
     } 
     mv.addObject("isWishlisted", isWishlisted);
     mv.addObject("wishlistButtonText", wishlistButtonText);
+
+    // add "Users who liked this also liked" section
+    booksAlsoLiked = bookService.youMayAlsoLike(bookId);
+    mv.addObject("booksAlsoLiked", booksAlsoLiked);
         
 	return mv;
     }    
