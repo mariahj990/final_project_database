@@ -1,0 +1,32 @@
+Group Members and their contributions:
+
+Ella Wileman - Commenting on posts functionality, ER diagram, follower functionality, bookmark functionality, trending page
+Rebekah McLatcher - Bookmark functionality, liking posts functionality, ER diagram, hashtag search, Readme
+Mariah Jaeck - trending page, creating posts, posts of people the user follows appears on home page
+Amy Huang - Liking posts functionality, commenting on Posts functionality, hashtag search, Demo Video, assistance with debugging all functionalities 
+Priya Sampat - follower functionality, comments and debugging 
+
+
+---------------------------------
+Database Information:
+---------------------------------
+Database Name: cs4370_final_library
+Database Username: root
+Database Password: mysqlpass
+
+---------------------------------
+Test Accounts for Demo:
+---------------------------------
+All passwords are stored securely using BCrypt hashing, but the plaintext password for all demo users is: password123
+
+| Username  | Password   | First Name | Last Name |
+|------------|------------|-------------|------------|
+| kbennett   | password123 | Kayla       | Bennett    |
+| rwilson1   | password123 | Roy         | Wilson     |
+| jbishop    | password123 | Janet       | Bishop     |
+| mmartin4   | password123 | (unknown)   | Martin     |
+
+
+
+
+

@@ -1,0 +1,72 @@
+Group ID - ugrd-5
+Names: Ella Wileman, Rebekah McLatcher, Mariah Jaeck, Amy Huang, Priya Sampat
+
+
+Team Contributions:
+
+Mariah
+- Implemented password security and created `security.txt`.
+- Developed return button functionality, including updating the page count and user book history when a book is returned.
+- Built the ratings page and related features:
+  - Updated user rating if they had previously rated the same book.
+  - Recalculated the overall average rating for each book.
+- Designed the original hashing logic for book genres to update the user’s genre count table when books were returned or checked out (since modified in final version).
+- Contributed to project brainstorming and page layout planning.
+
+Rebekah
+- Created the ER diagram for the database schema.
+- Authored `datasource.txt` describing dataset sources.
+- Collaborated on BCNF normalization with Ella.
+- Implemented wishlist functionality and SQL setup (with other team members).
+
+**Ella**
+- Co-authored the ER diagram and `datasource.txt`.
+- Performed BCNF normalization and database decomposition.
+- Implemented the “For You” recommendation page and logic for personalized book suggestions.
+- Worked on SQL setup and data integration.
+- Authored `perf.txt` file for database indexing and performance analysis.
+
+**Priya**
+- Implemented the checkout and return functionality, including checks to ensure book availability and manage current checkouts.
+- Developed book recommendation features:
+  - Recommended books based on similar users’ reading histories.
+  - Recommended books based on similar genres or book attributes.
+  - Updated the “For You” page live with user activity to refresh personalized suggestions.
+- Helped with dataset creation, data source documentation, and database decomposition.
+- Authored `ddl.sql`, `data.sql`, `queries.sql`, and `readme.txt` documentation.
+
+**Amy**
+- TBD (to be updated once contribution is finalized).
+
+
+Database Information:
+Database Name: cs4370_final_library
+Database Username: root
+Database Password: mysqlpass
+
+
+Test Accounts for Demo:
+| Username  | Password   | First Name | Last Name |
+|------------|------------|-------------|------------|
+| kbennett   | password123 | Kayla       | Bennett    |
+| rwilson1   | password123 | Roy         | Wilson     |
+| jbishop    | password123 | Janet       | Bishop     |
+| mmartin4   | password123 | (unknown)   | Martin     |
+
+
+Technologies & Libraries Used:
+- Java 21
+- Spring Boot Framework (v3.1.4)
+- Spring JDBC (Database connectivity)
+- Spring Security Crypto (for password hashing using BCrypt)
+- HTML5 / CSS3
+- Mustache Template Engine (via spring-boot-starter-mustache)
+- MySQL 8.0
+- JDBC (MySQL Connector v8.0.33)
+- Maven (Dependency Management and Build Tool)
+- JUnit (Unit Testing)
+- HikariCP (Connection Pooling)
+- IntelliJ IDEA / VS Code (Development Environment)
+- GitHub (Version Control)
+
+

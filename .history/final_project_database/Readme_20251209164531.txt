@@ -7,7 +7,7 @@ Team Contributions:
 Mariah
 - Created `security.txt` 
 - Built return button functionality and rating features (update rating and book averages).
-- Helped design genre-tracking logic and overall page layout
+- Helped design genre-tracking logic and overall page layout..
 
 Rebekah
 - Created ER diagram, `datasource.txt`, and BCNF normalization (with Ella).

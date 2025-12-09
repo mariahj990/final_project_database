@@ -1,0 +1,13 @@
+Group Members and their contributions:
+
+Ella Wileman - Commenting on posts functionality, ER diagram, follower functionality, bookmark functionality, trending page
+Rebekah McLatcher - Bookmark functionality, liking posts functionality, ER diagram, hashtag search, Readme
+Mariah Jaeck - trending page, creating posts, posts of people the user follows appears on home page
+Amy Huang - Liking posts functionality, commenting on Posts functionality, hashtag search, Demo Video, assistance with debugging all functionalities 
+Priya Sampat - follower functionality, comments and debugging 
+
+
+
+
+
+

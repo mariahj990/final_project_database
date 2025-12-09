@@ -2,30 +2,12 @@ Group ID - ugrd-5
 Names: Ella Wileman, Rebekah McLatcher, Mariah Jaeck, Amy Huang, Priya Sampat
 
 
-Team Contributions:
-
-Mariah
-- Created `security.txt` 
-- Built return button functionality and rating features (update rating and book averages).
-- Helped design genre-tracking logic and overall page layout
-
-Rebekah
-- Created ER diagram, `datasource.txt`, and BCNF normalization (with Ella).
-- Implemented wishlist and SQL setup with team collaboration.
-
-Ella
-- Implemented checkout functionality and availability checks.
-- Built recommendation features based on similar users and similar books.
-- Updated “For You” page live with recent user activity.
-- Helped with dataset creation, data source documentation, and decomposition.
-
-
-Priya
-- Implemented search functionality and debugged wishlist.
-- Authored `ddl.sql`, `data.sql`, `queries.sql`, and `readme.txt`.
-
-Amy
-- TBD (to be updated once contribution is finalized).
+Group Members and their contributions:
+Ella Wileman - Commenting on posts functionality, ER diagram, follower functionality, bookmark functionality, trending page
+Rebekah McLatcher - Bookmark functionality, liking posts functionality, ER diagram, hashtag search, Readme
+Mariah Jaeck - trending page, creating posts, posts of people the user follows appears on home page
+Amy Huang - Liking posts functionality, commenting on Posts functionality, hashtag search, Demo Video, assistance with debugging all functionalities 
+Priya Sampat - follower functionality, comments and debugging 
 
 
 Database Information:
@@ -44,15 +26,22 @@ Test Accounts for Demo:
 
 
 Technologies & Libraries Used:
+
 - Java 21
 - Spring Boot Framework (v3.1.4)
 - Spring JDBC (Database connectivity)
 - Spring Security Crypto (for password hashing using BCrypt)
 - HTML5 / CSS3
 - Mustache Template Engine (via spring-boot-starter-mustache)
+
+Database:
 - MySQL 8.0
 - JDBC (MySQL Connector v8.0.33)
+
+Build & Management:
 - Maven (Dependency Management and Build Tool)
+
+Development & Testing Tools:
 - JUnit (Unit Testing)
 - HikariCP (Connection Pooling)
 - IntelliJ IDEA / VS Code (Development Environment)

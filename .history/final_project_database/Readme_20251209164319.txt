@@ -5,24 +5,26 @@ Names: Ella Wileman, Rebekah McLatcher, Mariah Jaeck, Amy Huang, Priya Sampat
 Team Contributions:
 
 Mariah
-- Created `security.txt` 
+- Created `security.txt` and implemented password hashing.
 - Built return button functionality and rating features (update rating and book averages).
-- Helped design genre-tracking logic and overall page layout
+- Helped design genre-tracking logic and overall page layout..
 
 Rebekah
 - Created ER diagram, `datasource.txt`, and BCNF normalization (with Ella).
 - Implemented wishlist and SQL setup with team collaboration.
 
 Ella
-- Implemented checkout functionality and availability checks.
-- Built recommendation features based on similar users and similar books.
-- Updated “For You” page live with recent user activity.
-- Helped with dataset creation, data source documentation, and decomposition.
-
+- Co-authored the ER diagram and `datasource.txt`.
+- Performed BCNF normalization and database decomposition.
+- Implemented the “For You” recommendation page and logic for personalized book suggestions.
+- Worked on SQL setup and data integration.
+- Authored `perf.txt` file for database indexing and performance analysis.
 
 Priya
-- Implemented search functionality and debugged wishlist.
-- Authored `ddl.sql`, `data.sql`, `queries.sql`, and `readme.txt`.
+- Implemented the checkout and return functionality, including checks to ensure book availability and manage current checkouts.
+  - Updated the “For You” page live with user activity to refresh personalized suggestions.
+- Helped with dataset creation, data source documentation, and database decomposition.
+- Authored `ddl.sql`, `data.sql`, `queries.sql`, and `readme.txt` documentation.
 
 Amy
 - TBD (to be updated once contribution is finalized).
