@@ -28,8 +28,6 @@ public class PopulateDatabase implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        System.out.println("Running csv loader script...");
-
         String alrSetUP = "SELECT ran from csv_data_loading_status where ran = 1 limit 1;";
         try (Connection conn = dataSource.getConnection();
             PreparedStatement stmt = conn.prepareStatement(alrSetUP)) {
@@ -37,33 +35,14 @@ public class PopulateDatabase implements CommandLineRunner {
                 while (rs.next()) {
                     boolean alrLoad = rs.getBoolean("ran");
                     if(alrLoad == true) {
-                        System.out.println("csv's are already loaded, skipping import...");
+                        System.out.println("CSV's are already loaded, skipping import!");
                         return;
                     }
                 }
             }
-
-	}
-
-	/*
-	boolean booksExist = false;
-
-	String bookCountAlready = "SELECT count(*) from book;";
-	try(Connection conn = dataSource.getConnection();
-	    PreparedStatement stmt = conn.prepareStatement(tablesPopulated)) {
-	    try(ResultSet = rs.stmt.executeQuery()) {
-		booksExist = rs.next() && rs.getInt("count") > 0;
 	    }
-	}
-	*/
-	    
-	  
-	    
-	    
-	    
-	    
         // call python script to load csvs
-        //File correctdir = new File("final_project_database/p2_starter_code/src/main/resources");
+        System.out.println("Running csv loader script...");
         ProcessBuilder pb = new ProcessBuilder("python", "import_book_data.py");
         pb.directory(new File("final_project_database/p2_starter_code/src/main/resources"));
         pb.inheritIO(); // prints output to console
@@ -75,8 +54,8 @@ public class PopulateDatabase implements CommandLineRunner {
         String setUP = "insert ignore into csv_data_loading_status values (1, 1);";
         try (Connection conn = dataSource.getConnection();
             PreparedStatement stmt = conn.prepareStatement(setUP)) {
-            stmt.executeUpdate();
-            System.out.println("csv's loaded in!");
+                stmt.executeUpdate();
+                System.out.println("csv's loaded in!");
+            }
         }
     }
-}

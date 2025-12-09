@@ -47,14 +47,12 @@ public class HomeController {
     @GetMapping
     public ModelAndView webpage(@RequestParam(name = "error", required = false) String error) throws SQLException{
         ModelAndView mv = new ModelAndView("home_page");
-        System.out.println("Trying to view home page.");
         List<Simple_Book> simple_books = forYouPageService.getCandidateBooks();
 	    List<RecommendedBook> books = new ArrayList<>();
         for (Simple_Book book : simple_books) {
             // want to add another attribute to each book: what the top genre for the match was
             String topGenre = forYouPageService.getTopMatchingGenreForBook(book.getBookId());
             RecommendedBook recBook = new RecommendedBook(book.getBookId(), book.getTitle(), book.getAuthors(), book.getAverage_rating(), topGenre, book.getImage_url());
-            System.out.println("recommended url: " + book.getImage_url());
             books.add(recBook);
         }
         mv.addObject("books", books);
