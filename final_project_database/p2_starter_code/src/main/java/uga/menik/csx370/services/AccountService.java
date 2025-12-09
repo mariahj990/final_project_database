@@ -12,7 +12,7 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import uga.menik.csx370.models.Book;
+import uga.menik.csx370.models.Simple_Book;
 import uga.menik.csx370.models.User;
 
 /*
@@ -81,7 +81,7 @@ public class AccountService {
         return numWishlist; 
     }
 
-    public List<Book> getCurrentUserWishlist() {
+/*    public List<Book> getCurrentUserWishlist() {
         List<Book> wishlistBooks = new ArrayList<>();
         String userId = userService.getLoggedInUser().getUserId();
 
@@ -112,7 +112,7 @@ public class AccountService {
         }
         return wishlistBooks;
     }
-
+*/
     public int getCurrentUserNumCheckout() {
         int numCheckOut = 0;
         String userId = userService.getLoggedInUser().getUserId();
@@ -176,6 +176,52 @@ public class AccountService {
                 System.out.println(e);
             }
             return numPagesRead; 
+        }
+
+        public List<Simple_Book> getUserHistory() {
+            List<Simple_Book> userHistory = new ArrayList<>();
+            String userId = userService.getLoggedInUser().getUserId();
+
+            final String getUserHistory = "SELECT DISTINCT b.bookId, b.title, b.authors, b.average_rating, b.image_url " +
+                                                "FROM history AS his " +
+                                                "JOIN book AS b ON b.bookId = his.bookId " +
+                                                "WHERE his.userId = ?;";
+            try (Connection conn = dataSource.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(getUserHistory)) {
+                stmt.setString(1, userId);
+
+                try (ResultSet rs = stmt.executeQuery()) {
+                    while (rs.next()) {
+                        Simple_Book book = new Simple_Book(rs.getInt("b.bookId"), rs.getString("b.title"),
+                                            rs.getString("b.authors"), rs.getDouble("b.average_rating"), 
+                                            rs.getString("b.image_url"));
+                        userHistory.add(book);
+                    }
+                }
+            } catch (SQLException e) {
+                System.out.println(e);
+            }
+            return userHistory;
+        }
+
+        public String getTopGenre() {
+            String topGenre = "None yet - Read More!";
+            String userId = userService.getLoggedInUser().getUserId();
+
+            final String getUserHistory = "SELECT genreCategoryName, max(numBooks) As num from user_genre_count WHERE userId = ? GROUP BY genreCategoryName order by max(numBooks) desc limit 1";
+            try (Connection conn = dataSource.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(getUserHistory)) {
+                stmt.setString(1, userId);
+
+                try (ResultSet rs = stmt.executeQuery()) {
+                    while (rs.next()) {
+                        topGenre = rs.getString("genreCategoryName");
+                    }
+                }
+            } catch (SQLException e) {
+                System.out.println(e);
+            }
+            return topGenre;
         }
 
 }

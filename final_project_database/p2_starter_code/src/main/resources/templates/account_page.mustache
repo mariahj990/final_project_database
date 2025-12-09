@@ -56,6 +56,23 @@
         </div>
     </div>
 
+    <div style="max-width: 500px; margin-left: auto; margin-right: auto; 
+        border: 3px solid #fb7c91ff; border-radius: 10px; 
+        background-color: #ffc0cb;
+        margin-top: 2em;">
+        <h1 style="text-align:center; margin-top: 1em;"><strong>Your Top Genre: </strong>{{topGenre}}</h1>
+    </div>
+
+    <div style="max-width: 500px; margin-left: auto; margin-right: auto; 
+        border: 3px solid #fb7c91ff; border-radius: 10px; 
+        background-color: #ffc0cb;
+        margin-top: 2em;">
+        <h1 style="text-align:center; margin-top: 1em;"><strong>Book History</strong></h1>
+    </div>
+    {{#userHistory}}
+        {{> fragments/simple_book}}
+    {{/userHistory}}
+
     {{> fragments/footer}}
 
 </body>

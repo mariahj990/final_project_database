@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import uga.menik.csx370.models.Book;
+import uga.menik.csx370.models.Simple_Book;
 import uga.menik.csx370.models.User;
 import uga.menik.csx370.services.AccountService;
 
@@ -40,15 +40,19 @@ public class AccountController {
         int numBooksRead = accountService.getCurrentUserNumBooksRead();
         int numPagesRead = accountService.getCurrentUserNumPagesRead();
 
-        List<Book> currentUserWishlist = accountService.getCurrentUserWishlist();
+        String topGenre = accountService.getTopGenre();
+        //List<Book> currentUserWishlist = accountService.getCurrentUserWishlist();
+        List<Simple_Book> userHistory = accountService.getUserHistory();
 
         mv.addObject("name", name);
         mv.addObject("user", user);
         mv.addObject("numWishlist", numWishlist);
-        mv.addObject("currentUserWishlist", currentUserWishlist);
+        //mv.addObject("currentUserWishlist", currentUserWishlist);
         mv.addObject("numCheckout", numCheckout);
         mv.addObject("numBooksRead", numBooksRead);
         mv.addObject("numPagesRead", numPagesRead);
+        mv.addObject("topGenre", topGenre);
+        mv.addObject("userHistory", userHistory);
         return mv;
     }
 }
