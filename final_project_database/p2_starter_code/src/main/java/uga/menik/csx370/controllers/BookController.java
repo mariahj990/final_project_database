@@ -114,7 +114,7 @@ public class BookController {
     mv.addObject("wishlistButtonText", wishlistButtonText);
 
     // add "Users who liked this also liked" section
-    booksAlsoLiked = bookService.youMayAlsoLike(bookId);
+    List<Simple_Book> booksAlsoLiked = bookService.youMayAlsoLike(bookId);
     mv.addObject("booksAlsoLiked", booksAlsoLiked);
         
 	return mv;

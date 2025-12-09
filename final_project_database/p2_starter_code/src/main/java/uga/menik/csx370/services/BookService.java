@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import uga.menik.csx370.models.Book;
+import uga.menik.csx370.models.Simple_Book;
 
 @Service
 public class BookService {
@@ -159,7 +160,8 @@ public class BookService {
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
                     int recommendedBookId = rs.getInt("bookId");
-                    Simple_Book book = new Simple_Book(recommendedBookId);
+		    Book ext_book = bookService.getBook(recommendedBookId);
+                    Simple_Book book = new Simple_Book(recommendedBookId, ext_book.getTtle(), ext_book.getAuthors(), ext_boook.getAverage_rating(), ext_book.getImage_url());
                     if (booksPeopleAlsoLiked.contains(book) == false) {
                         booksPeopleAlsoLiked.add(book); // add if not already in list
                     }
