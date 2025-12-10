@@ -1,0 +1,22 @@
+Algorithm used: BCrypt password hashing
+
+NEW users (Manual Registration)
+   - Hashed using BCryptPasswordEncoder (used from project 2)
+   - Rounds used: 10 rounds
+   - Implementation in UserService.java:
+     passwordEncoder.encode(password)
+
+Pre-existing users (Dataset Import)
+   - All imported users have password: "password123"
+   - Pre-hashed using Python bcrypt before database import
+   - Rounds used: 8 rounds (used lower rounds for speed)
+   - Python implementation:
+     hashed = bcrypt.hashpw(pw_bytes, bcrypt.gensalt(rounds=8))
+
+Authentication
+   - User submits password
+   - System compares using: passwordEncoder.matches(password, storedHash)
+
+Database storage
+   - Table: user, Column: password (VARCHAR 255)
+   - Format: BCrypt hash string (60 characters)
