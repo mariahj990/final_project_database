@@ -97,3 +97,10 @@ create table if not exists csv_data_loading_status (
     ran boolean not null default 0,
     primary key (insertedId)
 );
+
+-- Adding indexing to improve query performance
+-- Index #1 
+CREATE INDEX idx_userId ON history(userId);
+
+-- Index #2
+CREATE index composite_index ON user_genre_count(userId, genreCategoryName);
