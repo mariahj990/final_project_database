@@ -30,9 +30,7 @@ public class AccountService {
     } //BookmarksService
 
     public User getCurrentUser() {
-        String userId = userService.getLoggedInUser().getUserId();
-        System.out.println("getCurrentUser: " + userId);
-        
+        String userId = userService.getLoggedInUser().getUserId();        
         // SQL query to get all users
         final String getUserSql = "SELECT userId, firstName, lastName FROM user WHERE userId = ?";
 
@@ -52,7 +50,6 @@ public class AccountService {
         } catch (SQLException e) {
             System.out.println(e);
         }
-        System.out.println("User not found.");
         return null;
 
     }
@@ -60,8 +57,6 @@ public class AccountService {
     public int getCurrentUserNumWishlist() {
         int numWishlist = 0;
         String userId = userService.getLoggedInUser().getUserId();
-        System.out.println("getCurrentUser: " + userId);
-
         // SQL query to get all users
         final String getNumWishlist = "SELECT COUNT(*) FROM history WHERE userId = ? AND has_wishlisted = 1;";
         
@@ -81,43 +76,9 @@ public class AccountService {
         return numWishlist; 
     }
 
-/*    public List<Book> getCurrentUserWishlist() {
-        List<Book> wishlistBooks = new ArrayList<>();
-        String userId = userService.getLoggedInUser().getUserId();
-
-        final String getWishlistBooks = "SELECT b.bookId, b.title, b.authors, b.isbn13, " +
-                                                "b.description, b.genres, b.average_rating, " +
-                                                "b.original_publication_year, b.ratings_count," +
-                                                "b.image_url, b.total_copies, b.page_count " +
-                                            "FROM history AS his " +
-                                            "JOIN book AS b ON b.bookId = his.bookId " +
-                                            "WHERE his.userId = ?;";
-        try (Connection conn = dataSource.getConnection();
-            PreparedStatement stmt = conn.prepareStatement(getWishlistBooks)) {
-            stmt.setString(1, userId);
-
-            try (ResultSet rs = stmt.executeQuery()) {
-                while (rs.next()) {
-                    Book book = new Book(rs.getInt("b.bookId"), rs.getString("b.title"),
-                                        rs.getString("b.authors"), rs.getString("b.isbn13"),
-                                        rs.getString("b.description"), rs.getString("b.genres"),
-                                        rs.getDouble("b.average_rating"), rs.getInt("b.original_publication_year"),
-                                        rs.getInt("b.ratings_count"), rs.getString("b.image_url"), 
-                                        rs.getInt("b.total_copies"), rs.getInt("b.page_count"));
-                    wishlistBooks.add(book);
-                }
-            }
-        } catch (SQLException e) {
-            System.out.println(e);
-        }
-        return wishlistBooks;
-    }
-*/
     public int getCurrentUserNumCheckout() {
         int numCheckOut = 0;
         String userId = userService.getLoggedInUser().getUserId();
-        System.out.println("getCurrentUser: " + userId);
-
         // SQL query to get all users
         final String getNumWishlist = "SELECT COUNT(*) AS NumCheckedOut FROM curr_checkout GROUP BY userId HAVING userId = ?";
         

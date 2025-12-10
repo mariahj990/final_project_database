@@ -23,8 +23,6 @@ public class SearchController {
 
     @GetMapping("/search")
     public ModelAndView searchBooks(@RequestParam("query") String query) {
-        System.out.println("Searching for books with keyword: " + query);
-
         ModelAndView mv = new ModelAndView("books_search_page");
         List<Book> books = bookService.searchBooks(query);
 
@@ -32,7 +30,6 @@ public class SearchController {
             System.out.println("No results found for: " + query);
             mv.addObject("isNoContent", true);
         } else {
-            System.out.println("Found " + books.size() + " result(s).");
             mv.addObject("books", books);
         }
 

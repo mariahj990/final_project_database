@@ -105,7 +105,6 @@ public class RatingService {
             stmt.setInt(3, bookId);
             stmt.executeUpdate();
         }   
-        System.out.println("Updated book " + bookId + " rating: " + newAvg + " (count: " + newCount + ")");
     }
 
     /**

@@ -37,11 +37,8 @@ public class ReturnController {
     @PostMapping
     public String returnBook(@RequestParam("bookId") int bookId) {
         try {
-            User user = userService.getLoggedInUser();
-            System.out.println("User " + user.getUserId() + " returning book " + bookId);
-            
+            User user = userService.getLoggedInUser();            
             boolean success = checkoutService.returnBook(user, bookId);
-            
             if (success) {
                 // Redirect to rating page for this book
                 return "redirect:/return/rate?bookId=" + bookId;

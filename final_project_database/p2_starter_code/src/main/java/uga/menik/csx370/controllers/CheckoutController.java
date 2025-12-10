@@ -38,11 +38,6 @@ public class CheckoutController {
     public ModelAndView myCheckouts() {
         ModelAndView mv = new ModelAndView("checkout_page");
         User user = userService.getLoggedInUser();
-
-        // For debugging purposes 
-        String userId = user.getUserId();
-        System.out.println("User is attempting to view the checkouts page for user w/ id: " + userId);
-        
         // get list of all users checked out books
 	try{
 	    List<CheckedOutBook> checkedOutBooks = checkoutService.getUsersCheckedOutBooks(user);

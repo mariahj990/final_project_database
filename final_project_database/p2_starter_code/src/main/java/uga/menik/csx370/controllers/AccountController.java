@@ -30,10 +30,8 @@ public class AccountController {
 
         User user = accountService.getCurrentUser();
         String name = user.getFirstName() +  " " + user.getLastName();
-        System.out.println("name: " + name);
 
         int numWishlist = accountService.getCurrentUserNumWishlist();
-        System.out.println("numWishlist: " + numWishlist);
 
         int numCheckout = accountService.getCurrentUserNumCheckout();
         int numBooksRead = accountService.getCurrentUserNumBooksRead();

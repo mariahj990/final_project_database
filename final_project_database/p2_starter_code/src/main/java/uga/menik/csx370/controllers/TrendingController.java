@@ -40,12 +40,10 @@ public class TrendingController {
      */
     @GetMapping
     public ModelAndView showTrendingPage() {
-        System.out.println("User is attempting to view the trending page");
         ModelAndView mv = new ModelAndView("trending_page");
  
         List<User> users = trendingService.getTop10Users();
         mv.addObject("users", users);
-        System.out.println(users);
 
         int numTop10Users = trendingService.getNumTop10Users();
         mv.addObject("numTop10Users", numTop10Users);
@@ -61,7 +59,6 @@ public class TrendingController {
 
     @GetMapping("/trendingUser/{userId}")
     public ModelAndView profileOfSpecificTopUser(@PathVariable("userId") int userId) {
-        System.out.println("User is attempting to view profile: " + userId);
         User user = trendingService.getUserById(userId);
         ModelAndView mv = new ModelAndView("user_profile_page");
         mv.addObject("firstName", user.getFirstName());

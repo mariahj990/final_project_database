@@ -41,9 +41,8 @@ public class BookService {
                                         rs.getInt("original_publication_year"), 
                                         rs.getInt("ratings_count"),
                                         rs.getString("image_url"), 
-                                        rs.getInt("total_copies"));
-                                            
-                        System.out.println("Opening book: " + rs.getString("title"));
+                                        rs.getInt("total_copies"),
+                                        rs.getInt("page_count"));
                         return book;
                     }
                 }

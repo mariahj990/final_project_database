@@ -59,13 +59,9 @@ public class WishlistController {
     @GetMapping("/{bookId}/wishlisted/{isAdd}") 
     public String handleWishlistAction(@PathVariable("bookId") int bookId, 
                                       @PathVariable("isAdd") boolean isAdd) {
-
         User currentUser = userService.getLoggedInUser(); // get the logged in User
         String loggedInUserId = currentUser.getUserId(); // get the logged in user's id 
-
-        System.out.println("wishlist action -> book: " + bookId + ", add: " + isAdd);
         boolean done;
-
         if (isAdd) {
             done = wishlistService.addWishlist(loggedInUserId, bookId);
         } else {

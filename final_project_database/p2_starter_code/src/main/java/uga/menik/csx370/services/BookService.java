@@ -45,9 +45,7 @@ public class BookService {
                                         rs.getInt("ratings_count"),
                                         rs.getString("image_url"), 
                                         rs.getInt("total_copies"),
-                                        rs.getInt("page_count"));
-                                            
-                        System.out.println("Opening book: " + rs.getString("title"));
+                                        rs.getInt("page_count"));                                            
                         return book;
                     }
                 }
@@ -84,11 +82,6 @@ public class BookService {
             } catch (SQLException e) {
                 System.out.println(e);
             }
-	System.out.println("Number of copies of book in library: " + totalCopies);
-	System.out.println("Number of copies checked out currently: " + numCheckedOut);
-	int numAvailable = totalCopies - numCheckedOut;
-	System.out.println("Number of copies available at library: " + numAvailable);
-	
         return totalCopies > numCheckedOut; // returns true if there are more copies than checked out.
 }
 
@@ -145,7 +138,6 @@ public class BookService {
     }//searchBooks
 
     public List<Simple_Book> youMayAlsoLike(int bookId){
-        System.out.println("You may also like");
         List<Simple_Book> booksPeopleAlsoLiked = new ArrayList<>();
         // Subquery: find users who have history with that given book
         // Outer query: find other books those same users have history with
@@ -170,7 +162,6 @@ public class BookService {
                     Simple_Book book = new Simple_Book(recommendedBookId, ext_book.getTitle(), ext_book.getAuthors(), ext_book.getAverage_rating(), ext_book.getImage_url());
                     if (booksPeopleAlsoLiked.contains(book) == false) {
                         booksPeopleAlsoLiked.add(book); // add if not already in list
-                        System.out.println(book.getTitle() + "added");
                     }
                 }
             }

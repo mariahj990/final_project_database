@@ -32,7 +32,6 @@ public class RatingController {
     public String submitRating(@RequestParam("bookId") int bookId, @RequestParam("rating") int rating) {
         try {
             User user = userService.getLoggedInUser();
-            System.out.println("User " + user.getUserId() + " rating book " + bookId + " with " + rating + " stars");
             
             ratingService.rateBook(user.getUserId(), bookId, rating);
         } catch (SQLException e) {

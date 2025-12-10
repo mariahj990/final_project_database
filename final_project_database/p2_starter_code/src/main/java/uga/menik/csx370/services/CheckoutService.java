@@ -99,10 +99,6 @@ public class CheckoutService {
      * Returns true if post creation was successful. 
      */
     public boolean checkOutBook(User user, int bookId) throws SQLException {
-        System.out.println("In checkOutBook function.");
-        //create SQL query to insert an entry into curr_checkouts table
-        // User this_user = userService.getLoggedInUser();
-
         // check if book is available (in bookService) 
         boolean isAvailable = bookService.getIfBookAvailable(bookId);
 
@@ -114,7 +110,6 @@ public class CheckoutService {
             return false; // book is not available for checkout, or user already has it checked out.
             // constraint: user can't check out book more than once at a time.
         } // else continue. 
-        System.out.println("Book is available for checkout. Checking out now...");
 
         // need to update recommendations in for you page. 
         forYouPageService.updateRecs(user, bookId);
@@ -137,16 +132,12 @@ public class CheckoutService {
     // remove row from curr_checkout table
     // would update user-level genre stats counts table as well once added??
     public boolean returnBook(User user, int bookId) throws SQLException {
-        System.out.println("In returnBook function.");
-        
         // Check if user actually has this book checked out
         if (!isCheckedOutbyUserNow(user, bookId)) {
             System.out.println("User does not have this book checked out.");
             return false;
         }
-        
-        System.out.println("Book is checked out. Returning now...");
-        
+                
         // Delete from curr_checkout table
         final String deleteCheckout = "delete from curr_checkout where userId = ? and bookId = ?";
         try (Connection conn = dataSource.getConnection();
@@ -172,8 +163,6 @@ public class CheckoutService {
         // Update user's reading stats: increment books read and pages read
         Book book = bookService.getBook(bookId);
         int pageCount = book.getPage_count();
-        String genresString = book.getGenres();
-
         final String updateUser = "update user set num_books_read = num_books_read + 1, num_pages_read = num_pages_read + ? where userId = ?";
         try (Connection conn = dataSource.getConnection();
             PreparedStatement userStmt = conn.prepareStatement(updateUser)) {
@@ -181,19 +170,6 @@ public class CheckoutService {
             userStmt.setString(2, user.getUserId());
             userStmt.executeUpdate();
         }
-        /*
-        // Update genre counts
-        List<String> genreBuckets = genreService.parseAndMapGenres(genresString);
-        for (String bucketName : genreBuckets) {
-            try {
-                int genreId = genreService.getGenre(bucketName);
-                genreService.incrementUserGenreCount(user.getUserId(), genreId);
-            } catch (SQLException e) {
-                System.out.println("Error updating genre count");
-            }
-        }
-        */
-        System.out.println("Successfully returned book.");
         return true;
     }
 

@@ -201,12 +201,8 @@ public class ForYouPageService {
 
             // for each genre, add to user_genre_count
             for (String genre : genres){ 
-                System.out.println("Adding genre " + genre + " to recommendations for user " + user.getUserId());
                 addBookGenretoRecs(user, bookId, genre);
             }
-                
-            System.out.println("Recommendations successfully updated for user.");
-
         } catch (SQLException e){
             System.out.println("SQL Error checking if book is new for user: " + e.getMessage());
             return;

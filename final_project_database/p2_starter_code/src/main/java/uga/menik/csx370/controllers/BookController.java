@@ -1,6 +1,7 @@
 package uga.menik.csx370.controllers;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,9 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.List;
-import uga.menik.csx370.models.Simple_Book;
 import uga.menik.csx370.models.Book;
+import uga.menik.csx370.models.Simple_Book;
 import uga.menik.csx370.models.User;
 import uga.menik.csx370.services.BookService;
 import uga.menik.csx370.services.CheckoutService;
@@ -42,7 +42,6 @@ public class BookController {
     public String checkoutBook(@PathVariable("bookId") int bookId) {
 	try{
 	    User user = userService.getLoggedInUser();
-	    System.out.println("Checking out bookId: " + bookId + " for user: " + user.getUserId());
 	    checkoutService.checkOutBook(user, bookId); // performs the actual checkout
 	} catch(SQLException e){
 	    e.printStackTrace();
@@ -55,15 +54,12 @@ public class BookController {
      */
     @GetMapping("/{bookId}")
     public ModelAndView showTrendingPage(@PathVariable("bookId") int bookId) {
-        System.out.println("User is attempting to view the book page for book w/ id: " + bookId);
         ModelAndView mv = new ModelAndView("book_page");
         Book book = bookService.getBook(bookId);
         String formattedGenres = book.getGenres();
         formattedGenres = formattedGenres.replace("[", "");
         formattedGenres = formattedGenres.replace("]", "");
         formattedGenres = formattedGenres.replace("'", "");
-        System.out.println("Genres: " + book.getGenres());
-        System.out.println("Fixed: " + formattedGenres);
 
         mv.addObject("bookId", book.getBookId());
         mv.addObject("title", book.getTitle());
