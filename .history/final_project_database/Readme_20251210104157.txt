@@ -25,10 +25,7 @@ Priya
 - Authored `ddl.sql`, `data.sql`, `queries.sql`, and `readme.txt`.
 
 Amy
-- Implemented trending page, account page.
-- Completed overall mustache, css work, and debugging through the whole project
-- Creating and worked on different book/user objects
-- SQL setup/scripts
+- Implemented trending page.
 
 
 Database Information:

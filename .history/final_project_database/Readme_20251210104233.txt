@@ -27,8 +27,7 @@ Priya
 Amy
 - Implemented trending page, account page.
 - Completed overall mustache, css work, and debugging through the whole project
-- Creating and worked on different book/user objects
-- SQL setup/scripts
+- 
 
 
 Database Information:
