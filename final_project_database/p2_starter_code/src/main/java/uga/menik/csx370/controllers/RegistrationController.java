@@ -18,6 +18,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import uga.menik.csx370.services.UserService;
 
+/**
+ * Handles /register URL
+ */
 @Controller
 @RequestMapping("/register")
 public class RegistrationController {

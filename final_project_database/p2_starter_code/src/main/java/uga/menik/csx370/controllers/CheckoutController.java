@@ -20,6 +20,9 @@ import uga.menik.csx370.models.User;
 import uga.menik.csx370.services.CheckoutService;
 import uga.menik.csx370.services.UserService;
 
+/**
+ * Handles /checkout URL
+ */
 @Controller
 @RequestMapping("/checkout")
 public class CheckoutController {

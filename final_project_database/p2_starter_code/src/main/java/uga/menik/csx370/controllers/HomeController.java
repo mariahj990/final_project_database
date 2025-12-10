@@ -42,7 +42,6 @@ public class HomeController {
      * 
      * Note that this accepts a URL parameter called error.
      * The value to this parameter can be shown to the user as an error message.
-     * See notes in HashtagSearchController.java regarding URL parameters.
      */
     @GetMapping
     public ModelAndView webpage(@RequestParam(name = "error", required = false) String error) throws SQLException{
@@ -58,7 +57,4 @@ public class HomeController {
         mv.addObject("books", books);
         return mv;
     }
-
- 
-
 }

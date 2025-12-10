@@ -1,3 +1,8 @@
+/**
+Copyright (c) 2024 Sami Menik, PhD. All rights reserved.
+
+This is a project developed by Dr. Menik to give the students an opportunity to apply database concepts learned in the class in a real world project. Permission is granted to host a running version of this software and to use images or videos of this work solely for the purpose of demonstrating the work to potential employers. Any form of reproduction, distribution, or transmission of the software's source code, in part or whole, without the prior written consent of the copyright owner, is strictly prohibited.
+*/
 package uga.menik.csx370.services;
 
 import java.sql.Connection;
@@ -186,7 +191,7 @@ public class ForYouPageService {
 
 
     public void updateRecs(User user, int bookId) { // call after checkout or wishlist add.
-        // TODO: need to call after wishlist add !! 
+        // called after wishlist add !! 
         // decides if the book is new for the user (check)
         try{
             boolean needsUpdate = isNewBook(bookId);
@@ -230,9 +235,5 @@ public class ForYouPageService {
         } catch (SQLException e) {
             System.err.println("Error updating user_genre_count for recommendations: " + e.getMessage());
         }
-
-
     }
-
-
 }

@@ -1,3 +1,8 @@
+/**
+Copyright (c) 2024 Sami Menik, PhD. All rights reserved.
+
+This is a project developed by Dr. Menik to give the students an opportunity to apply database concepts learned in the class in a real world project. Permission is granted to host a running version of this software and to use images or videos of this work solely for the purpose of demonstrating the work to potential employers. Any form of reproduction, distribution, or transmission of the software's source code, in part or whole, without the prior written consent of the copyright owner, is strictly prohibited.
+*/
 package uga.menik.csx370.services;
 
 import java.sql.Connection;
@@ -50,12 +55,11 @@ public class TrendingService {
         return top10books;
     }
 
-        /**
-     * This function queries and returns all users.
+    /**
+     * This function queries and top 10 users.
      */
     public List<User> getTop10Users() {
         List<User> users = new ArrayList<>();
-        // SQL query to get all users
         final String getTopUsersSql = "SELECT u.userId, u.firstName, u.lastName, COUNT(*) AS numRead " + 
                                         "FROM user AS u " + 
                                         "JOIN history AS h ON u.userId = h.userId " + 
@@ -80,7 +84,7 @@ public class TrendingService {
     }
 
     public User getUserById(int userId) {
-                final String getUserSql = "SELECT userId, firstName, lastName FROM user where userId = ?";
+        final String getUserSql = "SELECT userId, firstName, lastName FROM user where userId = ?";
         try (Connection conn = dataSource.getConnection();
             PreparedStatement stmt = conn.prepareStatement(getUserSql)) {
             stmt.setInt(1, userId);
@@ -102,7 +106,6 @@ public class TrendingService {
 
     public int getUserNumBooksRead(int userId) {
         int numBooksRead = 0;
-        // SQL query to get all users
         final String getNumBooksRead = "SELECT COUNT(*) FROM history WHERE userId = ? AND has_read = 1;";
         
         try (Connection conn = dataSource.getConnection();
@@ -122,7 +125,6 @@ public class TrendingService {
 
     public int getNumTop10Users() {
         int numTop10Users = 0;
-        // SQL query to get all users
         final String getNumReadTot = "SELECT COUNT(DISTINCT u.userId) AS numReadTot "
                                         + "FROM user AS u "
                                         + "JOIN history AS h ON u.userId = h.userId "
@@ -143,6 +145,5 @@ public class TrendingService {
             return 10;
         }
     }
-
 
 }

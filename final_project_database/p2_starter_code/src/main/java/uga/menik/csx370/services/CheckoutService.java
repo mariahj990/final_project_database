@@ -1,3 +1,8 @@
+/**
+Copyright (c) 2024 Sami Menik, PhD. All rights reserved.
+
+This is a project developed by Dr. Menik to give the students an opportunity to apply database concepts learned in the class in a real world project. Permission is granted to host a running version of this software and to use images or videos of this work solely for the purpose of demonstrating the work to potential employers. Any form of reproduction, distribution, or transmission of the software's source code, in part or whole, without the prior written consent of the copyright owner, is strictly prohibited.
+*/
 package uga.menik.csx370.services;
 
 
@@ -59,10 +64,7 @@ public class CheckoutService {
     }
 
     public List<CheckedOutBook> getUsersCheckedOutBooks(User user) throws SQLException {
-
         List<CheckedOutBook> books = new ArrayList<>();
-
-        // User this_user = userService.getLoggedInUser();  //get the logged in user
         String userId = user.getUserId(); //get the id of the logged in user
         
         final String getBookIds = "SELECT bookId, checkout_date from curr_checkout where userId = ?"; //get all book Ids
@@ -172,6 +174,5 @@ public class CheckoutService {
         }
         return true;
     }
-
     
 }

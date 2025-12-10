@@ -1,3 +1,8 @@
+/**
+Copyright (c) 2024 Sami Menik, PhD. All rights reserved.
+
+This is a project developed by Dr. Menik to give the students an opportunity to apply database concepts learned in the class in a real world project. Permission is granted to host a running version of this software and to use images or videos of this work solely for the purpose of demonstrating the work to potential employers. Any form of reproduction, distribution, or transmission of the software's source code, in part or whole, without the prior written consent of the copyright owner, is strictly prohibited.
+*/
 package uga.menik.csx370.services;
 
 import java.sql.Connection;
@@ -51,13 +56,11 @@ public class AccountService {
             System.out.println(e);
         }
         return null;
-
     }
 
     public int getCurrentUserNumWishlist() {
         int numWishlist = 0;
         String userId = userService.getLoggedInUser().getUserId();
-        // SQL query to get all users
         final String getNumWishlist = "SELECT COUNT(*) FROM history WHERE userId = ? AND has_wishlisted = 1;";
         
         try (Connection conn = dataSource.getConnection();
@@ -79,7 +82,6 @@ public class AccountService {
     public int getCurrentUserNumCheckout() {
         int numCheckOut = 0;
         String userId = userService.getLoggedInUser().getUserId();
-        // SQL query to get all users
         final String getNumWishlist = "SELECT COUNT(*) AS NumCheckedOut FROM curr_checkout GROUP BY userId HAVING userId = ?";
         
         try (Connection conn = dataSource.getConnection();
@@ -101,7 +103,6 @@ public class AccountService {
     public int getCurrentUserNumBooksRead() {
         int numBooksRead = 0;
         String userId = userService.getLoggedInUser().getUserId();
-        // SQL query to get all users
         final String getNumBooksRead = "SELECT COUNT(*) FROM history WHERE userId = ? AND has_read = 1;";
         
         try (Connection conn = dataSource.getConnection();
@@ -122,7 +123,6 @@ public class AccountService {
         public int getCurrentUserNumPagesRead() {
             int numPagesRead = 0;
             String userId = userService.getLoggedInUser().getUserId();
-            // SQL query to get all users
             final String getNumPagesRead = "SELECT page_count FROM history JOIN book ON history.bookId = book.bookId WHERE userId = ? AND has_read = 1;";
             
             try (Connection conn = dataSource.getConnection();
@@ -146,7 +146,7 @@ public class AccountService {
             final String getUserHistory = "SELECT DISTINCT b.bookId, b.title, b.authors, b.average_rating, b.image_url " +
                                                 "FROM history AS his " +
                                                 "JOIN book AS b ON b.bookId = his.bookId " +
-                                                "WHERE his.userId = ?;";
+                                                "WHERE his.userId = ? AND his.has_read = 1;";
             try (Connection conn = dataSource.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(getUserHistory)) {
                 stmt.setString(1, userId);
