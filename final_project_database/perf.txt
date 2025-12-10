@@ -1,0 +1,104 @@
+Indexing to Optimize Performance
+
+Index #1: Index on userId in history table.
+
+Since primary key of history table is wishlist Id, and we repeatedly query history using userId, adding an index on userId would be very helpful for the following queries:
+-- Purpose: Count how many books the user has wishlisted
+—- SELECT COUNT(*) FROM history WHERE userId = ? AND has_wishlisted = 1
+
+—- Purpose: Count how many books the user has read
+-- SELECT COUNT(*) FROM history WHERE userId = ? AND has_read = 1
+
+-- Purpose: Retrieve total pages read by the user
+-- SELECT page_count FROM history JOIN book ON history.bookId = book.bookId WHERE userId = ? AND has_read = 1;
+
+-- Purpose: Retrieve 20 recommended books for the user based on their genre history
+-- Subquery to get all books (read or wishlisted) for a user
+-- (Subquery) SELECT bookId FROM history WHERE userId = ?
+
+To add the index:
+CREATE INDEX idx_userId ON history(userId);
+
+Run Sample: "SELECT COUNT(*) FROM history WHERE userId = 53404 AND has_read = 1"
+Before IDX Added: actual time=0.127..0.127 rows=1 loops=1
+After IDX Added: actual time=0.0231..0.0232 rows=1 loops=1
+
+After index, query takes approx 1/5 of time.
+Noticeable improvement, and on all other queries that search for userId in history. 
+
+
+—————————————————————————————————————————————————————
+--Index #2: Index on (userId, genreCategory) in user_genre_count to improve recommendation queries.
+
+Since we use book-to-genre mappings often in our recommendations by similar book, and similar user. 
+It would be helpful in the following queries:
+
+-- Purpose: Retrieve 20 recommended books for the user based on their genre history
+—- Calculates scores for each book based on whether they include genres the user has interacted with.
+—- SELECT b.bookId, b.title, b.authors, b.average_rating, b.image_url, SUM(ugc.numBooks) AS score
+        FROM book b
+        JOIN book_to_genre btg ON b.bookId = btg.bookId
+        JOIN genre_category gc ON btg.genreName = gc.genreName
+        LEFT JOIN user_genre_count ugc 
+               ON ugc.genreCategoryName = gc.genreCategoryName
+              AND ugc.userId = ?
+        WHERE b.bookId NOT IN (
+            SELECT bookId FROM history WHERE userId = ?
+            UNION
+            SELECT bookId FROM curr_checkout WHERE userId = ?
+        )
+        GROUP BY b.bookId, b.title, b.authors, b.average_rating, b.image_url
+        ORDER BY score DESC
+        LIMIT 20;
+
+-- Purpose: Find the top genre for a specific book based on the user’s reading patterns
+— SELECT gc.genreCategoryName
+        FROM book_to_genre btg
+        JOIN genre_category gc ON btg.genreName = gc.genreName
+        LEFT JOIN user_genre_count ugc
+                ON ugc.genreCategoryName = gc.genreCategoryName
+                  AND ugc.userId = ?
+        WHERE btg.bookId = ?
+        ORDER BY ugc.numBooks DESC
+        LIMIT 1;
+
+-- Purpose: Update the user's genre count based on book interactions
+—- final String updateSql = """
+            INSERT INTO user_genre_count (userId, genreCategoryName, numBooks)
+            VALUES (?, ?, 1)
+            ON DUPLICATE KEY UPDATE numBooks = numBooks + 1;
+            """;
+
+
+
+To add the index: 
+CREATE index composite_index ON user_genre_count(userId, genreCategoryName)
+
+Run Sample: find the 20 recommended books for user with userId: 53339
+
+SELECT b.bookId, b.title, b.authors, b.average_rating, b.image_url, SUM(ugc.numBooks) AS score
+        FROM book b
+        JOIN book_to_genre btg ON b.bookId = btg.bookId
+        JOIN genre_category gc ON btg.genreName = gc.genreName
+        LEFT JOIN user_genre_count ugc 
+               ON ugc.genreCategoryName = gc.genreCategoryName
+              AND ugc.userId = 53339
+        WHERE b.bookId NOT IN (
+            SELECT bookId FROM history WHERE userId = 53339
+            UNION
+            SELECT bookId FROM curr_checkout WHERE userId = 53339
+        )
+        GROUP BY b.bookId, b.title, b.authors, b.average_rating, b.image_url
+        ORDER BY score DESC
+        LIMIT 20;
+Before IDX Added: actual time=8.36..8.37 rows=20 loops=1
+After IDX Added: actual time=5.53..5.53 rows=20 loops=1
+
+New query time is ~66% time of the original un-indexed query. 
+This is a substantial improvement, especially as we want the “For You” recommendations to be calculated on the fly. 
+This way, user preferences are updated throughout their session, rather than at a delay and and these recommendations are
+as relevant and up-to-date as possible.
+
+These indexes were both incorporated into our schema and can be seen in the database_setup.sql file accordingly, with their respective tables in the schema. 
+
+

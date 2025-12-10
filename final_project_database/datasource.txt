@@ -1,0 +1,12 @@
+The original dataset comes from Kaggle.com with the link provided below as “Original Book Dataset from Kaggle”. Originally, the data was provided in four separate csv files from Kaggle, but in order to verify that the final tables were normalized before we used them in our database, we combined the tables into one table, joining on the primary keys for each table. Additionally, for the functionality we wanted for the library, we wanted the users to have identities, but the data only had userIds without names, so we simulated unique usernames and first and last names for each userId. For the users to be able to login, we also added the password to the User table and hashed them matching the method found in userService. 
+
+We sought to have better fields about genres and descriptions of the books than the original dataset provided, so using the isbns which can uniquely identify any book, we found another datasource from Kaggle (“Supplementary Dataset from Kaggle”) which had more robust information about the book, specifically description, genres, and number of pages, and joined on the isbn number. Once we had this table, based on a probability distribution we simulated the number of copies available for each book in the library. 
+
+After we had the appropriate fields in this table to implement the functionality of our app, we normalized the table using BCNF and the steps shown in the db_design.pdf document. Finally, to address the high cardinality of genres in a way that would allow us to recommend books based on genre, we grouped genres into similar categories and created a table that mapped the book genres to the grouped genres. This would ensure that there were enough books within each category to recommend to users. To prevent redundancy within the user table, we also created a table for user counts of genres read for the recommendations to be based upon.
+
+Original Book Dataset from Kaggle:
+https://www.kaggle.com/datasets/zygmunt/goodbooks-10k?select=books.csv
+
+Supplementary Dataset from Kaggle: https://www.kaggle.com/datasets/pooriamst/best-books-ever-dataset
+
+
